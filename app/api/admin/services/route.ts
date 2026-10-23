@@ -1,0 +1,9 @@
+import { env } from "cloudflare:workers";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
+import { defaultServices } from "@/lib/brand";
+import { getAuthorizedAdmin } from "@/lib/admin-auth";
+export const dynamic="force-dynamic";
+export async function GET(){if(!await getAuthorizedAdmin())return NextResponse.json({error:"Não autorizado."},{status:401});const overrides=env.DB?(await env.DB.prepare("SELECT * FROM service_overrides").all<Record<string,unknown>>()).results:[];const bySlug=new Map(overrides.map((row)=>[row.slug,row]));const services=defaultServices.map((s)=>{const o=bySlug.get(s.slug);return{slug:s.slug,name:s.name,durationMinutes:Number(o?.duration_minutes??s.durationMinutes),priceLabel:String(o?.price_label??s.priceLabel),active:o?Boolean(o.active):true}});return NextResponse.json({services})}
+const schema=z.object({slug:z.string(),name:z.string(),durationMinutes:z.number().int().min(30).max(480),priceLabel:z.string().min(2).max(80),active:z.boolean()});
+export async function PUT(request:NextRequest){if(!await getAuthorizedAdmin())return NextResponse.json({error:"Não autorizado."},{status:401});const parsed=schema.safeParse(await request.json().catch(()=>null));const base=defaultServices.find(s=>s.slug===parsed.data?.slug);if(!parsed.success||!base||!env.DB)return NextResponse.json({error:"Dados inválidos."},{status:400});await env.DB.prepare("INSERT INTO service_overrides (slug,name,short,description,duration_minutes,price_label,category,active,sort_order,updated_at) VALUES (?,?,?,?,?,?,?,?,?,?) ON CONFLICT(slug) DO UPDATE SET duration_minutes=excluded.duration_minutes,price_label=excluded.price_label,active=excluded.active,updated_at=excluded.updated_at").bind(base.slug,base.name,base.short,base.description,parsed.data.durationMinutes,parsed.data.priceLabel,base.category,parsed.data.active?1:0,defaultServices.indexOf(base),new Date().toISOString()).run();return NextResponse.json({ok:true})}
