@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /amanda-teixeira-beauty/admin
+
+Sitemap: https://duduwwl.github.io/amanda-teixeira-beauty/sitemap.xml

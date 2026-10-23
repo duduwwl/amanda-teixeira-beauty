@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Amanda Teixeira Beauty</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // GitHub Pages não conhece as rotas do app (/agendamento, /admin...).
+      // Guarda o caminho pedido e volta para a raiz; o app restaura o caminho ao abrir.
+      ;(function () {
+        var base = '/amanda-teixeira-beauty/'
+        var l = window.location
+        if (l.pathname.indexOf(base) !== 0) base = '/'
+        sessionStorage.setItem('spa-redirect', l.pathname + l.search + l.hash)
+        l.replace(base)
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
