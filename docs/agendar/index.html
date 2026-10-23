@@ -1,1 +1,69 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Agendar — Amanda Teixeira Beauty</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Italiana&display=swap" rel="stylesheet"><link rel="stylesheet" href="../styles.css"></head><body><main class="page"><a class="back" href="../">← Voltar</a><p class="eyebrow">Agendamento</p><h1>Vamos cuidar<br>de você.</h1><div class="page-grid"><div><p>Preencha as informações para preparar sua solicitação. Ao continuar, você será direcionada ao WhatsApp da Amanda para confirmar disponibilidade, valor e horário.</p></div><form class="booking-form" id="booking"><label>Procedimento<select name="servico" required><option value="">Selecione</option><option>Regeneração capilar</option><option>Regeneração de sobrancelhas</option><option>Micropigmentação</option><option>Remoção a laser</option><option>Curso profissional</option></select></label><label>Data de preferência<input type="date" name="data" required></label><label>Período<select name="periodo" required><option value="">Selecione</option><option>Manhã</option><option>Tarde</option><option>Sem preferência</option></select></label><label>Seu nome<input name="nome" autocomplete="name" required></label><label>Telefone<input name="telefone" type="tel" autocomplete="tel" required></label><label>Observação<textarea name="observacao" placeholder="Conte brevemente o que você procura"></textarea></label><p class="form-note">O envio abre o WhatsApp. O agendamento só fica confirmado após a resposta da equipe.</p><button type="submit">Continuar no WhatsApp ↗</button></form></div></main><script>const p=new URLSearchParams(location.search).get('servico');if(p)document.querySelector('[name=servico]').value=p;document.querySelector('[name=data]').min=new Date().toISOString().slice(0,10);document.querySelector('#booking').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.currentTarget);const msg=`Olá, Amanda! Gostaria de solicitar um horário.\n\nNome: ${d.get('nome')}\nProcedimento: ${d.get('servico')}\nData: ${d.get('data')}\nPeríodo: ${d.get('periodo')}\nTelefone: ${d.get('telefone')}\nObservação: ${d.get('observacao')||'—'}`;location.href='https://wa.me/message/AJAAIV6XAB5NF1?text='+encodeURIComponent(msg)});</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Solicite seu horário na Amanda Teixeira Beauty & Academy.">
+  <meta name="theme-color" content="#e1dfd9">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <title>Agenda — Amanda Teixeira Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="booking-fixes.css">
+</head>
+<body class="booking-body">
+  <a class="skip" href="#booking-main">Ir para o agendamento</a>
+  <div class="booking-frame">
+    <header class="booking-top"><a class="booking-brand" href="../"><span class="mark">AT</span><span>Amanda Teixeira</span></a><p>Agenda online</p><a href="../">Fechar</a></header>
+    <aside class="booking-aside">
+      <div><p>Beauty &amp; Academy</p><h1>Escolha seu momento.</h1><p>Você monta a solicitação em poucos passos e confirma disponibilidade diretamente com a equipe.</p></div>
+      <figure><img src="../assets/amanda-retrato.jpg" width="683" height="1024" alt="Amanda Teixeira no Studio"></figure>
+      <small>Lavras, Minas Gerais</small>
+    </aside>
+    <main class="booking-sheet" id="booking-main" data-ui>
+      <nav class="booking-progress" aria-label="Etapas do agendamento"><button class="is-current" data-go="0">Procedimento</button><button data-go="1">Data e horário</button><button data-go="2">Seus dados</button><button data-go="3">Revisão</button></nav>
+      <form id="booking-form">
+        <section class="booking-step is-active" data-step="0" aria-labelledby="service-title">
+          <div class="step-heading"><div><h2 id="service-title">O que você procura?</h2><p>Escolha o atendimento que mais se aproxima do seu objetivo.</p></div><span>Etapa 1 de 4</span></div>
+          <div class="service-options">
+            <label><input type="radio" name="servico" value="Regeneração de sobrancelhas" required><span><strong>Regeneração de sobrancelhas</strong><small>Recuperação e acompanhamento dos fios naturais.</small></span></label>
+            <label><input type="radio" name="servico" value="Regeneração capilar"><span><strong>Regeneração capilar</strong><small>Protocolo direcionado ao couro cabeludo e aos fios.</small></span></label>
+            <label><input type="radio" name="servico" value="Nanopigmentação"><span><strong>Nanopigmentação</strong><small>Desenho delicado com foco em naturalidade.</small></span></label>
+            <label><input type="radio" name="servico" value="Remoção a laser"><span><strong>Remoção a laser</strong><small>Plano gradual para pigmentos indesejados.</small></span></label>
+            <label><input type="radio" name="servico" value="Brow lamination"><span><strong>Brow lamination</strong><small>Alinhamento, volume e definição dos fios.</small></span></label>
+            <label><input type="radio" name="servico" value="Cursos profissionais"><span><strong>Cursos profissionais</strong><small>Formação técnica e visão de negócio.</small></span></label>
+          </div>
+          <div class="step-actions"><span></span><button class="booking-primary" type="button" data-next>Escolher data</button></div>
+        </section>
+
+        <section class="booking-step" data-step="1" aria-labelledby="date-title" hidden>
+          <div class="step-heading"><div><h2 id="date-title">Quando fica melhor?</h2><p>Escolha uma preferência. A equipe confirmará a disponibilidade pelo WhatsApp.</p></div><span>Etapa 2 de 4</span></div>
+          <div class="date-layout">
+            <div><h3>Próximos dias</h3><div class="date-grid" data-date-grid role="radiogroup" aria-label="Datas disponíveis"></div></div>
+            <div><h3>Melhor período</h3><div class="period-options"><label><input type="radio" name="periodo" value="Manhã" required><span>Manhã<small>9h às 12h</small></span></label><label><input type="radio" name="periodo" value="Tarde"><span>Tarde<small>13h às 18h</small></span></label><label><input type="radio" name="periodo" value="Sem preferência"><span>Sem preferência<small>Quero ver opções</small></span></label></div></div>
+          </div>
+          <div class="step-actions"><button type="button" data-back>Voltar</button><button class="booking-primary" type="button" data-next>Informar dados</button></div>
+        </section>
+
+        <section class="booking-step" data-step="2" aria-labelledby="details-title" hidden>
+          <div class="step-heading"><div><h2 id="details-title">Como falamos com você?</h2><p>Peça apenas os dados necessários para a equipe responder.</p></div><span>Etapa 3 de 4</span></div>
+          <div class="field-grid"><label>Nome completo<input name="nome" autocomplete="name" required placeholder="Ex.: Amanda Teixeira…"></label><label>WhatsApp<input name="telefone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="(35) 99999-9999…"></label><label class="field-wide">O que você gostaria de contar?<textarea name="observacao" rows="4" autocomplete="off" placeholder="Conte o que você procura…"></textarea></label></div>
+          <label class="privacy-check"><input type="checkbox" name="consentimento" required><span>Concordo em enviar essas informações pelo WhatsApp para solicitar atendimento.</span></label>
+          <div class="step-actions"><button type="button" data-back>Voltar</button><button class="booking-primary" type="button" data-next>Revisar solicitação</button></div>
+        </section>
+
+        <section class="booking-step" data-step="3" aria-labelledby="review-title" hidden>
+          <div class="step-heading"><div><h2 id="review-title">Tudo certo?</h2><p>Revise antes de abrir a conversa com a equipe.</p></div><span>Etapa 4 de 4</span></div>
+          <dl class="booking-summary"><div><dt>Procedimento</dt><dd data-summary="servico">—</dd></div><div><dt>Data</dt><dd data-summary="data">—</dd></div><div><dt>Período</dt><dd data-summary="periodo">—</dd></div><div><dt>Nome</dt><dd data-summary="nome">—</dd></div><div><dt>WhatsApp</dt><dd data-summary="telefone">—</dd></div></dl>
+          <div class="confirmation-note"><strong>Solicitação, não reserva.</strong><p>O horário será confirmado pela equipe depois que a conversa começar no WhatsApp.</p></div>
+          <div class="step-actions"><button type="button" data-back>Editar</button><button class="booking-primary" type="submit">Abrir WhatsApp</button></div>
+        </section>
+      </form>
+    </main>
+  </div>
+  <script type="module" src="booking.js"></script>
+</body>
+</html>

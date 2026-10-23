@@ -1,0 +1,12 @@
+.booking-body {
+  overflow-x: hidden;
+}
+
+@media (max-width: 560px) {
+  .booking-aside h1 {
+    max-width: 7ch;
+    font-size: 2.55rem;
+    line-height: 0.98;
+    text-wrap: wrap;
+  }
+}

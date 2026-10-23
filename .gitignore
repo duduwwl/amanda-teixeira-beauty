@@ -36,6 +36,7 @@ yarn-error.log*
 /.sites-runtime/
 /.openai/
 /.taste-skill/
+/workshots/
 
 # Workspace scaffolding and publication archives
 /.agents/
