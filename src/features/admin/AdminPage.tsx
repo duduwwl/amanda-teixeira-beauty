@@ -74,10 +74,10 @@ function Login() {
       <h1 className="text-[44px]">Área da Amanda</h1>
       <p className="text-soft">Acesso restrito à administração da agenda.</p>
       <label className="text-[15px] font-semibold">E-mail
-        <input className={field} type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input className={field} name="email" spellCheck={false} type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
       <label className="text-[15px] font-semibold">Senha
-        <input className={field} type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input className={field} name="senha" type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
       </label>
       {error && <p role="alert" className="bg-danger/10 px-4 py-3 text-danger">{error}</p>}
       {msg && <p role="status" className="bg-sand px-4 py-3">{msg}</p>}

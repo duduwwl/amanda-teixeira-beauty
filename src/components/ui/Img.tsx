@@ -4,8 +4,6 @@ type Entry = { w: number; h: number; widths: number[]; color: string }
 const manifest = images as Record<string, Entry>
 const BASE = import.meta.env.BASE_URL
 
-export const hasImage = (name: string) => name.replace(/\.\w+$/, '') in manifest
-
 type Props = {
   /** caminho relativo a public/images sem extensão, ex.: "amanda/retrato" */
   name: string

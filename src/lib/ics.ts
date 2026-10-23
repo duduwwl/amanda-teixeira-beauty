@@ -1,7 +1,8 @@
 import { brand } from '../content/site'
 
 const stamp = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
-const esc = (s: string) => s.replace(/[\;,]/g, (c) => '\\' + c).replace(/\n/g, '\\n')
+// RFC 5545: escapar barra invertida, ponto e vírgula e vírgula; quebra de linha vira \n
+const esc = (s: string) => s.replace(/[\\;,]/g, (c) => '\\' + c).replace(/\n/g, '\\n')
 
 export function icsFor(b: { code: string; service: string; start: string; end: string }) {
   const lines = [

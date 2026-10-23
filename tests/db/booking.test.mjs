@@ -173,3 +173,12 @@ test('grade de horários é trocada de forma atômica só pelo admin', async () 
   await assert.rejects(as(db, 'authenticated', ADMIN, (tx) => tx.query(`select admin_replace_hours('[{"weekday":1,"start_time":"10:00","end_time":"09:00"}]'::jsonb)`)), /check/)
   assert.equal((await db.query('select count(*)::int c from opening_hours')).rows[0].c, before)
 })
+
+test('visitante não consegue "esconder" uma reserva para ver o horário como livre', async () => {
+  const b = (await db.query(`select id, service_id, starts_at from bookings where status in ('pendente','confirmado') order by starts_at limit 1`)).rows[0]
+  const day = new Date(new Date(b.starts_at).getTime() - 3 * 3600e3).toISOString().slice(0, 10)
+  const anon = await as(db, 'anon', null, (tx) => tx.query('select starts_at from available_slots($1, $2::date, $3)', [b.service_id, day, b.id]))
+  assert.ok(!anon.rows.some((r) => new Date(r.starts_at).getTime() === new Date(b.starts_at).getTime()))
+  const adm = await as(db, 'authenticated', ADMIN, (tx) => tx.query('select starts_at from available_slots($1, $2::date, $3)', [b.service_id, day, b.id]))
+  assert.ok(adm.rows.some((r) => new Date(r.starts_at).getTime() === new Date(b.starts_at).getTime()))
+})

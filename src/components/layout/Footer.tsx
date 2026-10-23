@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { brand } from '../../content/site'
 
+const year = new Date().getFullYear() // calculado uma vez, fora da renderização
+
 export function Footer() {
-  const year = new Date().getFullYear()
   return (
     <footer className="on-dark footer-clip relative bg-field text-paper">
       <div className="footer-reveal frame flex flex-col pt-16 md:min-h-[86svh] md:pt-20 safe-bottom">
@@ -12,7 +13,7 @@ export function Footer() {
         >
           Amanda Teixeira
         </p>
-        <p className="sr-only">{brand.fullName}</p>
+        <p className="sr-only" translate="no">{brand.fullName}</p>
 
         <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-12">
           <ul className="m-0 list-none space-y-2 p-0 [overflow-wrap:anywhere] md:col-span-5">

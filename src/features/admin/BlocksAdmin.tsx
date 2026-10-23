@@ -47,7 +47,7 @@ export function BlocksAdmin() {
           {bl?.map((b) => (
             <li key={b.id} className="flex items-center justify-between gap-4 border-b border-sand py-3 text-[15px]">
               <span><span className="first-letter:uppercase">{longDay(b.starts_at)}</span>, {timeOf(b.starts_at)}–{timeOf(b.ends_at)}{b.reason && <span className="text-soft"> ({b.reason})</span>}</span>
-              <button type="button" className="link min-h-[40px]" onClick={() => run(() => removeBlock(b.id))}>Remover</button>
+              <button type="button" className="link min-h-[40px]" onClick={() => { if (confirm('Remover este bloqueio? O horário volta a ficar livre no site.')) run(() => removeBlock(b.id)) }}>Remover</button>
             </li>
           ))}
         </ul>
@@ -67,7 +67,7 @@ export function BlocksAdmin() {
           {hol?.map((x) => (
             <li key={x.day} className="flex items-center justify-between gap-4 border-b border-sand py-3 text-[15px]">
               <span><span className="tabular-nums">{x.day.split('-').reverse().join('/')}</span> {x.name}</span>
-              <button type="button" className="link min-h-[40px]" onClick={() => run(() => removeHoliday(x.day))}>Remover</button>
+              <button type="button" className="link min-h-[40px]" onClick={() => { if (confirm(`Remover o feriado ${x.name}?`)) run(() => removeHoliday(x.day)) }}>Remover</button>
             </li>
           ))}
         </ul>

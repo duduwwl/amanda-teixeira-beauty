@@ -19,20 +19,21 @@ export function Calendar({ serviceId, value, onChange, maxMonthsAhead = 2 }: Pro
   const year = y0 + Math.floor((m0 - 1 + offset) / 12)
   const month0 = (m0 - 1 + offset) % 12
   const monthYmd = `${year}-${String(month0 + 1).padStart(2, '0')}-01`
-  const [avail, setAvail] = useState<Map<string, number> | null>(null)
-  const [error, setError] = useState(false)
+  const key = `${serviceId}|${monthYmd}`
+  const [result, setResult] = useState<{ key: string; map?: Map<string, number>; error?: boolean } | null>(null)
+  const current = result?.key === key ? result : null
+  const avail = current?.map ?? null
+  const error = Boolean(current?.error)
   const grid = useMemo(() => monthGrid(year, month0), [year, month0])
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let alive = true
-    setAvail(null)
-    setError(false)
     monthAvailability(serviceId, monthYmd)
-      .then((m) => alive && setAvail(m))
-      .catch(() => alive && setError(true))
+      .then((map) => alive && setResult({ key, map }))
+      .catch(() => alive && setResult({ key, error: true }))
     return () => { alive = false }
-  }, [serviceId, monthYmd])
+  }, [serviceId, monthYmd, key])
 
   const free = (d: string) => (avail?.get(d) ?? 0) > 0 && d >= today
   const anyFree = avail && grid.some((d) => d && free(d))

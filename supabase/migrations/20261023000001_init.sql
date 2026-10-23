@@ -120,6 +120,9 @@ create table if not exists public.bookings (
 );
 create index if not exists bookings_starts_idx on public.bookings (starts_at);
 create index if not exists bookings_phone_idx on public.bookings (customer_phone);
+create index if not exists bookings_service_idx on public.bookings (service_id);   -- chaves estrangeiras indexadas
+create index if not exists bookings_customer_idx on public.bookings (customer_id);
+create index if not exists bookings_active_idx on public.bookings (starts_at) where status in ('pendente', 'confirmado');
 
 create table if not exists public.booking_events (
   id bigserial primary key,
@@ -137,8 +140,8 @@ create index if not exists booking_events_booking_idx on public.booking_events (
 -- Funções auxiliares
 -- ---------------------------------------------------------------------------
 create or replace function public.is_admin() returns boolean
-language sql stable security definer set search_path = public as $$
-  select exists (select 1 from public.admins where user_id = auth.uid());
+language sql stable security definer set search_path = public, pg_temp as $$
+  select exists (select 1 from public.admins where user_id = (select auth.uid()));
 $$;
 
 create or replace function public.touch_updated_at() returns trigger
@@ -153,7 +156,7 @@ create trigger customers_touch before update on public.customers for each row ex
 
 -- Histórico de alterações (inserção, mudança de status, reagendamento)
 create or replace function public.log_booking_event() returns trigger
-language plpgsql security definer set search_path = public as $$
+language plpgsql security definer set search_path = public, pg_temp as $$
 begin
   if tg_op = 'INSERT' then
     insert into booking_events (booking_id, action, to_status, details, actor)
@@ -198,7 +201,7 @@ create or replace function public.available_slots(
   p_day date,
   p_ignore_booking uuid default null
 ) returns table (starts_at timestamptz, ends_at timestamptz)
-language plpgsql stable security definer set search_path = public as $$
+language plpgsql stable security definer set search_path = public, pg_temp as $$
 declare
   s record;
   cfg record;
@@ -213,6 +216,8 @@ begin
   select * into cfg from business_settings where id = 1;
   if cfg is null or not cfg.booking_enabled then return; end if;
   tz := cfg.timezone;
+  -- só o painel pode pedir para ignorar uma reserva (reagendamento)
+  if p_ignore_booking is not null and not public.is_admin() then p_ignore_booking := null; end if;
 
   select * into s from services where id = p_service_id and active;
   if s is null then return; end if;
@@ -255,7 +260,7 @@ end $$;
 -- Quantidade de horários livres por dia de um mês (para o calendário).
 create or replace function public.month_availability(p_service_id uuid, p_month date)
 returns table (day date, free_slots integer)
-language sql stable security definer set search_path = public as $$
+language sql stable security definer set search_path = public, pg_temp as $$
   select d::date, (select count(*)::int from public.available_slots(p_service_id, d::date))
   from generate_series(date_trunc('month', p_month), date_trunc('month', p_month) + interval '1 month - 1 day', interval '1 day') d;
 $$;
@@ -263,7 +268,7 @@ $$;
 -- Primeiro horário livre de qualquer procedimento ativo (linha "próximo horário" do site).
 create or replace function public.next_free_slot()
 returns table (starts_at timestamptz, service_name text)
-language plpgsql stable security definer set search_path = public as $$
+language plpgsql stable security definer set search_path = public, pg_temp as $$
 declare
   cfg record; d date; s record; r record;
 begin
@@ -294,7 +299,7 @@ create or replace function public.create_booking(
   p_privacy_accepted boolean default false,
   p_marketing_opt_in boolean default false
 ) returns table (code text, starts_at timestamptz, ends_at timestamptz, service_name text, status booking_status)
-language plpgsql volatile security definer set search_path = public as $$
+language plpgsql volatile security definer set search_path = public, pg_temp as $$
 declare
   s record; cfg record; v_cust uuid; v_phone text; v_name text; v_mail text; v_day date;
   b public.bookings;
@@ -370,7 +375,7 @@ end $$;
 -- ---------------------------------------------------------------------------
 create or replace function public.admin_reschedule(p_booking_id uuid, p_new_start timestamptz)
 returns public.bookings
-language plpgsql volatile security definer set search_path = public as $$
+language plpgsql volatile security definer set search_path = public, pg_temp as $$
 declare b public.bookings; cfg record; local_day date;
 begin
   if not public.is_admin() then raise exception 'sem_permissao' using errcode = '42501'; end if;
@@ -394,7 +399,7 @@ end $$;
 
 -- Troca toda a grade de horários de uma vez (atômico).
 create or replace function public.admin_replace_hours(p_rows jsonb) returns integer
-language plpgsql volatile security definer set search_path = public as $$
+language plpgsql volatile security definer set search_path = public, pg_temp as $$
 declare n integer;
 begin
   if not public.is_admin() then raise exception 'sem_permissao' using errcode = '42501'; end if;
@@ -408,7 +413,7 @@ end $$;
 
 -- Retenção: anonimiza dados pessoais de atendimentos encerrados há mais de N meses.
 create or replace function public.purge_personal_data(p_months integer default 24) returns integer
-language plpgsql volatile security definer set search_path = public as $$
+language plpgsql volatile security definer set search_path = public, pg_temp as $$
 declare n integer;
 begin
   if auth.uid() is not null and not public.is_admin() then raise exception 'sem_permissao' using errcode = '42501'; end if;
@@ -441,7 +446,7 @@ revoke all on all functions in schema public from public, anon, authenticated;
 -- Público: só lê procedimentos ativos e configurações não sensíveis.
 grant select on public.services, public.business_settings, public.opening_hours, public.holidays to anon, authenticated;
 drop policy if exists services_public_read on public.services;
-create policy services_public_read on public.services for select using (active or public.is_admin());
+create policy services_public_read on public.services for select using (active or (select public.is_admin()));
 drop policy if exists settings_public_read on public.business_settings;
 create policy settings_public_read on public.business_settings for select using (true);
 drop policy if exists hours_public_read on public.opening_hours;
@@ -461,23 +466,23 @@ declare t text;
 begin
   foreach t in array array['services', 'opening_hours', 'holidays', 'blocks'] loop
     execute format('drop policy if exists %I on public.%I', t || '_admin_all', t);
-    execute format('create policy %I on public.%I for all to authenticated using (public.is_admin()) with check (public.is_admin())', t || '_admin_all', t);
+    execute format('create policy %I on public.%I for all to authenticated using ((select public.is_admin())) with check ((select public.is_admin()))', t || '_admin_all', t);
   end loop;
 end $$;
 drop policy if exists settings_admin_update on public.business_settings;
-create policy settings_admin_update on public.business_settings for update to authenticated using (public.is_admin()) with check (public.is_admin());
+create policy settings_admin_update on public.business_settings for update to authenticated using ((select public.is_admin())) with check ((select public.is_admin()));
 drop policy if exists bookings_admin on public.bookings;
-create policy bookings_admin on public.bookings for select to authenticated using (public.is_admin());
+create policy bookings_admin on public.bookings for select to authenticated using ((select public.is_admin()));
 drop policy if exists bookings_admin_update on public.bookings;
-create policy bookings_admin_update on public.bookings for update to authenticated using (public.is_admin()) with check (public.is_admin());
+create policy bookings_admin_update on public.bookings for update to authenticated using ((select public.is_admin())) with check ((select public.is_admin()));
 drop policy if exists customers_admin on public.customers;
-create policy customers_admin on public.customers for select to authenticated using (public.is_admin());
+create policy customers_admin on public.customers for select to authenticated using ((select public.is_admin()));
 drop policy if exists customers_admin_update on public.customers;
-create policy customers_admin_update on public.customers for update to authenticated using (public.is_admin()) with check (public.is_admin());
+create policy customers_admin_update on public.customers for update to authenticated using ((select public.is_admin())) with check ((select public.is_admin()));
 drop policy if exists events_admin on public.booking_events;
-create policy events_admin on public.booking_events for select to authenticated using (public.is_admin());
+create policy events_admin on public.booking_events for select to authenticated using ((select public.is_admin()));
 drop policy if exists admins_self on public.admins;
-create policy admins_self on public.admins for select to authenticated using (user_id = auth.uid());
+create policy admins_self on public.admins for select to authenticated using (user_id = (select auth.uid()));
 
 grant execute on function public.available_slots(uuid, date, uuid) to anon, authenticated;
 grant execute on function public.month_availability(uuid, date) to anon, authenticated;

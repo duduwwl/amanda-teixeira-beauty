@@ -135,7 +135,12 @@ function BookingFlow() {
 
   const motionProps = reduce
     ? {}
-    : { initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -8 }, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const } }
+    : {
+        initial: { opacity: 0, y: 12 },
+        animate: { opacity: 1, y: 0, transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] as const } },
+        // saída mais curta que a entrada: a próxima etapa aparece logo
+        exit: { opacity: 0, y: -6, transition: { duration: 0.14, ease: [0.55, 0.055, 0.675, 0.19] as const } },
+      }
 
   return (
     <div id="agenda-topo" className="frame scroll-mt-[90px] pb-[var(--section)] pt-[clamp(110px,12vw,160px)]">

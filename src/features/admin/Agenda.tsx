@@ -24,8 +24,6 @@ export function Agenda() {
   const [view, setView] = useState<View>('dia')
   const [anchor, setAnchor] = useState(todayYmd())
   const [filter, setFilter] = useState<BookingStatus | 'todos'>('todos')
-  const [rows, setRows] = useState<Booking[] | null>(null)
-  const [error, setError] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>(null)
 
   const range = useMemo(() => {
@@ -36,11 +34,19 @@ export function Agenda() {
     return [m, `${mo === 12 ? y + 1 : y}-${String(mo === 12 ? 1 : mo + 1).padStart(2, '0')}-01`]
   }, [view, anchor])
 
-  const load = useCallback(() => {
-    setRows(null); setError(null)
-    bookingsBetween(iso(range[0]), iso(range[1])).then(setRows).catch((e) => setError(e.message))
-  }, [range])
-  useEffect(load, [load])
+  const [nonce, setNonce] = useState(0)
+  const load = useCallback(() => setNonce((n) => n + 1), [])
+  const reqKey = `${range[0]}|${range[1]}|${nonce}`
+  const [res, setRes] = useState<{ key: string; rows?: Booking[]; error?: string } | null>(null)
+  useEffect(() => {
+    let alive = true
+    bookingsBetween(iso(range[0]), iso(range[1]))
+      .then((r) => alive && setRes({ key: reqKey, rows: r }))
+      .catch((e) => alive && setRes({ key: reqKey, error: e.message }))
+    return () => { alive = false }
+  }, [range, reqKey])
+  const rows = res?.key === reqKey ? res.rows ?? null : null
+  const error = res?.key === reqKey ? res.error ?? null : null
 
   const shown = rows?.filter((r) => filter === 'todos' || r.status === filter) ?? null
   const step = (n: number) => setAnchor((a) => view === 'dia' ? addDays(a, n) : view === 'semana' ? addDays(a, 7 * n) : (() => {
@@ -86,7 +92,7 @@ export function Agenda() {
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[14px]">
         <label className="flex items-center gap-2">Status
-          <select value={filter} onChange={(e) => setFilter(e.target.value as BookingStatus | 'todos')} className="min-h-[40px] bg-paper px-3 ring-1 ring-taupe">
+          <select value={filter} onChange={(e) => setFilter(e.target.value as BookingStatus | 'todos')} className="min-h-[40px] bg-paper px-3 text-ink ring-1 ring-taupe">
             <option value="todos">Todos</option>
             {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]} ({counts[s] ?? 0})</option>)}
           </select>
@@ -189,12 +195,14 @@ function Row({ b, open, onToggle, onChanged, showDay }: { b: Booking; open: bool
   const [mode, setMode] = useState<'none' | 'cancel' | 'move'>('none')
   const [reason, setReason] = useState('')
   const [day, setDay] = useState(ymdInTz(b.starts_at))
-  const [slots, setSlots] = useState<Slot[] | null>(null)
+  const [slotRes, setSlotRes] = useState<{ day: string; slots: Slot[] } | null>(null)
+  const slots = slotRes?.day === day ? slotRes.slots : null
 
   useEffect(() => {
     if (mode !== 'move') return
-    setSlots(null)
-    slotsFor(b.service_id, day, b.id).then(setSlots).catch((e) => setErr(e.message))
+    let alive = true
+    slotsFor(b.service_id, day, b.id).then((s) => alive && setSlotRes({ day, slots: s })).catch((e) => alive && setErr(e.message))
+    return () => { alive = false }
   }, [mode, day, b.service_id, b.id])
 
   const act = async (fn: () => Promise<void>) => {

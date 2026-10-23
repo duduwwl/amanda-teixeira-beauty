@@ -1,39 +1,9 @@
 import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { maskPhone, validate } from './rules'
 
-export type Details = {
-  name: string
-  phone: string
-  email: string
-  notes: string
-  contactPreference: 'whatsapp' | 'ligacao' | 'email'
-  privacyAccepted: boolean
-  marketingOptIn: boolean
-}
-
-/** Máscara (35) 99876-5432 */
-export function maskPhone(v: string) {
-  const d = v.replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '').slice(0, 11)
-  if (d.length <= 2) return d.length ? `(${d}` : ''
-  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`
-  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`
-  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
-}
-
-/** Mesmas regras que o banco aplica em create_booking. */
-export function validate(d: Details, emailRequired = false) {
-  const e: Partial<Record<keyof Details, string>> = {}
-  const name = d.name.trim().replace(/\s+/g, ' ')
-  if (name.length < 3 || !name.includes(' ')) e.name = 'Escreva nome e sobrenome.'
-  else if (name.length > 100) e.name = 'Nome muito longo.'
-  const digits = d.phone.replace(/\D/g, '')
-  if (!/^[1-9]{2}9?\d{8}$/.test(digits)) e.phone = 'Informe DDD e número, por exemplo (35) 99876-5432.'
-  if ((emailRequired || d.contactPreference === 'email') && !d.email.trim()) e.email = 'Informe um e-mail para contato.'
-  else if (d.email.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email.trim())) e.email = 'Esse e-mail parece incompleto.'
-  if (d.notes.length > 600) e.notes = 'Use até 600 caracteres.'
-  if (!d.privacyAccepted) e.privacyAccepted = 'Para reservar, aceite a política de privacidade.'
-  return e
-}
+import type { Details } from './rules'
+export type { Details }
 
 const empty: Details = { name: '', phone: '', email: '', notes: '', contactPreference: 'whatsapp', privacyAccepted: false, marketingOptIn: false }
 
@@ -70,21 +40,21 @@ export function DetailsForm({ initial, onSubmit, onBack }: { initial: Details | 
       )}
       <div>
         <label htmlFor={`${id}-name`} className="text-[15px] font-semibold">Nome completo</label>
-        <input id={`${id}-name`} className={field} autoComplete="name" value={d.name} onChange={(e) => set('name', e.target.value)} onBlur={blur('name')}
+        <input id={`${id}-name`} name="nome" className={field} autoComplete="name" value={d.name} onChange={(e) => set('name', e.target.value)} onBlur={blur('name')}
           aria-invalid={Boolean(show('name'))} aria-describedby={show('name') ? `${id}-name-err` : undefined} maxLength={100} required />
         {err('name')}
       </div>
       <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor={`${id}-phone`} className="text-[15px] font-semibold">WhatsApp com DDD</label>
-          <input id={`${id}-phone`} className={field} type="tel" inputMode="tel" autoComplete="tel-national" placeholder="(35) 99876-5432"
+          <input id={`${id}-phone`} name="whatsapp" className={field} type="tel" inputMode="tel" autoComplete="tel-national" placeholder="(35) 99876-5432…"
             value={d.phone} onChange={(e) => set('phone', maskPhone(e.target.value))} onBlur={blur('phone')}
             aria-invalid={Boolean(show('phone'))} aria-describedby={show('phone') ? `${id}-phone-err` : undefined} required />
           {err('phone')}
         </div>
         <div>
           <label htmlFor={`${id}-email`} className="text-[15px] font-semibold">E-mail <span className="font-normal text-soft">(opcional)</span></label>
-          <input id={`${id}-email`} className={field} type="email" inputMode="email" autoComplete="email" value={d.email}
+          <input id={`${id}-email`} name="email" spellCheck={false} className={field} type="email" inputMode="email" autoComplete="email" value={d.email}
             onChange={(e) => set('email', e.target.value)} onBlur={blur('email')} maxLength={254}
             aria-invalid={Boolean(show('email'))} aria-describedby={show('email') ? `${id}-email-err` : undefined} />
           {err('email')}
@@ -105,7 +75,7 @@ export function DetailsForm({ initial, onSubmit, onBack }: { initial: Details | 
 
       <div>
         <label htmlFor={`${id}-notes`} className="text-[15px] font-semibold">Observações <span className="font-normal text-soft">(opcional)</span></label>
-        <textarea id={`${id}-notes`} rows={3} className={`${field} py-3`} value={d.notes} onChange={(e) => set('notes', e.target.value)} onBlur={blur('notes')}
+        <textarea id={`${id}-notes`} name="observacoes" rows={3} className={`${field} py-3`} value={d.notes} onChange={(e) => set('notes', e.target.value)} onBlur={blur('notes')}
           maxLength={600} aria-describedby={`${id}-notes-hint`} />
         <p id={`${id}-notes-hint`} className="mt-1.5 text-[14px] text-soft">Algo que a Amanda deve saber antes, como um procedimento anterior. Não precisa informar dados de saúde aqui.</p>
         {err('notes')}

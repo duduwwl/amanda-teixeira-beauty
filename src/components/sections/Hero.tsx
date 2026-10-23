@@ -5,25 +5,27 @@ import { heroPhotos } from '../../content/media'
 import { brand } from '../../content/site'
 import { backendConfigured } from '../../lib/env'
 import { longDay, timeOf } from '../../lib/time'
+import { preloadProps } from '../../lib/preload'
 
 /** Assinatura de movimento: a foto principal troca devagar, como luz mudando na sala. */
 function useCrossfade(count: number, hold = 5600) {
   const [i, setI] = useState(0)
+  const [paused, setPaused] = useState(() => typeof window !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)
   useEffect(() => {
-    if (count < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (count < 2 || paused) return
     let t: number | undefined
     const tick = () => { t = window.setTimeout(() => { if (!document.hidden) setI((v) => (v + 1) % count); tick() }, hold) }
     tick()
     return () => window.clearTimeout(t)
-  }, [count, hold])
-  return i
+  }, [count, hold, paused])
+  return { active: i, paused, toggle: () => setPaused((p) => !p) }
 }
 
 /** Elemento vivo: o próximo horário realmente livre na agenda. */
 function NextSlot() {
-  const [slot, setSlot] = useState<{ starts_at: string; service_name: string } | null | undefined>(undefined)
+  const [slot, setSlot] = useState<{ starts_at: string; service_name: string } | null | undefined>(backendConfigured ? undefined : null)
   useEffect(() => {
-    if (!backendConfigured) return setSlot(null)
+    if (!backendConfigured) return
     let alive = true
     // carrega o cliente da agenda só depois que a página já apareceu
     import('../../services/booking').then((m) => m.nextFreeSlot()).then((s) => alive && setSlot(s)).catch(() => alive && setSlot(null))
@@ -38,7 +40,7 @@ function NextSlot() {
 }
 
 export function Hero() {
-  const active = useCrossfade(heroPhotos.length)
+  const { active, paused, toggle } = useCrossfade(heroPhotos.length)
   return (
     <section id="inicio" aria-labelledby="hero-title" className="relative isolate h-[100svh] min-h-[600px] overflow-hidden bg-field text-paper">
       <div className="absolute inset-0 -z-10">
@@ -68,8 +70,13 @@ export function Hero() {
         </div>
         <div className="hero-rise flex flex-col gap-4 md:col-span-4 md:col-start-9 md:items-end md:text-right" style={{ animationDelay: '240ms' }}>
           <NextSlot />
+          {heroPhotos.length > 1 && (
+            <button type="button" onClick={toggle} aria-pressed={paused} className="link order-last text-[13px] text-paper/80 md:order-none">
+              {paused ? 'Retomar troca de fotos' : 'Pausar troca de fotos'}
+            </button>
+          )}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:justify-end">
-            <Link to="/agendamento" className="btn btn-light">Agendar atendimento</Link>
+            <Link to="/agendamento" {...preloadProps} className="btn btn-light">Agendar atendimento</Link>
             <Link to="/#procedimentos" className="link text-[15px]">Conhecer os procedimentos</Link>
           </div>
         </div>

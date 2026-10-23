@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { brand } from '../../content/site'
+import { preloadProps } from '../../lib/preload'
 
 const NAV = [
   { href: '/#inicio', label: 'Início' },
@@ -13,21 +14,23 @@ const NAV = [
 
 /** Sobre a foto do topo o cabeçalho é transparente; depois vira uma barra lisa no papel. */
 export function Header({ overHero = false }: { overHero?: boolean }) {
-  const [solid, setSolid] = useState(!overHero)
-  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(() => typeof window !== 'undefined' && window.scrollY > window.innerHeight * 0.75)
+  const solid = !overHero || scrolled
+  const [menu, setMenu] = useState<{ open: boolean; path: string }>({ open: false, path: '' })
   const panel = useRef<HTMLDivElement>(null)
   const toggle = useRef<HTMLButtonElement>(null)
   const { pathname } = useLocation()
+  // o menu fecha sozinho quando a rota muda (inclusive pelo botão voltar)
+  const open = menu.open && menu.path === pathname
+  const setOpen = (v: boolean | ((o: boolean) => boolean)) =>
+    setMenu((m) => ({ open: typeof v === 'function' ? v(m.open && m.path === pathname) : v, path: pathname }))
 
   useEffect(() => {
-    if (!overHero) return setSolid(true)
-    const on = () => setSolid(window.scrollY > window.innerHeight * 0.75)
-    on()
+    if (!overHero) return
+    const on = () => setScrolled(window.scrollY > window.innerHeight * 0.75)
     window.addEventListener('scroll', on, { passive: true })
     return () => window.removeEventListener('scroll', on)
   }, [overHero])
-
-  useEffect(() => setOpen(false), [pathname])
 
   // Menu do celular: Esc fecha, foco fica preso dentro, página não rola por trás.
   useEffect(() => {
@@ -37,7 +40,7 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
     const first = panel.current?.querySelector<HTMLElement>('a,button')
     first?.focus()
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { setOpen(false); toggle.current?.focus() }
+      if (e.key === 'Escape') { setMenu((m) => ({ ...m, open: false })); toggle.current?.focus() }
       if (e.key === 'Tab' && panel.current) {
         const f = Array.from(panel.current.querySelectorAll<HTMLElement>('a,button'))
         const [a, z] = [f[0], f[f.length - 1]]
@@ -58,7 +61,7 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
     >
       <div className="frame flex h-[72px] items-center justify-between gap-6">
         <Link to="/" className="leading-[1.15] no-underline">
-          <span className="block font-display text-[22px] tracking-[-0.01em]">Amanda Teixeira</span>
+          <span translate="no" className="block font-display text-[22px] tracking-[-0.01em]">Amanda Teixeira</span>
           <span className={`block text-[13px] ${light ? 'text-paper/85' : 'text-soft'}`}>{brand.role}</span>
         </Link>
 
@@ -68,13 +71,13 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
               {n.label}
             </Link>
           ))}
-          <NavLink to="/agendamento" className={`btn ${light ? 'btn-light' : ''}`}>
+          <NavLink to="/agendamento" {...preloadProps} className={`btn ${light ? 'btn-light' : ''}`}>
             Agendar horário
           </NavLink>
         </nav>
 
         <div className="flex items-center gap-3 lg:hidden">
-          <NavLink to="/agendamento" className={`btn !min-h-[44px] !px-4 text-[13px] ${light ? 'btn-light' : ''} max-[359px]:hidden`}>
+          <NavLink to="/agendamento" {...preloadProps} className={`btn !min-h-[44px] !px-4 text-[13px] ${light ? 'btn-light' : ''} max-[359px]:hidden`}>
             Agendar
           </NavLink>
           <button

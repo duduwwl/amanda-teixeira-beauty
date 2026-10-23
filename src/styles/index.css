@@ -66,6 +66,11 @@ p { text-wrap: pretty; margin: 0; }
 
 }
 
+/* âncoras não ficam escondidas sob o cabeçalho fixo */
+[id] { scroll-margin-top: 80px; }
+a, button, summary, label, input, select, textarea { touch-action: manipulation; }
+#menu-celular, dialog { overscroll-behavior: contain; }
+
 ::selection { background: var(--color-cocoa); color: var(--color-paper); }
 
 :focus-visible {
@@ -157,7 +162,7 @@ p { text-wrap: pretty; margin: 0; }
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 
-.menu-item { animation: menu-in 420ms var(--ease-out) both; }
+.menu-item { animation: menu-in 260ms var(--ease-out) both; }
 @keyframes menu-in { from { opacity: 0; transform: translateY(12px); } }
 
 .hero-photo { transition: opacity 1600ms var(--ease-in-out); }
@@ -171,11 +176,15 @@ details > summary::-webkit-details-marker { display: none; }
 }
 
 .proc-photo { transition: opacity 700ms var(--ease-in-out); }
-details[open] > summary + * { animation: open-down 420ms var(--ease-out); }
+details[open] > summary + * { animation: open-down 240ms var(--ease-out); }
 @keyframes open-down { from { opacity: 0; transform: translateY(-6px); } }
 
 @media (min-width: 768px) {
-  .band-panel { flex: var(--g) 1 0; transition: flex-grow 500ms var(--ease-in-out); }
+  .band-panel { flex: var(--g) 1 0; }
+}
+/* abrir o painel no hover: só com mouse de verdade e sem redução de movimento */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .band-panel { transition: flex-grow 500ms var(--ease-in-out); }
   .band:hover .band-panel:hover { flex-grow: 6; }
 }
 
@@ -185,7 +194,7 @@ details[open] > summary + * { animation: open-down 420ms var(--ease-out); }
     @keyframes drift { from { translate: 0 var(--d); } to { translate: 0 calc(var(--d) * -1); } }
   }
 }
-.lb-img { animation: lb-in 420ms var(--ease-out); }
+.lb-img { animation: lb-in 220ms var(--ease-out); }
 @keyframes lb-in { from { opacity: 0; scale: 0.985; } }
 dialog.lightbox[open] { display: block; }
 
