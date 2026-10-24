@@ -5,77 +5,71 @@ import { heroPhotos } from '../../content/media'
 import { brand } from '../../content/site'
 import { longDay, timeOf } from '../../lib/time'
 import { preloadProps } from '../../lib/preload'
+import { backendConfigured } from '../../lib/env'
 
-/** Assinatura de movimento: a foto principal troca devagar, como luz mudando na sala. */
-function useCrossfade(count: number, hold = 5600) {
-  const [i, setI] = useState(0)
-  const [paused, setPaused] = useState(() => typeof window !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)
-  useEffect(() => {
-    if (count < 2 || paused) return
-    let t: number | undefined
-    const tick = () => { t = window.setTimeout(() => { if (!document.hidden) setI((v) => (v + 1) % count); tick() }, hold) }
-    tick()
-    return () => window.clearTimeout(t)
-  }, [count, hold, paused])
-  return { active: i, paused, toggle: () => setPaused((p) => !p) }
-}
-
-/** Elemento vivo: o próximo horário realmente livre na agenda. */
+/** Leitura ao vivo: o próximo horário realmente livre na agenda. */
 function NextSlot() {
   const [slot, setSlot] = useState<{ starts_at: string; service_name: string } | null | undefined>(undefined)
   useEffect(() => {
     let alive = true
-    // carrega o cliente da agenda só depois que a página já apareceu
-    import('../../services/booking').then((m) => m.nextFreeSlot()).then((s) => alive && setSlot(s)).catch(() => alive && setSlot(null))
+    // carrega a agenda só depois que a página já apareceu; em modo demonstração
+    // nem baixa o cliente do Supabase
+    const load = backendConfigured
+      ? import('../../services/booking').then((m) => m.nextFreeSlot())
+      : import('../../services/demoBackend').then((m) => m.nextFreeSlot())
+    load.then((s) => alive && setSlot(s)).catch(() => alive && setSlot(null))
     return () => { alive = false }
   }, [])
-  if (!slot) return <p className="text-[15px] text-paper/85" aria-live="polite">Escolha procedimento, dia e horário em poucos toques.</p>
   return (
-    <p className="text-[15px] text-paper/90" aria-live="polite">
-      Próximo horário livre: <strong className="font-semibold text-paper">{longDay(slot.starts_at)}, {timeOf(slot.starts_at)}</strong>
-    </p>
+    <div className="border border-paper/25 p-4" aria-live="polite">
+      <p className="tag flex items-center text-paper/70"><span className="live mr-2.5" aria-hidden="true" />Agenda online</p>
+      <p className="mt-2 text-[17px] leading-snug">
+        {slot ? (
+          <>Próximo horário livre: <strong className="font-semibold">{longDay(slot.starts_at)}, {timeOf(slot.starts_at)}</strong></>
+        ) : (
+          'Procedimento, dia e horário em poucos toques.'
+        )}
+      </p>
+    </div>
   )
 }
 
-export function Hero() {
-  const { active, paused, toggle } = useCrossfade(heroPhotos.length)
-  return (
-    <section id="inicio" aria-labelledby="hero-title" className="relative isolate h-[100svh] min-h-[600px] overflow-hidden bg-field text-paper">
-      <div className="absolute inset-0 -z-10">
-        {heroPhotos.map((p, i) => (
-          <div
-            key={p.name}
-            className="hero-photo absolute inset-0"
-            style={{ opacity: i === active ? 1 : 0 }}
-            aria-hidden={i !== active}
-          >
-            <Img name={p.name} alt={i === 0 ? p.alt : ''} priority={i === 0} focus={p.focus} sizes="100vw" />
-          </div>
-        ))}
-        {/* véu neutro só embaixo, onde está o texto */}
-        <div className="absolute inset-x-0 bottom-0 h-[78%] bg-[linear-gradient(to_top,rgba(20,12,8,0.86),rgba(20,12,8,0.55)_50%,rgba(20,12,8,0))] md:h-[62%] md:bg-[linear-gradient(to_top,rgba(20,12,8,0.78),rgba(20,12,8,0.35)_55%,rgba(20,12,8,0))]" />
-        <div className="absolute inset-x-0 top-0 h-[140px] bg-[linear-gradient(to_bottom,rgba(20,12,8,0.45),rgba(20,12,8,0))]" />
-      </div>
+const hero = heroPhotos[0]
 
-      <div className="frame absolute inset-x-0 bottom-0 grid gap-8 pb-[max(32px,env(safe-area-inset-bottom))] md:grid-cols-12 md:items-end md:pb-12">
-        <div className="md:col-span-7">
-          <h1 id="hero-title" className="hero-rise text-[clamp(56px,11.5vw,72px)] leading-[0.92] md:text-[clamp(72px,7.4vw,128px)]">
-            Amanda<br />Teixeira
-          </h1>
-          <p className="hero-rise mt-6 max-w-[34ch] text-[20px] leading-snug text-paper/95 md:mt-8" style={{ animationDelay: '120ms' }}>
-            {brand.role} em Lavras. Regeneração com exossomos, remoção a laser e micropigmentação, sempre com avaliação antes.
+export function Hero() {
+  return (
+    <section id="inicio" aria-labelledby="hero-title" className="on-dark relative isolate overflow-hidden bg-field text-paper">
+      <div className="frame grid gap-y-10 pb-12 pt-[96px] md:min-h-[100svh] md:grid-cols-12 md:gap-x-6 md:pb-14 md:pt-[112px]">
+        <div className="flex flex-col md:col-span-7">
+          <p className="tag hero-rise flex flex-wrap gap-x-5 gap-y-1 text-paper/70">
+            <span>{brand.role}</span><span>{brand.cityShort}</span><span>Desde {brand.since}</span>
           </p>
+          <h1 id="hero-title" className="hero-rise mt-8 text-[clamp(36px,12.6vw,96px)] font-bold uppercase leading-[0.86] md:mt-auto md:text-[min(8.6vw,156px)]" style={{ animationDelay: '80ms' }}>
+            Amanda<br />Teixeira<span className="text-champagne">.</span>
+          </h1>
         </div>
-        <div className="hero-rise flex flex-col gap-4 md:col-span-4 md:col-start-9 md:items-end md:text-right" style={{ animationDelay: '240ms' }}>
-          <NextSlot />
-          {heroPhotos.length > 1 && (
-            <button type="button" onClick={toggle} aria-pressed={paused} className="link order-last text-[13px] text-paper/80 md:order-none">
-              {paused ? 'Retomar troca de fotos' : 'Pausar troca de fotos'}
-            </button>
-          )}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:justify-end">
-            <Link to="/agendamento" {...preloadProps} className="btn btn-light">Agendar atendimento</Link>
-            <Link to="/#procedimentos" className="link text-[15px]">Conhecer os procedimentos</Link>
+
+        <figure className="relative m-0 flex flex-col text-paper/60 md:col-span-5 md:row-span-2 md:self-stretch">
+          <div className="ticks text-champagne md:min-h-0 md:flex-1">
+            <div className="scan aspect-[4/5] md:aspect-auto md:h-full md:min-h-[520px]" style={{ '--h': '100%' } as React.CSSProperties}>
+              <Img name={hero.name} alt={hero.alt} priority focus={hero.focus} sizes="(min-width: 768px) 40vw, calc(100vw - 40px)" />
+            </div>
+          </div>
+          <figcaption className="tag mt-4 flex justify-between gap-4">
+            <span className="whitespace-nowrap">Fig. 01</span><span className="text-right">Laser Spectra próprio</span>
+          </figcaption>
+        </figure>
+
+        <div className="grid gap-8 md:col-span-7 md:grid-cols-7 md:items-end md:gap-x-6">
+          <p className="hero-rise max-w-[38ch] text-[19px] leading-snug text-paper/90 md:col-span-4" style={{ animationDelay: '160ms' }}>
+            Regeneração com exossomos, remoção a laser e nanopigmentação em Lavras. Sempre com avaliação antes de indicar qualquer procedimento.
+          </p>
+          <div className="hero-rise grid gap-5 md:col-span-3" style={{ animationDelay: '240ms' }}>
+            <NextSlot />
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link to="/agendamento" {...preloadProps} className="btn btn-light max-sm:w-full">Agendar atendimento</Link>
+              <Link to="/#procedimentos" className="link text-[15px]">Ver procedimentos</Link>
+            </div>
           </div>
         </div>
       </div>

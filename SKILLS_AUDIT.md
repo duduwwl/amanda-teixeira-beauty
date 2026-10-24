@@ -37,3 +37,8 @@ Ver `docs/BIBLIOTECAS.md`.
 | vercel-react-best-practices | Página inicial pré-renderizada no build com `hydrateRoot` (`rendering-*`), fontes servidas pelo próprio site com preload, agenda de demonstração carregada sob demanda (`bundle-conditional`). |
 | web-design-guidelines | Mapa do Google só carrega quando a pessoa pede (sem cookies de terceiros antes disso); acordeão com `aria-expanded`/`aria-controls`. |
 | ui-ux-pro-max | Lighthouse real: celular 93–94 / desktop 100 em performance, 100 em acessibilidade, boas práticas e SEO. |
+
+
+## Terceira rodada (24/10/2026): identidade própria
+
+Pedido: os sites do portfólio estavam saindo parecidos. Comparação feita clonando os repositórios recentes (Studio Ludy Brito, Divino Look, Anelice Ribeiro, M. Marie, Pérola Leite, Leal Lavie, Nidalii, Márcio Felipe, ON Moda Fitness): quase todos com fundo creme/osso, texto marrom, serifada de luxo (Cormorant, Bodoni, Playfair, DM Serif) e o mesmo ritmo editorial de fotos. Esta versão parou de usar a direção sorteada pela **design-taste-frontend** e quebra de propósito três regras da casa dela (rótulos monoespaçados, numeração 01/02/03, eyebrows), porque são justamente o que dá à Amanda a linguagem de laudo/ficha clínica que nenhum outro projeto usa. O resto do método continuou: um formato de botão, contraste AA medido (o vermelho foi escurecido de `#c92a1b` para `#b8251a` porque não passava sobre o cinza), sem rolagem lateral de 320 a 2560 px, axe sem violações sérias, Lighthouse medido com compressão.

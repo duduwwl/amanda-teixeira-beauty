@@ -12,7 +12,7 @@ test('landing: título, seções e navegação por âncora', async ({ page, isMo
     await expect(page.locator(`#${id}`)).toHaveCount(1)
   }
   if (isMobile) {
-    await page.getByRole('button', { name: 'Menu' }).click()
+    await page.getByRole('button', { name: /Menu/ }).click()
     const menu = page.getByRole('dialog', { name: 'Menu' })
     await expect(menu).toBeVisible()
     await menu.getByRole('link', { name: 'Procedimentos' }).click()
@@ -27,7 +27,7 @@ test('landing: título, seções e navegação por âncora', async ({ page, isMo
 test('menu do celular: Esc fecha e devolve o foco', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'só no celular')
   await page.goto(url())
-  const btn = page.getByRole('button', { name: 'Menu' })
+  const btn = page.getByRole('button', { name: /Menu/ })
   await btn.click()
   await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible()
   await page.keyboard.press('Escape')
@@ -35,7 +35,7 @@ test('menu do celular: Esc fecha e devolve o foco', async ({ page, isMobile }) =
   await expect(btn).toBeFocused()
 })
 
-test('procedimentos: "Saiba mais" abre e o botão leva à agenda com o procedimento', async ({ page }) => {
+test('procedimentos: a linha abre e o botão leva à agenda com o procedimento', async ({ page }) => {
   await page.goto(url('#procedimentos'))
   const item = page.locator('#procedimentos li').filter({ hasText: 'Nanopigmentação' })
   await item.getByRole('button', { name: /Nanopigmentação/ }).click()
@@ -45,18 +45,15 @@ test('procedimentos: "Saiba mais" abre e o botão leva à agenda com o procedime
   await expect(page.getByRole('heading', { name: 'Escolha o dia' })).toBeVisible()
 })
 
-test('galeria: abre ampliada, navega por teclado, filtra e fecha', async ({ page }) => {
+test('resultados: visor troca de caso pelo índice, setas e filtro', async ({ page }) => {
   await page.goto(url('#resultados'))
-  await page.getByRole('button', { name: 'Ver a galeria' }).first().click()
-  const dlg = page.getByRole('dialog', { name: 'Galeria de resultados' })
-  await expect(dlg).toBeVisible()
-  await expect(dlg.getByText(/1 de \d+/)).toBeVisible()
-  await page.keyboard.press('ArrowRight')
-  await expect(dlg.getByText(/2 de \d+/)).toBeVisible()
-  await dlg.getByRole('button', { name: 'Regeneração' }).click()
-  await expect(dlg.getByText(/1 de 1/)).toBeVisible()
-  await page.keyboard.press('Escape')
-  await expect(dlg).toBeHidden()
+  const sec = page.locator('#resultados')
+  await expect(sec.getByText(/^1\/\d+$/)).toBeVisible()
+  await sec.getByRole('button', { name: 'Próximo caso' }).click()
+  await expect(sec.getByText(/^2\/\d+$/)).toBeVisible()
+  await sec.getByRole('button', { name: 'Regeneração' }).click()
+  await expect(sec.getByText('1/1')).toBeVisible()
+  await expect(sec.getByText(/RegenereBrows/).first()).toBeVisible()
 })
 
 test('rotas internas funcionam abrindo direto (fallback do GitHub Pages)', async ({ page }) => {
@@ -71,6 +68,7 @@ test('rotas internas funcionam abrindo direto (fallback do GitHub Pages)', async
 
 test('sem rolagem lateral em nenhuma largura @desktop-only', async ({ page, isMobile }) => {
   test.skip(isMobile)
+  test.setTimeout(240_000) // 12 larguras × 4 páginas
   for (const w of [320, 360, 375, 390, 414, 768, 820, 1024, 1280, 1440, 1920, 2560]) {
     await page.setViewportSize({ width: w, height: 900 })
     for (const p of ['', 'agendamento', 'admin', 'politica-de-privacidade']) {

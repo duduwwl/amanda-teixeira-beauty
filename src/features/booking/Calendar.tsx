@@ -53,10 +53,10 @@ export function Calendar({ serviceId, value, onChange, maxMonthsAhead = 2 }: Pro
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <h3 className="font-display text-[30px] first-letter:uppercase md:text-[34px]" aria-live="polite">{monthLabel(year, month0)}</h3>
+        <h3 className="font-display text-[26px] first-letter:uppercase md:text-[34px]" aria-live="polite">{monthLabel(year, month0)}</h3>
         <div className="flex gap-2">
-          <button type="button" className="btn btn-quiet !min-h-[44px] !px-4" onClick={() => setOffset((o) => o - 1)} disabled={offset === 0} aria-label="Mês anterior">Anterior</button>
-          <button type="button" className="btn btn-quiet !min-h-[44px] !px-4" onClick={() => setOffset((o) => o + 1)} disabled={offset >= maxMonthsAhead} aria-label="Próximo mês">Próximo</button>
+          <button type="button" className="btn btn-quiet !min-h-[44px] !px-4" onClick={() => setOffset((o) => o - 1)} disabled={offset === 0} aria-label="Mês anterior">←</button>
+          <button type="button" className="btn btn-quiet !min-h-[44px] !px-4" onClick={() => setOffset((o) => o + 1)} disabled={offset >= maxMonthsAhead} aria-label="Próximo mês">→</button>
         </div>
       </div>
 

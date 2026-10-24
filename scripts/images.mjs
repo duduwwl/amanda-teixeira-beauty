@@ -7,7 +7,7 @@ import { join, parse } from 'node:path'
 
 const SRC = 'assets-src'
 const OUT = 'public/images'
-const WIDTHS = [480, 960, 1600]
+const WIDTHS = [480, 720, 960, 1600]
 const manifest = {}
 
 for (const folder of readdirSync(SRC)) {
@@ -21,7 +21,7 @@ for (const folder of readdirSync(SRC)) {
     const meta = await img.metadata()
     const w0 = meta.autoOrient?.width ?? meta.width
     const h0 = meta.autoOrient?.height ?? meta.height
-    const widths = WIDTHS.filter((w) => w < w0).concat(w0 <= WIDTHS.at(-1) ? [w0] : []).slice(0, 3)
+    const widths = WIDTHS.filter((w) => w < w0).concat(w0 <= WIDTHS.at(-1) ? [w0] : []).slice(0, 4)
     for (const w of widths) {
       const r = img.clone().resize({ width: w, withoutEnlargement: true })
       await r.clone().webp({ quality: 78, effort: 5 }).toFile(join(OUT, folder, `${name}-${w}.webp`))

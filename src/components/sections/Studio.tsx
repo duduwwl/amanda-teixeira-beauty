@@ -1,4 +1,5 @@
 import { Img } from '../ui/Img'
+import { SectionHead } from '../ui/SectionHead'
 import { studioPhotos } from '../../content/media'
 
 const POINTS = [
@@ -6,43 +7,34 @@ const POINTS = [
   { t: 'Laser Spectra próprio', d: 'A remoção a laser deixou de depender de data marcada: é no dia que você escolher.' },
   { t: 'Um cafezinho', d: 'Quem chega é recebida com calma, e a Amanda faz questão de oferecer um café.' },
 ]
+const SHAPE = ['md:col-span-5 aspect-[4/5]', 'md:col-span-3 aspect-[3/4] md:mt-24', 'md:col-span-4 aspect-[4/5] md:mt-10']
 
-/** Faixa de painéis desiguais que se abrem no hover. */
+/** O studio em três fotos de alturas diferentes e três fatos curtos. No celular, faixa que rola de lado. */
 export function Studio() {
-  const grow = [5, 2, 3, 2]
+  const photos = studioPhotos.slice(0, 3)
   return (
-    <section aria-labelledby="studio-title" className="py-[var(--section)]">
-      <div className="frame grid gap-10 md:grid-cols-12 md:gap-x-6">
-        <h2 id="studio-title" data-reveal className="text-[clamp(44px,6vw,96px)] md:col-span-5 md:col-start-1">
-          O studio por dentro
-        </h2>
-        <ul className="m-0 grid list-none gap-7 p-0 sm:grid-cols-3 md:col-span-7 md:col-start-6 md:gap-6">
+    <section aria-labelledby="studio-title" className="bg-sand py-[var(--section)]">
+      <div className="frame">
+        <SectionHead n="04" label="O studio" id="studio-title" title={<>Centro<br />de Lavras</>} aside="Studio Amanda Teixeira, Rua Dr. Álvaro Botelho. Atendimento com hora marcada, uma cliente por vez." />
+        <ul className="m-0 mt-14 grid list-none gap-x-6 gap-y-8 border-t border-ink p-0 pt-8 sm:grid-cols-3 md:mt-20">
           {POINTS.map((p, i) => (
-            <li key={p.t} data-reveal style={{ '--i': i + 1 } as React.CSSProperties}>
-              <h3 className="font-sans text-[17px] font-semibold tracking-normal">{p.t}</h3>
-              <p className="mt-1.5 text-[17px]">{p.d}</p>
+            <li key={p.t} data-reveal style={{ '--i': i } as React.CSSProperties}>
+              <p className="tag text-laser">S-0{i + 1}</p>
+              <h3 className="mt-3 text-[22px] uppercase">{p.t}</h3>
+              <p className="mt-2 max-w-[34ch] text-[16px] text-soft">{p.d}</p>
             </li>
           ))}
         </ul>
       </div>
 
-      <div data-reveal className="band mt-14 grid h-[84svh] grid-cols-[36fr_28fr_36fr] grid-rows-2 md:mt-20 md:flex md:h-[68svh]">
-        {studioPhotos.map((p, i) => (
-          <figure
-            key={p.name}
-            className={`band-panel relative m-0 min-w-0 overflow-hidden ${['max-md:col-span-2', '', '', 'max-md:col-span-2'][i]}`}
-            style={{ '--g': grow[i] } as React.CSSProperties}
-          >
-            <Img name={p.name} alt={p.alt} sizes="(min-width: 768px) 40vw, 60vw" />
-            {i === 0 && (
-              <figcaption className="absolute left-0 top-0 max-w-[80%] bg-[linear-gradient(135deg,rgba(20,12,8,0.6),rgba(20,12,8,0)_70%)] p-6 pr-16 pb-16 font-display text-[30px] leading-[1.05] text-paper">
-                Centro de Lavras
-              </figcaption>
-            )}
+      <div tabIndex={0} role="region" aria-label="Fotos do studio (role para o lado)" className="strip frame mt-14 flex gap-4 overflow-x-auto pb-4 md:mt-20 md:grid md:grid-cols-12 md:gap-6 md:overflow-visible md:pb-0">
+        {photos.map((p, i) => (
+          <figure key={p.name} className={`m-0 w-[78vw] shrink-0 md:w-auto ${SHAPE[i]}`}>
+            <div className="h-full" data-reveal="mask"><Img name={p.name} alt={p.alt} sizes="(min-width: 768px) 40vw, 78vw" /></div>
+            <figcaption className="tag mt-3 text-soft">Fig. 0{i + 6}</figcaption>
           </figure>
         ))}
       </div>
-      <p className="frame mt-5 text-[17px] text-soft">Studio Amanda Teixeira, Rua Dr. Álvaro Botelho. Atendimento com hora marcada.</p>
     </section>
   )
 }

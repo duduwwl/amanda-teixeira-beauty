@@ -69,7 +69,13 @@ Fontes de cada informação e o que confirmar com a Amanda: [`PENDENCIAS.md`](PE
 
 | | Performance | Acessibilidade | Boas práticas | SEO | LCP | CLS |
 | --- | --- | --- | --- | --- | --- | --- |
-| Lighthouse celular (4G lento simulado) | 93–94 | 100 | 100 | 100 | ~3,0 s | 0,017 |
-| Lighthouse desktop | 100 | 100 | 100 | 100 | 0,8 s | 0,001 |
+| Lighthouse celular (4G lento simulado, servidor com gzip como o GitHub Pages) | 95 | 100 | 100 | 100 | 2,7–2,8 s | 0 |
+| Lighthouse desktop | 100 | 100 | 100 | 100 | 0,6 s | 0 |
 
-Inspetor da skill de design: 0 falhas em 1440/768/390 px.
+## Identidade visual ("ficha clínica")
+
+Refeita em 24/10/2026 para não repetir a fórmula dos outros sites do portfólio (fundo creme, marrom, serifada elegante, fotos editoriais):
+
+- **Cores:** grafite `#0e1012`, branco frio `#f4f5f5`, aço `#e6e9ea` e um único acento, o vermelho do laser (`#b8251a` no claro, `#ff6b4f` no escuro). Tokens em `src/styles/index.css`.
+- **Tipos:** Archivo variável (eixo de largura: títulos expandidos em caixa alta, texto normal) e JetBrains Mono nos rótulos técnicos. Fontes recortadas para latim e servidas pelo próprio site (45 kB + 19 kB).
+- **Linguagem:** seções numeradas como uma ficha (01 Método, 02 Quem atende, 03 Índice de procedimentos…), figuras com "Fig.", marcas de corte nas fotos principais, linha de laser que varre o retrato ao abrir, leitura ao vivo do próximo horário livre, procedimentos em tabela-índice, resultados num visor de casos, faixa vermelha com a nota do Google.
