@@ -5,6 +5,7 @@ import { procedures } from '../../content/site'
 
 export function Procedures() {
   const [active, setActive] = useState(0)
+  const [open, setOpen] = useState<number | null>(null)
   return (
     <section id="procedimentos" aria-labelledby="proc-title" className="frame py-[var(--section)]">
       <h2 id="proc-title" data-reveal className="max-w-[16ch] text-[clamp(44px,6vw,96px)] md:indent-[3vw]">
@@ -25,24 +26,27 @@ export function Procedures() {
 
         <ul className="m-0 list-none p-0 md:col-span-6 md:col-start-7">
           {procedures.map((p, i) => (
-            <li key={p.slug} data-reveal style={{ '--i': i } as React.CSSProperties} className={i === 3 ? 'pt-8' : ''}>
-              <details
-                className="group"
-                onToggle={(e) => (e.currentTarget as HTMLDetailsElement).open && setActive(i)}
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-              >
-                <summary className="flex cursor-pointer items-baseline gap-5 py-5 outline-offset-4">
+            <li key={p.slug} data-reveal style={{ '--i': i } as React.CSSProperties} className={i === 3 ? 'pt-8' : ''}
+              onMouseEnter={() => setActive(i)}>
+              <h3 className="m-0 font-sans text-[17px] font-normal tracking-normal">
+                <button
+                  type="button"
+                  id={`proc-${p.slug}`}
+                  aria-expanded={open === i}
+                  aria-controls={`proc-${p.slug}-painel`}
+                  onClick={() => { setOpen(open === i ? null : i); setActive(i) }}
+                  onFocus={() => setActive(i)}
+                  className="flex w-full cursor-pointer items-baseline gap-5 py-5 text-left"
+                >
                   <span className="min-w-0 flex-1">
                     <span className="block font-display text-[30px] leading-[1.05] md:text-[36px]">{p.name}</span>
-                    <span className="mt-1 block text-[17px] text-soft">{p.lead}</span>
+                    <span className="mt-1.5 block text-[17px] leading-snug text-soft">{p.lead}</span>
                   </span>
-                  <span className="shrink-0 text-[15px] font-semibold underline underline-offset-4 group-open:no-underline">
-                    <span className="group-open:hidden">Saiba mais</span>
-                    <span className="hidden group-open:inline">Fechar</span>
-                  </span>
-                </summary>
-                <div className="grid gap-5 pb-10 pt-1">
+                  <span className="shrink-0 text-[15px] font-semibold underline underline-offset-4">{open === i ? 'Fechar' : 'Saiba mais'}</span>
+                </button>
+              </h3>
+              {open === i && (
+                <div id={`proc-${p.slug}-painel`} role="region" aria-labelledby={`proc-${p.slug}`} className="proc-panel grid gap-5 pb-12 pt-1">
                   <div className="aspect-[4/3] md:hidden">
                     <Img name={p.image} alt={p.imageAlt} sizes="100vw" />
                   </div>
@@ -56,7 +60,7 @@ export function Procedures() {
                     {p.evaluation && <Link to="/agendamento?servico=avaliacao" className="link text-[15px]">Agendar só a avaliação</Link>}
                   </div>
                 </div>
-              </details>
+              )}
             </li>
           ))}
         </ul>

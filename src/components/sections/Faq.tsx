@@ -19,9 +19,9 @@ export function Faq() {
         <div className="md:col-span-5 md:col-start-1 md:row-start-1 md:pt-[var(--section)]">
           <h2 id="faq-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Antes de marcar</h2>
           <dl className="mt-8 grid gap-3 text-[17px]">
-            <div><dt className="inline font-semibold">Onde: </dt><dd className="inline">{brand.address || brand.city}</dd></div>
+            <div><dt className="inline font-semibold">Onde: </dt><dd className="inline">{brand.address}</dd></div>
             <div><dt className="inline font-semibold">Como: </dt><dd className="inline">atendimento com hora marcada</dd></div>
-            {brand.hoursText && <div><dt className="inline font-semibold">Quando: </dt><dd className="inline">{brand.hoursText}</dd></div>}
+            <div><dt className="inline font-semibold">Quando: </dt><dd className="inline">{brand.hoursText}</dd></div>
           </dl>
 
           <div className="mt-10">

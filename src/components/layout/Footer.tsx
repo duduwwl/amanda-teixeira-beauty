@@ -6,10 +6,10 @@ const year = new Date().getFullYear() // calculado uma vez, fora da renderiza√ß√
 export function Footer() {
   return (
     <footer className="on-dark footer-clip relative bg-field text-paper">
-      <div className="footer-reveal frame flex flex-col pt-16 md:min-h-[86svh] md:pt-20 safe-bottom">
+      <div className="frame flex flex-col pt-16 md:min-h-[86svh] md:pt-20 safe-bottom">
         <p
           aria-hidden="true"
-          className="display m-0 select-none whitespace-nowrap text-[17.5vw] leading-[0.8] tracking-[-0.045em] text-paper md:text-[12.6vw]"
+          className="footer-reveal display m-0 select-none whitespace-nowrap text-[17.5vw] leading-[0.8] tracking-[-0.045em] text-paper md:text-[12.6vw]"
         >
           Amanda Teixeira
         </p>

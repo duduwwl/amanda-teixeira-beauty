@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "oxlint",
     "images": "node scripts/images.mjs",
@@ -14,8 +14,6 @@
     "test": "npm run test:db && npm run test:e2e"
   },
   "dependencies": {
-    "@fontsource-variable/manrope": "^5.3.0",
-    "@fontsource/cormorant-garamond": "^5.3.0",
     "@supabase/supabase-js": "^2.118.0",
     "motion": "^14.6.0",
     "react": "^19.3.1",
@@ -31,6 +29,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "lighthouse": "^13.5.0",
     "oxlint": "^1.88.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",

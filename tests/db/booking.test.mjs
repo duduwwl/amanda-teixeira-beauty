@@ -3,7 +3,7 @@ import { test, before } from 'node:test'
 import assert from 'node:assert/strict'
 import { createDb, as } from './harness.mjs'
 
-let db, svc, eval_, monday
+let db, svc, eval_, monday /* primeira terça disponível (segunda é folga) */
 const ADMIN = '11111111-1111-1111-1111-111111111111'
 const STRANGER = '22222222-2222-2222-2222-222222222222'
 
@@ -25,25 +25,22 @@ const book = (tx, overrides = {}) => {
 before(async () => {
   db = await createDb()
   await db.query('insert into admins (user_id) values ($1)', [ADMIN])
-  svc = (await db.query(`select id from services where slug = 'design-sobrancelhas'`)).rows[0].id // 45 min + 10
+  svc = (await db.query(`select id from services where slug = 'design-estrategico'`)).rows[0].id // 45 min + 10
   eval_ = (await db.query(`select id from services where slug = 'avaliacao'`)).rows[0].id
-  monday = nextWeekday(1)
+  monday = nextWeekday(2)
 })
 
-test('horários respeitam expediente, almoço e duração (fuso de São Paulo)', async () => {
+test('horários respeitam expediente e duração (fuso de São Paulo)', async () => {
   const s = await as(db, 'anon', null, (tx) => slots(tx, svc, monday))
   assert.equal(s[0], `${monday}T12:00:00.000Z`) // 09:00 em São Paulo = 12:00 UTC
-  // último início da manhã: 11:00 (11:00 + 45 = 11:45 <= 12:00); 11:30 não cabe
-  assert.ok(s.includes(`${monday}T14:00:00.000Z`))
-  assert.ok(!s.includes(`${monday}T14:30:00.000Z`))
   assert.ok(s.includes(`${monday}T16:00:00.000Z`)) // 13:00 local
-  assert.ok(!s.includes(`${monday}T15:00:00.000Z`)) // 12:00 local = almoço
-  assert.equal(s.at(-1), `${monday}T20:00:00.000Z`) // 17:00 local; 17:30 + 45 min passaria das 18:00
+  assert.equal(s.at(-1), `${monday}T21:00:00.000Z`) // 18:00 local; 18:30 + 45 min passaria das 19:00
 })
 
 test('domingo e feriado ficam fechados; passado e além do limite também', async () => {
   await as(db, 'anon', null, async (tx) => {
     assert.equal((await slots(tx, svc, nextWeekday(0))).length, 0)
+    assert.equal((await slots(tx, svc, nextWeekday(1))).length, 0) // segunda
     assert.equal((await slots(tx, svc, '2026-12-25')).length, 0)
     assert.equal((await slots(tx, svc, '2020-01-06')).length, 0)
     assert.equal((await slots(tx, svc, '2030-01-07')).length, 0)
@@ -106,10 +103,10 @@ test('limite de tentativas por telefone', async () => {
 })
 
 test('bloqueio manual tira horários', async () => {
-  const tuesday = nextWeekday(2)
-  await db.query(`insert into blocks (starts_at, ends_at, reason) values ($1, $2, 'curso')`, [`${tuesday}T12:00:00Z`, `${tuesday}T15:00:00Z`])
-  const s = await as(db, 'anon', null, (tx) => slots(tx, svc, tuesday))
-  assert.equal(s[0], `${tuesday}T16:00:00.000Z`)
+  const saturday = nextWeekday(6)
+  await db.query(`insert into blocks (starts_at, ends_at, reason) values ($1, $2, 'curso')`, [`${saturday}T12:00:00Z`, `${saturday}T15:00:00Z`])
+  const s = await as(db, 'anon', null, (tx) => slots(tx, svc, saturday))
+  assert.equal(s[0], `${saturday}T15:00:00.000Z`)
 })
 
 test('RLS: visitante não lê reservas nem clientes; não grava tabelas', async () => {
@@ -158,13 +155,13 @@ test('próximo horário livre e calendário do mês', async () => {
 })
 
 test('visitante lê procedimentos ativos e não vê os ocultos', async () => {
-  await db.query(`update services set active = false where slug = 'lash-brow'`)
+  await db.query(`update services set active = false where slug = 'lash-lifting'`)
   const r = await as(db, 'anon', null, (tx) => tx.query('select slug from services order by sort'))
   assert.ok(r.rows.length >= 6)
-  assert.ok(!r.rows.some((x) => x.slug === 'lash-brow'))
-  const adm = await as(db, 'authenticated', ADMIN, (tx) => tx.query(`select slug from services where slug = 'lash-brow'`))
+  assert.ok(!r.rows.some((x) => x.slug === 'lash-lifting'))
+  const adm = await as(db, 'authenticated', ADMIN, (tx) => tx.query(`select slug from services where slug = 'lash-lifting'`))
   assert.equal(adm.rows.length, 1)
-  await db.query(`update services set active = true where slug = 'lash-brow'`)
+  await db.query(`update services set active = true where slug = 'lash-lifting'`)
 })
 
 test('grade de horários é trocada de forma atômica só pelo admin', async () => {

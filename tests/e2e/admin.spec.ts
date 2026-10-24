@@ -16,7 +16,7 @@ test('painel exige login; senha errada é recusada', async ({ page }) => {
 test('admin entra, vê a reserva, confirma e reagenda @desktop-only', async ({ page, isMobile }) => {
   test.skip(isMobile)
   // cria uma reserva pelo site
-  await page.goto(url('agendamento?servico=design-sobrancelhas'))
+  await page.goto(url('agendamento?servico=design-estrategico'))
   await page.locator('button[data-day]:not([disabled])').first().click()
   await page.locator('fieldset button').first().click()
   await page.getByLabel('Nome completo').fill('Cliente Painel Teste')

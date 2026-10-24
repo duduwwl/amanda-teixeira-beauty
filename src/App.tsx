@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/layout/Layout'
 import Home from './pages/Home'
+import { basename } from './lib/base'
 
 // Agenda e painel carregam só quando visitados (o Supabase e o Motion não pesam na primeira página).
 const BookingPage = lazy(() => import('./features/booking/BookingPage').then((m) => ({ default: m.BookingPage })))
@@ -12,9 +13,10 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 const Loading = () => <div className="frame min-h-[80svh] pt-[140px] text-soft" aria-live="polite">Carregando…</div>
 
-export default function App() {
+
+/** Rotas do site, usadas tanto no navegador quanto na pré-renderização do build. */
+export function AppRoutes() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route element={<Layout />}>
@@ -27,6 +29,13 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename={basename}>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

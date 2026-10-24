@@ -18,7 +18,7 @@ export function About() {
           </div>
         </div>
 
-        <ul className="m-0 grid list-none gap-16 p-0 md:col-span-6 md:col-start-7 md:gap-[12svh]">
+        <ul className="m-0 grid list-none gap-16 p-0 md:col-span-6 md:col-start-7 md:gap-[8svh]">
           {aboutPhotos.map((p, i) => (
             <li key={p.name} className={i % 2 ? 'w-[78%] justify-self-end md:w-[70%]' : 'w-[88%] md:w-[84%]'}>
               <figure data-reveal="mask" className="m-0 aspect-[4/5]">

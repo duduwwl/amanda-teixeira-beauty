@@ -2,9 +2,9 @@ import { Img } from '../ui/Img'
 import { studioPhotos } from '../../content/media'
 
 const POINTS = [
-  { t: 'Uma cliente por vez', d: 'Hora marcada e o tempo do procedimento reservado só para você.' },
-  { t: 'Avaliação individual', d: 'Indicação feita a partir do que foi visto em você, não de um pacote pronto.' },
-  { t: 'Equipamento à vista', d: 'Imagem ampliada para avaliar fios e pele, LED e laser nos protocolos que pedem.' },
+  { t: 'Avaliação antes de tudo', d: 'Escuta, imagem ampliada dos fios e da pele, e só então a indicação.' },
+  { t: 'Laser Spectra próprio', d: 'A remoção a laser deixou de depender de data marcada: é no dia que você escolher.' },
+  { t: 'Um cafezinho', d: 'Quem chega é recebida com calma, e a Amanda faz questão de oferecer um café.' },
 ]
 
 /** Faixa de painéis desiguais que se abrem no hover. */
@@ -36,13 +36,13 @@ export function Studio() {
             <Img name={p.name} alt={p.alt} sizes="(min-width: 768px) 40vw, 60vw" />
             {i === 0 && (
               <figcaption className="absolute left-0 top-0 max-w-[80%] bg-[linear-gradient(135deg,rgba(20,12,8,0.6),rgba(20,12,8,0)_70%)] p-6 pr-16 pb-16 font-display text-[30px] leading-[1.05] text-paper">
-                Hora marcada
+                Centro de Lavras
               </figcaption>
             )}
           </figure>
         ))}
       </div>
-      <p className="frame mt-5 text-[17px] text-soft">Atendimento no studio, com o tempo de cada procedimento reservado na agenda.</p>
+      <p className="frame mt-5 text-[17px] text-soft">Studio Amanda Teixeira, Rua Dr. Álvaro Botelho. Atendimento com hora marcada.</p>
     </section>
   )
 }

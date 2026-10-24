@@ -24,5 +24,13 @@ export default defineConfig({
       reuseExistingServer: false,
       timeout: 120_000,
     },
+    {
+      // o mesmo site sem Supabase: a agenda roda em modo demonstração (como no GitHub Pages hoje)
+      command: 'npx vite build --outDir dist-demo --emptyOutDir && node tests/e2e/gh-pages-server.mjs dist-demo 4178',
+      url: 'http://127.0.0.1:4178/amanda-teixeira-beauty/',
+      env: { VITE_SUPABASE_URL: '', VITE_SUPABASE_ANON_KEY: '' },
+      reuseExistingServer: false,
+      timeout: 120_000,
+    },
   ],
 })

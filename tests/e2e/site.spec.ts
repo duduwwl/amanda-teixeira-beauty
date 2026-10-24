@@ -37,8 +37,8 @@ test('menu do celular: Esc fecha e devolve o foco', async ({ page, isMobile }) =
 
 test('procedimentos: "Saiba mais" abre e o botão leva à agenda com o procedimento', async ({ page }) => {
   await page.goto(url('#procedimentos'))
-  const item = page.locator('#procedimentos details').filter({ hasText: 'Nanopigmentação' })
-  await item.locator('summary').click()
+  const item = page.locator('#procedimentos li').filter({ hasText: 'Nanopigmentação' })
+  await item.getByRole('button', { name: /Nanopigmentação/ }).click()
   await expect(item.getByRole('link', { name: 'Agendar Nanopigmentação' })).toBeVisible()
   await item.getByRole('link', { name: 'Agendar Nanopigmentação' }).click()
   await expect(page).toHaveURL(/agendamento\?servico=nanopigmentacao/)
@@ -54,7 +54,7 @@ test('galeria: abre ampliada, navega por teclado, filtra e fecha', async ({ page
   await page.keyboard.press('ArrowRight')
   await expect(dlg.getByText(/2 de \d+/)).toBeVisible()
   await dlg.getByRole('button', { name: 'Regeneração' }).click()
-  await expect(dlg.getByText(/1 de 2/)).toBeVisible()
+  await expect(dlg.getByText(/1 de 1/)).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(dlg).toBeHidden()
 })
@@ -86,9 +86,10 @@ test('acessibilidade (axe, WCAG 2.2 AA) nas páginas principais', async ({ page 
   for (const p of ['', 'agendamento', 'admin', 'politica-de-privacidade']) {
     await page.goto(url(p))
     await page.waitForLoadState('networkidle')
-    // revela tudo que tem animação de entrada antes de medir contraste
-    await page.evaluate(() => document.querySelectorAll('[data-reveal]').forEach((e) => e.classList.add('is-in')))
-    await page.waitForTimeout(1300)
+    // As entradas são presas à rolagem: abaixo da tela o texto ainda está meio transparente.
+    // Mede-se o estado final, que é o que a pessoa lê (e o que aparece com movimento reduzido).
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.waitForTimeout(300)
     const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa']).analyze()
     const serious = r.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
     expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(' ')).slice(0, 3).join(' | ')}`), `/${p}`).toEqual([])

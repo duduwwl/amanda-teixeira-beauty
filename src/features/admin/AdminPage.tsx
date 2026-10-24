@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { backendConfigured } from '../../lib/supabase'
-import { auth } from '../../services/admin'
+import { auth, isDemo } from '../../services/admin'
 import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 import { Agenda } from './Agenda'
 import { ServicesAdmin } from './ServicesAdmin'
@@ -18,7 +17,6 @@ export default function AdminPage() {
   const [email, setEmail] = useState('')
 
   useEffect(() => {
-    if (!backendConfigured) return
     const check = async () => {
       const s = await auth.session()
       if (!s) return setState('out')
@@ -30,14 +28,6 @@ export default function AdminPage() {
     return () => sub.unsubscribe()
   }, [])
 
-  if (!backendConfigured) {
-    return (
-      <Shell>
-        <h1 className="text-[40px]">Área da Amanda</h1>
-        <p className="mt-4 max-w-[56ch]">O painel fica disponível assim que o banco de dados (Supabase) for conectado ao site. As instruções estão em <code>docs/SUPABASE.md</code> no repositório.</p>
-      </Shell>
-    )
-  }
   if (state === 'loading') return <Shell><p aria-live="polite">Verificando acesso…</p></Shell>
   if (state === 'out') return <Shell><Login /></Shell>
   if (state === 'denied') {
@@ -73,6 +63,7 @@ function Login() {
     >
       <h1 className="text-[44px]">Área da Amanda</h1>
       <p className="text-soft">Acesso restrito à administração da agenda.</p>
+      {isDemo && <DemoCredentials onUse={(e, p) => { setEmail(e); setPassword(p) }} />}
       <label className="text-[15px] font-semibold">E-mail
         <input className={field} name="email" spellCheck={false} type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
@@ -100,6 +91,13 @@ function Dashboard({ email }: { email: string }) {
       <div className="frame flex flex-wrap items-center justify-between gap-4 py-5">
         <h1 className="font-sans text-[22px] font-semibold tracking-normal">Agenda do studio</h1>
         <p className="flex items-center gap-4 text-[14px] text-soft">
+          {isDemo && (
+            <button type="button" className="link text-ink" onClick={async () => {
+              if (!confirm('Restaurar a agenda de demonstração? As mudanças feitas aqui serão desfeitas.')) return
+              ;(await import('../../services/demoBackend')).resetDemo()
+              location.reload()
+            }}>Restaurar demonstração</button>
+          )}
           <span className="hidden sm:inline">{email}</span>
           <button type="button" className="link text-ink" onClick={() => auth.signOut()}>Sair</button>
         </p>
@@ -121,6 +119,20 @@ function Dashboard({ email }: { email: string }) {
         {tab === 'Bloqueios e feriados' && <BlocksAdmin />}
         {tab === 'Histórico' && <HistoryAdmin />}
       </div>
+    </div>
+  )
+}
+
+/** Na demonstração, o acesso de teste fica à vista para quem quiser conhecer o painel. */
+function DemoCredentials({ onUse }: { onUse: (email: string, password: string) => void }) {
+  const [creds, setCreds] = useState<{ email: string; password: string } | null>(null)
+  useEffect(() => { import('../../services/demoBackend').then((m) => setCreds(m.DEMO_ADMIN)) }, [])
+  if (!creds) return null
+  return (
+    <div className="bg-sand px-4 py-3 text-[15px]">
+      <p><strong className="font-semibold">Painel de demonstração</strong>, com agenda fictícia.</p>
+      <p className="mt-1">E-mail <span className="font-semibold">{creds.email}</span> e senha <span className="font-semibold">{creds.password}</span>.</p>
+      <button type="button" className="link mt-1 font-semibold" onClick={() => onUse(creds.email, creds.password)}>Preencher para mim</button>
     </div>
   )
 }

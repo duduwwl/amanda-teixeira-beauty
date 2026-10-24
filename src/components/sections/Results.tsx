@@ -12,7 +12,7 @@ const SPOTS = [
   { x: 70, y: 62, w: 172, d: -7 },
   { x: 86, y: 36, w: 160, d: 12 },
 ]
-const CATS: ('Todos' | ResultCategory)[] = ['Todos', 'Sobrancelhas', 'Regeneração', 'Laser', 'Lábios']
+const CATS: ('Todos' | ResultCategory)[] = ['Todos', 'Sobrancelhas', 'Regeneração', 'Laser', 'Brow lamination']
 
 function Lightbox({ start, onClose }: { start: number; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null)
@@ -117,7 +117,7 @@ function ResultsText({ onOpen }: { onOpen: () => void }) {
   return (
     <>
       <h2 id="res-title" className="text-[44px]">Resultados<br />de perto</h2>
-      <p className="mx-auto mt-4 max-w-[32ch] text-[17px]">Sobrancelhas, regeneração, laser e lábios, fotografados no studio.</p>
+      <p className="mx-auto mt-4 max-w-[32ch] text-[17px]">Sobrancelhas, regeneração, laser e brow lamination, fotografados no studio.</p>
       <button type="button" onClick={onOpen} className="link mt-4 min-h-[44px] text-[17px] font-semibold">Ver a galeria</button>
     </>
   )

@@ -3,7 +3,7 @@ import { test, expect, type Page } from '@playwright/test'
 const url = (p = '') => `http://127.0.0.1:4175/amanda-teixeira-beauty/${p}`
 const phone = () => `(35) 9${String(Math.floor(10000000 + Math.random() * 89999999))}`
 
-async function pickFirstSlot(page: Page, service = 'Design de sobrancelhas') {
+async function pickFirstSlot(page: Page, service = 'Design estratégico') {
   await page.goto(url('agendamento'))
   await page.getByRole('button', { name: new RegExp(service) }).click()
   await expect(page.getByRole('heading', { name: 'Escolha o dia' })).toBeVisible()
@@ -50,7 +50,7 @@ test('horário reservado some da lista para a próxima cliente', async ({ page }
   await page.getByRole('button', { name: 'Confirmar agendamento' }).click()
   await expect(page.getByTestId('codigo')).toBeVisible()
   const day = await page.locator('dd').nth(2).innerText()
-  await page.goto(url('agendamento?servico=design-sobrancelhas'))
+  await page.goto(url('agendamento?servico=design-estrategico'))
   await page.locator('button[data-day]:not([disabled])').first().click()
   await expect(page.getByRole('heading', { name: 'Escolha o horário' })).toBeVisible()
   // mesmo dia (o primeiro livre) não oferece mais o horário que acabou de ser reservado

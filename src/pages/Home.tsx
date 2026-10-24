@@ -8,7 +8,6 @@ import { Courses } from '../components/sections/Courses'
 import { Testimonials } from '../components/sections/Testimonials'
 import { Faq } from '../components/sections/Faq'
 import { Contact } from '../components/sections/Contact'
-import { useReveal } from '../hooks/useReveal'
 import { useDocumentMeta } from '../hooks/useDocumentMeta'
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
     'Amanda Teixeira Beauty | Biomedicina estética em Lavras-MG',
     'Regeneração com exossomos, RegenereHair, RegenereBrows, remoção a laser, nanopigmentação e cursos profissionais com Amanda Teixeira, em Lavras-MG. Agende online.',
   )
-  useReveal()
   return (
     <>
       <Hero />

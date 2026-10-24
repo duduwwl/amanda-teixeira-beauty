@@ -32,3 +32,5 @@ test-results
 playwright-report
 .taste-skill/inspect
 assets-src/**/*.heic
+dist-demo
+dist-ssr

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Img } from '../ui/Img'
 import { heroPhotos } from '../../content/media'
 import { brand } from '../../content/site'
-import { backendConfigured } from '../../lib/env'
 import { longDay, timeOf } from '../../lib/time'
 import { preloadProps } from '../../lib/preload'
 
@@ -23,9 +22,8 @@ function useCrossfade(count: number, hold = 5600) {
 
 /** Elemento vivo: o próximo horário realmente livre na agenda. */
 function NextSlot() {
-  const [slot, setSlot] = useState<{ starts_at: string; service_name: string } | null | undefined>(backendConfigured ? undefined : null)
+  const [slot, setSlot] = useState<{ starts_at: string; service_name: string } | null | undefined>(undefined)
   useEffect(() => {
-    if (!backendConfigured) return
     let alive = true
     // carrega o cliente da agenda só depois que a página já apareceu
     import('../../services/booking').then((m) => m.nextFreeSlot()).then((s) => alive && setSlot(s)).catch(() => alive && setSlot(null))
@@ -55,7 +53,7 @@ export function Hero() {
           </div>
         ))}
         {/* véu neutro só embaixo, onde está o texto */}
-        <div className="absolute inset-x-0 bottom-0 h-[62%] bg-[linear-gradient(to_top,rgba(20,12,8,0.78),rgba(20,12,8,0.35)_55%,rgba(20,12,8,0))]" />
+        <div className="absolute inset-x-0 bottom-0 h-[78%] bg-[linear-gradient(to_top,rgba(20,12,8,0.86),rgba(20,12,8,0.55)_50%,rgba(20,12,8,0))] md:h-[62%] md:bg-[linear-gradient(to_top,rgba(20,12,8,0.78),rgba(20,12,8,0.35)_55%,rgba(20,12,8,0))]" />
         <div className="absolute inset-x-0 top-0 h-[140px] bg-[linear-gradient(to_bottom,rgba(20,12,8,0.45),rgba(20,12,8,0))]" />
       </div>
 

@@ -1,7 +1,7 @@
 # Guia da Amanda: como cuidar da agenda e do site
 
 Endereço do painel: **/admin** no final do link do site (também tem o link "Área da Amanda" no rodapé).
-Entre com o e-mail e a senha cadastrados. Se esquecer a senha, use "Esqueci a senha" na tela de entrada.
+Entre com o e-mail e a senha cadastrados. **Enquanto o site está em modo demonstração**, o acesso de teste aparece na própria tela de entrada (`demo@amandateixeira.com.br` / `agenda-demo`) e o botão "Restaurar demonstração" desfaz as mudanças. Se esquecer a senha, use "Esqueci a senha" na tela de entrada.
 
 ## Agenda
 

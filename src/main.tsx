@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import './styles/index.css'
 import App from './App'
 
@@ -12,8 +12,17 @@ if (redirect) {
   history.replaceState(null, '', redirect)
 }
 
-createRoot(document.getElementById('root')!).render(
+const root = document.getElementById('root')!
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+// O index.html traz a página inicial já renderizada. Na página inicial o React a reaproveita;
+// em qualquer outra rota (aberta direto pelo GitHub Pages) o conteúdo é montado do zero.
+const atHome = location.pathname.replace(/\/$/, '') === import.meta.env.BASE_URL.replace(/\/$/, '')
+if (root.hasChildNodes() && atHome) hydrateRoot(root, app)
+else {
+  root.textContent = ''
+  createRoot(root).render(app)
+}

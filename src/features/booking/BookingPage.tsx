@@ -4,11 +4,9 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { Calendar } from './Calendar'
 import { DetailsForm, type Details } from './DetailsForm'
 import { Success } from './Success'
-import { backendConfigured } from '../../lib/supabase'
-import { BookingError, createBooking, daySlots, listServices } from '../../services/booking'
+import { BookingError, createBooking, daySlots, isDemo, listServices } from '../../services/booking'
 import { durationLabel, longDay, timeOf } from '../../lib/time'
-import { brand, bookingConditions, procedures } from '../../content/site'
-import { whatsappLink } from '../../lib/whatsapp'
+import { brand, bookingConditions } from '../../content/site'
 import { useDocumentMeta } from '../../hooks/useDocumentMeta'
 import type { BookingResult, Service, Slot } from '../../types/booking'
 
@@ -22,29 +20,7 @@ const price = (s: Service) =>
 
 export function BookingPage() {
   useDocumentMeta('Agendar horário | Amanda Teixeira Beauty', 'Escolha o procedimento, o dia e um horário livre na agenda da Amanda Teixeira, em Lavras-MG.')
-  if (!backendConfigured) return <BookingOffline />
   return <BookingFlow />
-}
-
-/** Sem backend configurado não existe agenda real — então não fingimos uma. */
-function BookingOffline() {
-  return (
-    <div className="frame pb-[var(--section)] pt-[clamp(120px,14vw,180px)]">
-      <h1 className="text-[clamp(48px,7vw,104px)]">Agendar horário</h1>
-      <p className="mt-6 max-w-[52ch] text-[18px]">
-        A agenda online está sendo ativada. Enquanto isso, escolha o procedimento e marque direto com a Amanda pelo WhatsApp.
-      </p>
-      <ul className="m-0 mt-12 grid max-w-3xl list-none gap-1 p-0">
-        {procedures.map((p) => (
-          <li key={p.slug} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 bg-sand px-5 py-4">
-            <span><span className="font-display text-[26px]">{p.name}</span> <span className="text-[15px] text-soft">{p.lead}</span></span>
-            <a className="link text-[15px] font-semibold" target="_blank" rel="noopener noreferrer"
-              href={whatsappLink(`Olá, Amanda! Gostaria de agendar ${p.name}.`)}>Marcar pelo WhatsApp</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
 }
 
 function BookingFlow() {
@@ -157,6 +133,11 @@ function BookingFlow() {
               </li>
             ))}
           </ol>
+          {isDemo && (
+            <p className="mt-6 max-w-[64ch] bg-sand px-4 py-3 text-[15px]">
+              <strong className="font-semibold">Agenda de demonstração.</strong> Os horários e reservas desta página são fictícios e ficam só no seu navegador. Para marcar de verdade, <a className="link" href={brand.whatsappUrl} target="_blank" rel="noopener noreferrer">fale com a Amanda pelo WhatsApp</a>.
+            </p>
+          )}
         </header>
 
         {/* resumo das escolhas */}

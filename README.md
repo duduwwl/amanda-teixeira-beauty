@@ -21,7 +21,8 @@ Detalhes que importam:
 - **Disponibilidade e conflito no servidor.** `available_slots`, `month_availability`, `next_free_slot` e `create_booking` são funções Postgres. Uma restrição de exclusão (`tstzrange … with &&`) impede duas reservas sobrepostas mesmo sob concorrência.
 - **Segurança.** RLS em todas as tabelas; o visitante só lê procedimentos ativos e chama as funções públicas. Painel exige login *e* presença na tabela `admins`. Só a chave pública vai para o navegador.
 - **Rotas no GitHub Pages.** `public/404.html` guarda o caminho pedido e volta para a raiz; `main.tsx` restaura a rota. `/agendamento` aberto direto funciona.
-- **Sem backend configurado, sem agenda falsa.** Sem as variáveis do Supabase a página de agendamento mostra os procedimentos com WhatsApp.
+- **Modo demonstração.** Sem as variáveis do Supabase, a agenda e o painel funcionam com dados fictícios no navegador (`src/services/demoBackend.ts`), com as mesmas regras do banco e um aviso visível. Painel de teste: `demo@amandateixeira.com.br` / `agenda-demo`.
+- **Página inicial pré-renderizada.** O build gera o HTML da home (`src/entry-server.tsx` + `scripts/prerender.mjs`); o React só assume a página depois.
 - **Peso.** A landing carrega só React + o código da página (~14 kB gzip); Supabase e Motion entram quando a agenda ou o painel abrem.
 
 ```
@@ -50,16 +51,25 @@ npm run dev
 ## Testes
 
 ```bash
-npm run test:db    # 16 testes da migration: horários, conflitos, concorrência, RLS, histórico
-npm run test:e2e   # Playwright em desktop e celular (CHROME_PATH=/caminho/do/chrome se preciso)
+npm run test:db    # 17 testes da migration: horários, conflitos, concorrência, RLS, histórico
+npm run test:e2e   # 31 testes Playwright em desktop e celular, com Supabase simulado e em modo demonstração
 ```
 
 ## Fotos
 
-Coloque os originais em `assets-src/<amanda|estudio|procedimentos|resultados|cursos>/<nome>.jpg` com os nomes listados em `src/content/media.ts` e rode `npm run images`. Enquanto uma foto não existe, o site mostra um campo neutro com a legenda.
+As fotos vieram dos perfis públicos da Amanda e do studio. Os originais ficam em `assets-src/<pasta>/<nome>.jpg` (nomes em `src/content/media.ts`); `npm run images` gera AVIF/WebP em 480/960/1600 px.
 
 ## Publicação
 
 Push na `main` → GitHub Actions roda lint, tipos, testes de banco e ponta a ponta, faz o build e publica no Pages. Para ligar a agenda real, siga [`docs/SUPABASE.md`](docs/SUPABASE.md).
 
-Pendências que dependem da Amanda: [`PENDENCIAS.md`](PENDENCIAS.md).
+Fontes de cada informação e o que confirmar com a Amanda: [`PENDENCIAS.md`](PENDENCIAS.md).
+
+## Medições (build final, 23/10/2026)
+
+| | Performance | Acessibilidade | Boas práticas | SEO | LCP | CLS |
+| --- | --- | --- | --- | --- | --- | --- |
+| Lighthouse celular (4G lento simulado) | 93–94 | 100 | 100 | 100 | ~3,0 s | 0,017 |
+| Lighthouse desktop | 100 | 100 | 100 | 100 | 0,8 s | 0,001 |
+
+Inspetor da skill de design: 0 falhas em 1440/768/390 px.

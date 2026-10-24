@@ -1,51 +1,25 @@
--- Dados iniciais. NOMES vêm dos perfis públicos @amandateixeirabeauty_ e @studioamandateixeira.
--- DURAÇÕES, INTERVALOS e HORÁRIOS são valores provisórios para a agenda funcionar:
--- a Amanda deve confirmar e ajustar tudo no painel /admin. Preços ficam vazios até ela informar.
+-- Dados iniciais. Procedimentos: Instagram @amandateixeirabeauty_ e @studioamandateixeira.
+-- Horário: perfil do studio no Google. DURAÇÕES e INTERVALOS são estimativas para a agenda
+-- funcionar e podem ser ajustadas no painel /admin. Preços ficam vazios até a Amanda informar.
 
 insert into public.services (slug, name, category, short_description, description, duration_min, buffer_min, requires_evaluation, notes, sort) values
-  ('avaliacao', 'Avaliação individual', 'avaliacao',
-   'Conversa e análise antes de qualquer procedimento.',
-   'Primeiro encontro para entender o que você procura, avaliar pele, fios ou pigmento existente e indicar o caminho mais seguro.',
-   40, 10, false, null, 10),
-  ('regenerehair', 'RegenereHair', 'regeneracao',
-   'Protocolo de regeneração capilar com exossomos.',
-   'Protocolo para couro cabeludo e fios, com avaliação por imagem ampliada antes de começar. O número de sessões é definido na avaliação.',
-   60, 15, true, 'Exige avaliação prévia.', 20),
-  ('regenerebrows', 'RegenereBrows', 'regeneracao',
-   'Regeneração de sobrancelhas com exossomos.',
-   'Protocolo em sessões para sobrancelhas com falhas ou afinadas. O acompanhamento é feito sessão a sessão.',
-   60, 15, true, 'Exige avaliação prévia.', 30),
-  ('remocao-laser', 'Remoção a laser', 'laser',
-   'Remoção ou clareamento de micropigmentação e tatuagem.',
-   'Sessões para clarear ou remover pigmentos antigos. A quantidade depende da cor, profundidade e tempo do pigmento — isso é avaliado antes.',
-   45, 15, true, 'Exige avaliação prévia.', 40),
-  ('nanopigmentacao', 'Nanopigmentação de sobrancelhas', 'pigmentacao',
-   'Fios desenhados um a um, com acabamento natural.',
-   'Técnica de pigmentação fio a fio para preencher e desenhar a sobrancelha respeitando o seu rosto.',
-   150, 30, false, 'Retoque combinado no atendimento.', 50),
-  ('micropigmentacao-labial', 'Micropigmentação labial', 'pigmentacao',
-   'Cor e contorno para lábios mais definidos.',
-   'Pigmentação suave para devolver cor e contorno aos lábios. A tonalidade é escolhida com você.',
-   150, 30, false, null, 60),
-  ('design-sobrancelhas', 'Design de sobrancelhas', 'sobrancelhas',
-   'Desenho personalizado para o seu rosto.',
-   'Mapeamento e design das sobrancelhas, com ou sem coloração.',
-   45, 10, false, null, 70),
-  ('lash-brow', 'Lash & brow', 'sobrancelhas',
-   'Cuidados para cílios e sobrancelhas.',
-   'Tratamentos de cílios e sobrancelhas para valorizar o olhar no dia a dia.',
-   60, 10, false, null, 80)
+  ('avaliacao', 'Avaliação individual', 'avaliacao', 'Conversa e análise antes do procedimento.', 'Primeiro encontro para entender o que você procura e indicar o caminho mais seguro.', 30, 10, false, null, 10),
+  ('design-estrategico', 'Design estratégico', 'sobrancelhas', 'Design de sobrancelhas pelo método da Amanda.', 'Mapeamento que respeita a anatomia e os fios que você já tem.', 45, 10, false, null, 20),
+  ('nanopigmentacao', 'Nanopigmentação', 'pigmentacao', 'Fios desenhados um a um.', 'Fios que se misturam aos seus pelos para preencher sem pesar.', 150, 30, false, 'Retoque combinado no atendimento.', 30),
+  ('brow-lamination', 'Brow lamination', 'sobrancelhas', 'Fios alinhados e com volume, sem pigmento.', 'Alinhamento das sobrancelhas que preenche e dá volume.', 60, 15, false, null, 40),
+  ('lash-lifting', 'Lash lifting', 'cilios', 'Curvatura e cor nos seus próprios cílios.', 'Efeito de rímel com os seus cílios naturais.', 60, 15, false, null, 50),
+  ('regenerebrows', 'RegenereBrows', 'regeneracao', 'Regeneração de sobrancelhas com exossomos.', 'Protocolo que estimula folículos viáveis a produzir fios novos.', 60, 15, true, 'Exige avaliação prévia.', 60),
+  ('regenerehair', 'RegenereHair', 'regeneracao', 'Regeneração capilar com exossomos.', 'Protocolo individualizado a partir da avaliação do couro cabeludo.', 60, 15, true, 'Exige avaliação prévia.', 70),
+  ('remocao-laser', 'Remoção a laser', 'laser', 'Clareamento ou remoção de pigmento com Laser Spectra.', 'Sessões para clarear ou remover micropigmentações antigas.', 45, 15, true, 'Exige avaliação prévia.', 80),
+  ('henna-labial', 'Henna labial', 'labios', 'Hidrata os lábios e deixa efeito lip tint.', 'Trata o ressecamento e deixa cor suave por alguns dias.', 40, 10, false, null, 90)
 on conflict (slug) do nothing;
 
--- Horário provisório: seg a sex 09h–12h e 13h–18h; sábado 08h–12h.
+-- Horário publicado no Google: terça a sexta 9h–19h, sábado 9h–18h.
 insert into public.opening_hours (weekday, start_time, end_time)
 select * from (values
-  (1, time '09:00', time '12:00'), (1, time '13:00', time '18:00'),
-  (2, time '09:00', time '12:00'), (2, time '13:00', time '18:00'),
-  (3, time '09:00', time '12:00'), (3, time '13:00', time '18:00'),
-  (4, time '09:00', time '12:00'), (4, time '13:00', time '18:00'),
-  (5, time '09:00', time '12:00'), (5, time '13:00', time '18:00'),
-  (6, time '08:00', time '12:00')
+  (2, time '09:00', time '19:00'), (3, time '09:00', time '19:00'),
+  (4, time '09:00', time '19:00'), (5, time '09:00', time '19:00'),
+  (6, time '09:00', time '18:00')
 ) v(weekday, start_time, end_time)
 where not exists (select 1 from public.opening_hours);
 

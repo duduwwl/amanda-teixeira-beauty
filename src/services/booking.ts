@@ -28,36 +28,45 @@ function fail(error: { message?: string } | null): never {
   throw new BookingError(key)
 }
 
-const db = () => {
-  if (!supabase) throw new BookingError('agenda_fechada')
-  return supabase
+const db = () => supabase!
+
+// Sem Supabase configurado, a agenda funciona em modo demonstração (dados fictícios no navegador).
+export const isDemo = !supabase
+const demo = () => import('./demoBackend')
+async function viaDemo<T>(fn: (m: typeof import('./demoBackend')) => Promise<T>): Promise<T> {
+  try { return await fn(await demo()) } catch (e) { fail({ message: (e as Error).message }) }
 }
 
 export async function listServices(): Promise<Service[]> {
+  if (isDemo) return viaDemo((m) => m.listServices())
   const { data, error } = await db().from('services').select('*').eq('active', true).order('sort')
   if (error) fail(error)
   return data as Service[]
 }
 
 export async function monthAvailability(serviceId: string, monthYmd: string): Promise<Map<string, number>> {
+  if (isDemo) return viaDemo((m) => m.monthAvailability(serviceId, monthYmd))
   const { data, error } = await db().rpc('month_availability', { p_service_id: serviceId, p_month: monthYmd })
   if (error) fail(error)
   return new Map((data as { day: string; free_slots: number }[]).map((r) => [r.day.slice(0, 10), r.free_slots]))
 }
 
 export async function daySlots(serviceId: string, dayYmd: string): Promise<Slot[]> {
+  if (isDemo) return viaDemo((m) => m.daySlots(serviceId, dayYmd))
   const { data, error } = await db().rpc('available_slots', { p_service_id: serviceId, p_day: dayYmd })
   if (error) fail(error)
   return data as Slot[]
 }
 
 export async function nextFreeSlot(): Promise<{ starts_at: string; service_name: string } | null> {
+  if (isDemo) return (await demo()).nextFreeSlot()
   const { data, error } = await db().rpc('next_free_slot')
   if (error) return null
   return (data as { starts_at: string; service_name: string }[])[0] ?? null
 }
 
 export async function createBooking(r: BookingRequest): Promise<BookingResult> {
+  if (isDemo) return viaDemo((m) => m.createBooking(r))
   const { data, error } = await db().rpc('create_booking', {
     p_service_id: r.serviceId,
     p_starts_at: r.startsAt,

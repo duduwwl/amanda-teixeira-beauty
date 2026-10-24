@@ -28,3 +28,12 @@ Ambiente auditado em 23/10/2026. "Usada" significa que as instruções da skill 
 ## Bibliotecas de componentes pedidas no briefing
 
 Ver `docs/BIBLIOTECAS.md`.
+
+## Segunda rodada (conteúdo real e agenda de demonstração)
+
+| Skill | O que foi feito |
+| --- | --- |
+| design-taste-frontend | Com as 33 fotos reais, `inspect.mjs` foi de 6 FAIL para **0 FAIL** em 1440/768/390. Corrigido nas rodadas: rótulos lidos como "eyebrow" (acordeão de procedimentos refeito), vazios entre seções (espaçamento e entradas presas à rolagem que nunca escondem conteúdo), títulos longos a 768px, rodapé. Crítica visual nas capturas: retrato com texto do story recortado, foto de baixa resolução substituída/recortada, enquadramento do topo no celular. Avisos mantidos com justificativa: sem vídeo (os vídeos do Instagram não podem ser baixados com qualidade), 12 tamanhos de fonte (escala de 5 passos + títulos fluidos), "Quem atende" fixo por 3 telas (é a seção de retratos). |
+| vercel-react-best-practices | Página inicial pré-renderizada no build com `hydrateRoot` (`rendering-*`), fontes servidas pelo próprio site com preload, agenda de demonstração carregada sob demanda (`bundle-conditional`). |
+| web-design-guidelines | Mapa do Google só carrega quando a pessoa pede (sem cookies de terceiros antes disso); acordeão com `aria-expanded`/`aria-controls`. |
+| ui-ux-pro-max | Lighthouse real: celular 93–94 / desktop 100 em performance, 100 em acessibilidade, boas práticas e SEO. |

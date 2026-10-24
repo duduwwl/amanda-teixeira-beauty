@@ -1,1 +1,326 @@
-{}
+{
+  "amanda/faq": {
+    "w": 1290,
+    "h": 1204,
+    "widths": [
+      480,
+      960,
+      1290
+    ],
+    "color": "rgb(216 216 216)"
+  },
+  "amanda/hero-1": {
+    "w": 1617,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "color": "rgb(232 232 232)"
+  },
+  "amanda/hero-2": {
+    "w": 1509,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1509
+    ],
+    "color": "rgb(40 40 40)"
+  },
+  "amanda/hero-3": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(24 24 24)"
+  },
+  "amanda/retrato": {
+    "w": 640,
+    "h": 797,
+    "widths": [
+      480,
+      640
+    ],
+    "color": "rgb(232 232 232)"
+  },
+  "amanda/sobre-1": {
+    "w": 640,
+    "h": 751,
+    "widths": [
+      480,
+      640
+    ],
+    "color": "rgb(248 232 200)"
+  },
+  "amanda/sobre-2": {
+    "w": 1440,
+    "h": 1690,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(200 184 168)"
+  },
+  "amanda/sobre-3": {
+    "w": 1290,
+    "h": 1170,
+    "widths": [
+      480,
+      960,
+      1290
+    ],
+    "color": "rgb(216 216 216)"
+  },
+  "cursos/turma-1": {
+    "w": 1440,
+    "h": 1920,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(216 200 184)"
+  },
+  "cursos/turma-2": {
+    "w": 1440,
+    "h": 1920,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(40 24 24)"
+  },
+  "cursos/turma-3": {
+    "w": 1791,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "color": "rgb(200 200 200)"
+  },
+  "cursos/turma-4": {
+    "w": 1500,
+    "h": 1440,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(24 24 24)"
+  },
+  "estudio/ambiente": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(216 200 184)"
+  },
+  "estudio/atendimento": {
+    "w": 720,
+    "h": 804,
+    "widths": [
+      480,
+      720
+    ],
+    "color": "rgb(40 40 40)"
+  },
+  "estudio/avaliacao": {
+    "w": 720,
+    "h": 900,
+    "widths": [
+      480,
+      720
+    ],
+    "color": "rgb(200 200 184)"
+  },
+  "estudio/cabelo": {
+    "w": 1509,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1509
+    ],
+    "color": "rgb(40 40 40)"
+  },
+  "estudio/detalhe-2": {
+    "w": 1616,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "color": "rgb(216 152 136)"
+  },
+  "estudio/equipamento": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(200 200 184)"
+  },
+  "estudio/laser": {
+    "w": 1320,
+    "h": 1514,
+    "widths": [
+      480,
+      960,
+      1320
+    ],
+    "color": "rgb(216 216 200)"
+  },
+  "procedimentos/brow-lamination": {
+    "w": 1440,
+    "h": 1911,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(40 40 40)"
+  },
+  "procedimentos/design": {
+    "w": 1269,
+    "h": 1269,
+    "widths": [
+      480,
+      960,
+      1269
+    ],
+    "color": "rgb(248 200 184)"
+  },
+  "procedimentos/labial": {
+    "w": 1290,
+    "h": 1712,
+    "widths": [
+      480,
+      960,
+      1290
+    ],
+    "color": "rgb(232 168 136)"
+  },
+  "procedimentos/nanopigmentacao": {
+    "w": 1440,
+    "h": 1800,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(232 168 136)"
+  },
+  "procedimentos/regenerebrows": {
+    "w": 1328,
+    "h": 1648,
+    "widths": [
+      480,
+      960,
+      1328
+    ],
+    "color": "rgb(232 168 152)"
+  },
+  "procedimentos/regenerehair": {
+    "w": 361,
+    "h": 256,
+    "widths": [
+      361
+    ],
+    "color": "rgb(168 168 168)"
+  },
+  "procedimentos/remocao-laser": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(200 200 184)"
+  },
+  "resultados/brow-1": {
+    "w": 1600,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "color": "rgb(184 184 184)"
+  },
+  "resultados/laser-1": {
+    "w": 1600,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1600
+    ],
+    "color": "rgb(232 168 136)"
+  },
+  "resultados/regenerebrows-1": {
+    "w": 1328,
+    "h": 1648,
+    "widths": [
+      480,
+      960,
+      1328
+    ],
+    "color": "rgb(232 168 152)"
+  },
+  "resultados/sobrancelha-1": {
+    "w": 1440,
+    "h": 1440,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(184 136 104)"
+  },
+  "resultados/sobrancelha-2": {
+    "w": 1440,
+    "h": 1796,
+    "widths": [
+      480,
+      960,
+      1440
+    ],
+    "color": "rgb(232 168 136)"
+  },
+  "resultados/sobrancelha-3": {
+    "w": 1500,
+    "h": 2000,
+    "widths": [
+      480,
+      960,
+      1500
+    ],
+    "color": "rgb(232 168 152)"
+  },
+  "resultados/sobrancelha-4": {
+    "w": 1062,
+    "h": 1254,
+    "widths": [
+      480,
+      960,
+      1062
+    ],
+    "color": "rgb(120 136 136)"
+  }
+}
