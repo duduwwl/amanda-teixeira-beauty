@@ -12,7 +12,7 @@ const NAV = [
   { href: '/#contato', label: 'Contato' },
 ]
 
-/** Sobre o topo escuro o cabeçalho é transparente; depois vira uma barra clara com fio embaixo. */
+/** Sobre a foto do topo o cabeçalho é transparente; depois vira uma barra lisa no papel. */
 export function Header({ overHero = false }: { overHero?: boolean }) {
   const [scrolled, setScrolled] = useState(() => typeof window !== 'undefined' && window.scrollY > window.innerHeight * 0.75)
   const solid = !overHero || scrolled
@@ -52,46 +52,43 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
     return () => { root.style.overflow = ''; window.removeEventListener('keydown', onKey) }
   }, [open])
 
-  const dark = !solid && !open
+  const light = !solid && !open
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color,border-color] duration-300 ${
-        dark ? 'on-dark border-b border-paper/15 bg-field/0 text-paper' : 'border-b border-taupe bg-paper text-ink'
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,color] duration-300 ${
+        light ? 'text-paper' : 'bg-paper text-ink'
       }`}
     >
-      <div className="frame flex h-[64px] items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-3 no-underline">
-          <span aria-hidden="true" className={`grid h-9 w-9 place-items-center text-[13px] font-bold [font-stretch:125%] ${dark ? 'bg-paper text-ink' : 'bg-ink text-paper'}`}>AT</span>
-          <span className="leading-[1.1]">
-            <span translate="no" className="block whitespace-nowrap text-[14px] sm:text-[15px] font-semibold uppercase tracking-[0.04em] [font-stretch:118%]">Amanda Teixeira</span>
-            <span className={`tag block !text-[11px] ${dark ? 'text-paper/70' : 'text-soft'}`}>{brand.role}</span>
-          </span>
+      <div className="frame flex h-[72px] items-center justify-between gap-6">
+        <Link to="/" className="leading-[1.15] no-underline">
+          <span translate="no" className="block font-display text-[22px] tracking-[-0.01em]">Amanda Teixeira</span>
+          <span className={`block text-[13px] ${light ? 'text-paper/85' : 'text-soft'}`}>{brand.role}</span>
         </Link>
 
-        <nav aria-label="Principal" className="hidden items-center gap-6 lg:flex">
+        <nav aria-label="Principal" className="hidden items-center gap-7 lg:flex">
           {NAV.slice(1).map((n) => (
-            <Link key={n.href} to={n.href} className="text-[14px] no-underline hover:underline hover:underline-offset-4">
+            <Link key={n.href} to={n.href} className="text-[15px] no-underline opacity-90 transition-opacity hover:opacity-100 hover:underline hover:underline-offset-4">
               {n.label}
             </Link>
           ))}
-          <NavLink to="/agendamento" {...preloadProps} className={`btn !min-h-[44px] ${dark ? 'btn-light' : ''}`}>
-            Agendar
+          <NavLink to="/agendamento" {...preloadProps} className={`btn ${light ? 'btn-light' : ''}`}>
+            Agendar horário
           </NavLink>
         </nav>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <NavLink to="/agendamento" {...preloadProps} className={`btn !min-h-[44px] !px-3.5 ${dark ? 'btn-light' : ''} max-[479px]:hidden`}>
+        <div className="flex items-center gap-3 lg:hidden">
+          <NavLink to="/agendamento" {...preloadProps} className={`btn !min-h-[44px] !px-4 text-[13px] ${light ? 'btn-light' : ''} max-[359px]:hidden`}>
             Agendar
           </NavLink>
           <button
             ref={toggle}
             type="button"
-            className="tag min-h-[44px] min-w-[44px] whitespace-nowrap px-2 !text-[13px]"
+            className="min-h-[44px] min-w-[44px] px-2 text-[15px] font-semibold underline underline-offset-4"
             aria-expanded={open}
             aria-controls="menu-celular"
             onClick={() => setOpen((v) => !v)}
           >
-            <span aria-hidden="true" className="max-sm:hidden">[ </span>{open ? 'Fechar' : 'Menu'}<span aria-hidden="true" className="max-sm:hidden"> ]</span>
+            {open ? 'Fechar' : 'Menu'}
           </button>
         </div>
       </div>
@@ -103,16 +100,16 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
-        className="fixed inset-x-0 bottom-0 top-[64px] overflow-y-auto bg-paper lg:hidden"
+        className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto bg-paper lg:hidden"
       >
-        <nav aria-label="Menu do celular" className="frame flex min-h-full flex-col pb-10 pt-4">
+        <nav aria-label="Menu do celular" className="frame flex min-h-full flex-col pb-10 pt-6">
           <ul className="m-0 list-none p-0">
             {NAV.map((n, i) => (
-              <li key={n.href} style={{ animationDelay: `${i * 45}ms` }} className="menu-item border-b border-taupe">
+              <li key={n.href} style={{ animationDelay: `${i * 45}ms` }} className="menu-item">
                 <Link
                   to={n.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-baseline justify-between py-3.5 text-[30px] font-semibold uppercase leading-none tracking-[-0.02em] no-underline [font-stretch:125%]"
+                  className="block py-2.5 font-display text-[36px] leading-[1.05] no-underline"
                 >
                   {n.label}
                 </Link>
@@ -121,7 +118,7 @@ export function Header({ overHero = false }: { overHero?: boolean }) {
           </ul>
           <div className="mt-auto pt-10">
             <Link to="/agendamento" className="btn w-full" onClick={() => setOpen(false)}>Agendar horário</Link>
-            <p className="tag mt-5 text-soft">{brand.addressShort} · {brand.cityShort}</p>
+            <p className="mt-5 text-[15px] text-soft">{brand.city}</p>
             <a className="link mt-1 inline-block text-[15px]" href={brand.instagram.url} target="_blank" rel="noopener noreferrer">{brand.instagram.handle}</a>
           </div>
         </nav>

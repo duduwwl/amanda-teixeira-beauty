@@ -3,61 +3,71 @@ import { brand } from '../../content/site'
 
 const year = new Date().getFullYear() // calculado uma vez, fora da renderização
 
-/** Rodapé em formato de ficha: colunas com rótulo técnico e, no fim, as iniciais enormes. */
-export function Footer() {
-  const col = 'tag mb-4 text-paper/55'
+/** Selo redondo: o lema da Amanda em volta do monograma, girando com a rolagem. */
+function Seal() {
   return (
-    <footer className="on-dark footer-clip relative bg-field text-paper">
-      <div className="frame flex flex-col pt-16 md:pt-24 safe-bottom">
-        <div className="grid gap-12 border-t border-paper/20 pt-10 sm:grid-cols-2 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <p className={col}>Agendamento</p>
-            <a href={brand.whatsappUrl} target="_blank" rel="noopener noreferrer" className="block whitespace-nowrap text-[clamp(26px,2.6vw,38px)] font-semibold leading-none tracking-[-0.03em] no-underline [font-stretch:125%] hover:text-champagne">
-              {brand.phoneDisplay}
-            </a>
-            <p className="mt-3 text-[15px] text-paper/75">WhatsApp do studio</p>
-          </div>
-          <div className="lg:col-span-3">
-            <p className={col}>Endereço</p>
-            <p className="text-[15px]">{brand.address}</p>
-            <dl className="m-0 mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-[14px] text-paper/80">
-              {brand.hours.map((h) => (
-                <div key={h.days} className="contents"><dt>{h.days}</dt><dd className="m-0 tabular-nums">{h.time}</dd></div>
-              ))}
-            </dl>
-          </div>
-          <nav aria-label="Site" className="lg:col-span-2">
-            <p className={col}>Site</p>
-            <ul className="m-0 grid list-none gap-2 p-0 text-[15px]">
-              <li><Link className="link" to="/#procedimentos">Procedimentos</Link></li>
-              <li><Link className="link" to="/#resultados">Resultados</Link></li>
-              <li><Link className="link" to="/#cursos">Cursos</Link></li>
-              <li><Link className="link" to="/agendamento">Agendar horário</Link></li>
-              <li><Link className="link" to="/admin" rel="nofollow">Área da Amanda</Link></li>
-            </ul>
-          </nav>
-          <nav aria-label="Redes e políticas" className="lg:col-span-3">
-            <p className={col}>Redes</p>
-            <ul className="m-0 grid list-none gap-2 p-0 text-[15px] [overflow-wrap:anywhere]">
-              <li><a className="link" href={brand.instagram.url} target="_blank" rel="noopener noreferrer">{brand.instagram.handle}</a></li>
-              <li><a className="link" href={brand.studioInstagram.url} target="_blank" rel="noopener noreferrer">{brand.studioInstagram.handle}</a></li>
-              <li className="pt-3"><Link className="link" to="/politica-de-privacidade">Política de privacidade</Link></li>
-              <li><Link className="link" to="/termos">Termos de uso</Link></li>
-            </ul>
-          </nav>
+    <div aria-hidden="true" className="relative aspect-square w-[min(260px,62vw)] text-champagne md:w-[280px]">
+      <img src={`${import.meta.env.BASE_URL}seal.svg`} alt="" width={200} height={200} loading="lazy" className="seal-ring absolute inset-0 h-full w-full" />
+      <span className="absolute inset-[24%] grid place-items-center rounded-full bg-champagne font-display text-[86px] leading-none tracking-[-0.04em] text-field">
+        AT
+      </span>
+    </div>
+  )
+}
+
+/** Rodapé: o selo da Amanda à esquerda, contato e links à direita. */
+export function Footer() {
+  return (
+    <footer className="on-dark relative bg-field text-paper">
+      <div className="frame grid gap-14 pb-10 pt-16 md:grid-cols-12 md:gap-x-6 md:pt-24 safe-bottom">
+        <div className="flex flex-col items-start gap-8 md:col-span-5">
+          <Seal />
+          <p className="max-w-[26ch] font-display text-[30px] leading-[1.1]">
+            Te esperamos para um café e uma boa conversa.
+          </p>
+          <Link to="/agendamento" className="btn btn-light">Agendar horário</Link>
         </div>
 
-        <p
-          aria-hidden="true"
-          className="footer-reveal m-0 mt-16 select-none whitespace-nowrap text-center text-[16vw] font-bold uppercase leading-[0.78] tracking-[-0.06em] text-paper [font-stretch:125%] md:mt-24"
-        >
-          Amanda<span className="text-champagne">.</span>
-        </p>
-        <p className="sr-only" translate="no">{brand.fullName}</p>
+        <div className="grid content-start gap-12 md:col-span-6 md:col-start-7">
+          <ul className="m-0 list-none space-y-2 p-0 [overflow-wrap:anywhere]">
+            <li><a className="font-display text-[30px] leading-tight text-champagne no-underline hover:underline md:text-[36px]" href={brand.whatsappUrl} target="_blank" rel="noopener noreferrer">WhatsApp {brand.phoneDisplay}</a></li>
+            <li><a className="font-display text-[30px] leading-tight text-champagne no-underline hover:underline md:text-[36px]" href={brand.instagram.url} target="_blank" rel="noopener noreferrer">{brand.instagram.handle}</a></li>
+            <li><a className="font-display text-[30px] leading-tight text-champagne no-underline hover:underline md:text-[36px]" href={brand.studioInstagram.url} target="_blank" rel="noopener noreferrer">{brand.studioInstagram.handle}</a></li>
+            <li className="pt-2 text-[17px] text-paper/80">{brand.address}</li>
+            <li className="text-[17px] text-paper/80">{brand.hoursText}</li>
+          </ul>
 
-        <div className="tag flex flex-wrap items-end justify-between gap-4 border-t border-paper/20 pb-6 pt-5 text-paper/65">
-          <p>© {year} {brand.fullName} · {brand.cityShort}</p>
-          <a className="link" href="#topo">Voltar ao topo ↑</a>
+          <div className="grid grid-cols-2 gap-8 text-[15px] sm:grid-cols-3">
+            <nav aria-label="Site">
+              <p className="mb-3 text-paper/65">Site</p>
+              <ul className="m-0 list-none space-y-2 p-0">
+                <li><Link className="link" to="/#sobre">Sobre</Link></li>
+                <li><Link className="link" to="/#procedimentos">Procedimentos</Link></li>
+                <li><Link className="link" to="/#resultados">Resultados</Link></li>
+                <li><Link className="link" to="/#cursos">Cursos</Link></li>
+              </ul>
+            </nav>
+            <nav aria-label="Agenda">
+              <p className="mb-3 text-paper/65">Agenda</p>
+              <ul className="m-0 list-none space-y-2 p-0">
+                <li><Link className="link" to="/agendamento">Agendar horário</Link></li>
+                <li><Link className="link" to="/#contato">Contato</Link></li>
+                <li><Link className="link" to="/admin" rel="nofollow">Área da Amanda</Link></li>
+              </ul>
+            </nav>
+            <nav aria-label="Políticas">
+              <p className="mb-3 text-paper/65">Políticas</p>
+              <ul className="m-0 list-none space-y-2 p-0">
+                <li><Link className="link" to="/politica-de-privacidade">Privacidade</Link></li>
+                <li><Link className="link" to="/termos">Termos de uso</Link></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-end justify-between gap-4 pt-6 text-[13px] text-paper/70 md:col-span-12">
+          <p>© {year} {brand.fullName}. {brand.city}.</p>
+          <a className="link" href="#topo">Voltar ao topo</a>
         </div>
       </div>
     </footer>

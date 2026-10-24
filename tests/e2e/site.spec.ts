@@ -12,7 +12,7 @@ test('landing: título, seções e navegação por âncora', async ({ page, isMo
     await expect(page.locator(`#${id}`)).toHaveCount(1)
   }
   if (isMobile) {
-    await page.getByRole('button', { name: /Menu/ }).click()
+    await page.getByRole('button', { name: 'Menu' }).click()
     const menu = page.getByRole('dialog', { name: 'Menu' })
     await expect(menu).toBeVisible()
     await menu.getByRole('link', { name: 'Procedimentos' }).click()
@@ -27,7 +27,7 @@ test('landing: título, seções e navegação por âncora', async ({ page, isMo
 test('menu do celular: Esc fecha e devolve o foco', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'só no celular')
   await page.goto(url())
-  const btn = page.getByRole('button', { name: /Menu/ })
+  const btn = page.getByRole('button', { name: 'Menu' })
   await btn.click()
   await expect(page.getByRole('dialog', { name: 'Menu' })).toBeVisible()
   await page.keyboard.press('Escape')
@@ -35,7 +35,7 @@ test('menu do celular: Esc fecha e devolve o foco', async ({ page, isMobile }) =
   await expect(btn).toBeFocused()
 })
 
-test('procedimentos: a linha abre e o botão leva à agenda com o procedimento', async ({ page }) => {
+test('procedimentos: "Saiba mais" abre e o botão leva à agenda com o procedimento', async ({ page }) => {
   await page.goto(url('#procedimentos'))
   const item = page.locator('#procedimentos li').filter({ hasText: 'Nanopigmentação' })
   await item.getByRole('button', { name: /Nanopigmentação/ }).click()
@@ -45,15 +45,38 @@ test('procedimentos: a linha abre e o botão leva à agenda com o procedimento',
   await expect(page.getByRole('heading', { name: 'Escolha o dia' })).toBeVisible()
 })
 
-test('resultados: visor troca de caso pelo índice, setas e filtro', async ({ page }) => {
+test('galeria: abre ampliada, navega por teclado, filtra e fecha', async ({ page }) => {
   await page.goto(url('#resultados'))
-  const sec = page.locator('#resultados')
-  await expect(sec.getByText(/^1\/\d+$/)).toBeVisible()
-  await sec.getByRole('button', { name: 'Próximo caso' }).click()
-  await expect(sec.getByText(/^2\/\d+$/)).toBeVisible()
-  await sec.getByRole('button', { name: 'Regeneração' }).click()
-  await expect(sec.getByText('1/1')).toBeVisible()
-  await expect(sec.getByText(/RegenereBrows/).first()).toBeVisible()
+  await page.getByRole('button', { name: 'Ver a galeria' }).first().click()
+  const dlg = page.getByRole('dialog', { name: 'Galeria de resultados' })
+  await expect(dlg).toBeVisible()
+  await expect(dlg.getByText(/1 de \d+/)).toBeVisible()
+  await page.keyboard.press('ArrowRight')
+  await expect(dlg.getByText(/2 de \d+/)).toBeVisible()
+  await dlg.getByRole('button', { name: 'Regeneração' }).click()
+  await expect(dlg.getByText(/1 de 1/)).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(dlg).toBeHidden()
+})
+
+test('studio: a pilha de fotos troca pelo botão e pelo arraste', async ({ page, isMobile }) => {
+  await page.goto(url())
+  const sec = page.locator('section', { has: page.locator('#studio-title') })
+  await sec.scrollIntoViewIfNeeded()
+  const next = sec.getByRole('button', { name: 'Próxima foto' })
+  await next.scrollIntoViewIfNeeded()
+  await expect(sec.getByText('Foto 1 de 4')).toBeVisible()
+  await next.click()
+  await expect(sec.getByText('Foto 2 de 4')).toBeVisible()
+  if (!isMobile) {
+    const top = sec.locator('figure:not([aria-hidden="true"])').first()
+    const box = (await top.boundingBox())!
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2)
+    await page.mouse.down()
+    await page.mouse.move(box.x + box.width / 2 + 220, box.y + box.height / 2, { steps: 8 })
+    await page.mouse.up()
+    await expect(sec.getByText('Foto 3 de 4')).toBeVisible()
+  }
 })
 
 test('rotas internas funcionam abrindo direto (fallback do GitHub Pages)', async ({ page }) => {

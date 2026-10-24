@@ -31,7 +31,7 @@ export function Layout() {
     <>
       <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
       <ScrollManager />
-      <div id="topo" className="page-over-footer">
+      <div id="topo">
         <Header overHero={home} />
         <main id="conteudo" tabIndex={-1} className="outline-none">
           <Outlet />

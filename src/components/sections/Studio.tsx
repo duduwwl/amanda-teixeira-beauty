@@ -1,40 +1,64 @@
+import { lazy, Suspense, useState } from 'react'
 import { Img } from '../ui/Img'
-import { SectionHead } from '../ui/SectionHead'
-import { studioPhotos } from '../../content/media'
+import { DECK, TILT } from './studioDeck'
+import { useNear } from '../../hooks/useNear'
+
+const StudioDeckLive = lazy(() => import('./StudioDeckLive'))
 
 const POINTS = [
   { t: 'Avaliação antes de tudo', d: 'Escuta, imagem ampliada dos fios e da pele, e só então a indicação.' },
   { t: 'Laser Spectra próprio', d: 'A remoção a laser deixou de depender de data marcada: é no dia que você escolher.' },
   { t: 'Um cafezinho', d: 'Quem chega é recebida com calma, e a Amanda faz questão de oferecer um café.' },
 ]
-const SHAPE = ['md:col-span-5 aspect-[4/5]', 'md:col-span-3 aspect-[3/4] md:mt-24', 'md:col-span-4 aspect-[4/5] md:mt-10']
 
-/** O studio em três fotos de alturas diferentes e três fatos curtos. No celular, faixa que rola de lado. */
-export function Studio() {
-  const photos = studioPhotos.slice(0, 3)
+/** A mesma pilha, parada: aparece na página pré-renderizada e enquanto a versão animada carrega. */
+function StudioDeckStill() {
   return (
-    <section aria-labelledby="studio-title" className="bg-sand py-[var(--section)]">
-      <div className="frame">
-        <SectionHead n="04" label="O studio" id="studio-title" title={<>Centro<br />de Lavras</>} aside="Studio Amanda Teixeira, Rua Dr. Álvaro Botelho. Atendimento com hora marcada, uma cliente por vez." />
-        <ul className="m-0 mt-14 grid list-none gap-x-6 gap-y-8 border-t border-ink p-0 pt-8 sm:grid-cols-3 md:mt-20">
+    <div className="grid gap-8 md:grid-cols-12 md:items-end md:gap-x-6">
+      <div className="relative mx-auto aspect-[4/5] w-[min(78vw,420px)] md:col-span-6 md:col-start-2 md:w-full md:max-w-[460px]">
+        {DECK.map((p, depth) => (
+          <figure key={p.name} className="absolute inset-0 m-0 bg-sand" aria-hidden={depth > 0}
+            style={{ zIndex: DECK.length - depth, transform: `translateY(${depth * 16}px) scale(${1 - depth * 0.03}) rotate(${TILT[depth]}deg)` }}>
+            <Img name={p.name} alt={depth === 0 ? p.alt : ''} sizes="(min-width: 768px) 460px, 78vw" />
+          </figure>
+        ))}
+      </div>
+      <div className="md:col-span-4 md:col-start-8 md:pb-6">
+        <p className="font-display text-[30px] leading-[1.1] md:text-[36px]">{DECK[0].caption}</p>
+        <p className="mt-2 text-[15px] text-soft">Foto 1 de {DECK.length}</p>
+      </div>
+    </div>
+  )
+}
+
+/** O studio: três fatos curtos e a pilha de fotos que a pessoa folheia. */
+export function Studio() {
+  const [box, setBox] = useState<HTMLDivElement | null>(null)
+  const near = useNear(box)
+  return (
+    <section aria-labelledby="studio-title" className="py-[var(--section)]">
+      <div className="frame grid gap-10 md:grid-cols-12 md:gap-x-6">
+        <h2 id="studio-title" data-reveal className="text-[clamp(44px,6vw,96px)] md:col-span-5 md:col-start-1">
+          O studio por dentro
+        </h2>
+        <ul className="m-0 grid list-none gap-7 p-0 sm:grid-cols-3 md:col-span-7 md:col-start-6 md:gap-6">
           {POINTS.map((p, i) => (
-            <li key={p.t} data-reveal style={{ '--i': i } as React.CSSProperties}>
-              <p className="tag text-laser">S-0{i + 1}</p>
-              <h3 className="mt-3 text-[22px] uppercase">{p.t}</h3>
-              <p className="mt-2 max-w-[34ch] text-[16px] text-soft">{p.d}</p>
+            <li key={p.t} data-reveal style={{ '--i': i + 1 } as React.CSSProperties}>
+              <h3 className="font-sans text-[17px] font-semibold tracking-normal">{p.t}</h3>
+              <p className="mt-1.5 text-[17px]">{p.d}</p>
             </li>
           ))}
         </ul>
       </div>
 
-      <div tabIndex={0} role="region" aria-label="Fotos do studio (role para o lado)" className="strip frame mt-14 flex gap-4 overflow-x-auto pb-4 md:mt-20 md:grid md:grid-cols-12 md:gap-6 md:overflow-visible md:pb-0">
-        {photos.map((p, i) => (
-          <figure key={p.name} className={`m-0 w-[78vw] shrink-0 md:w-auto ${SHAPE[i]}`}>
-            <div className="h-full" data-reveal="mask"><Img name={p.name} alt={p.alt} sizes="(min-width: 768px) 40vw, 78vw" /></div>
-            <figcaption className="tag mt-3 text-soft">Fig. 0{i + 6}</figcaption>
-          </figure>
-        ))}
+      <div ref={setBox} className="frame mt-14 md:mt-20">
+        {near ? (
+          <Suspense fallback={<StudioDeckStill />}><StudioDeckLive /></Suspense>
+        ) : (
+          <StudioDeckStill />
+        )}
       </div>
+      <p className="frame mt-10 text-[17px] text-soft">Studio Amanda Teixeira, Rua Dr. Álvaro Botelho, Centro de Lavras. Atendimento com hora marcada.</p>
     </section>
   )
 }

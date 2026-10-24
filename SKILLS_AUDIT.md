@@ -39,6 +39,11 @@ Ver `docs/BIBLIOTECAS.md`.
 | ui-ux-pro-max | Lighthouse real: celular 93–94 / desktop 100 em performance, 100 em acessibilidade, boas práticas e SEO. |
 
 
-## Terceira rodada (24/10/2026): identidade própria
+## Terceira rodada (24/10/2026): tirar o que repetia Divino Look e ON Moda
 
-Pedido: os sites do portfólio estavam saindo parecidos. Comparação feita clonando os repositórios recentes (Studio Ludy Brito, Divino Look, Anelice Ribeiro, M. Marie, Pérola Leite, Leal Lavie, Nidalii, Márcio Felipe, ON Moda Fitness): quase todos com fundo creme/osso, texto marrom, serifada de luxo (Cormorant, Bodoni, Playfair, DM Serif) e o mesmo ritmo editorial de fotos. Esta versão parou de usar a direção sorteada pela **design-taste-frontend** e quebra de propósito três regras da casa dela (rótulos monoespaçados, numeração 01/02/03, eyebrows), porque são justamente o que dá à Amanda a linguagem de laudo/ficha clínica que nenhum outro projeto usa. O resto do método continuou: um formato de botão, contraste AA medido (o vermelho foi escurecido de `#c92a1b` para `#b8251a` porque não passava sobre o cinza), sem rolagem lateral de 320 a 2560 px, axe sem violações sérias, Lighthouse medido com compressão.
+Base: a primeira versão publicada (commit ded5256). Os repositórios `divino-look-lavras` e `onmodafitness` foram lidos lado a lado com este; só os elementos repetidos mudaram (tabela no README).
+
+- **design-taste-frontend**: `inspect.mjs` antes (0 FAIL, 6 WARN em `.taste-skill/before`) e depois (0 FAIL, 4 WARN em `.taste-skill/after`); dois FAIL novos no meio do caminho foram corrigidos (texto do selo medido como título, contador acima da legenda lido como "eyebrow"). Tamanhos de fonte de 12 para 11.
+- **emil-design-eng**: molas do Motion na foto que segue o cursor (só com mouse e sem redução de movimento, inclinação pela velocidade) e na pilha do studio (descarte por velocidade, não só por distância); `:active` em escala 0.97; hover só em `(hover: hover) and (pointer: fine)`.
+- **Motion** (biblioteca): `StudioDeckLive` e `ProcPreview`, carregados só quando a seção chega perto da tela, para não pesar no primeiro carregamento.
+- Contraste da paleta nova medido (texto 14,3:1; secundário 6,1:1 e 5,5:1; dourado sobre o fundo escuro 7,6:1); axe sem violações sérias; Lighthouse celular 93–94, desktop 100.

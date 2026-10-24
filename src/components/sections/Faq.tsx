@@ -1,40 +1,45 @@
 import { Link } from 'react-router-dom'
-import { SectionHead } from '../ui/SectionHead'
+import { Img } from '../ui/Img'
+import { faqPhotos } from '../../content/media'
 import { brand, faq } from '../../content/site'
 
-/** Perguntas numeradas em duas colunas: resumo prático à esquerda, respostas à direita. */
 export function Faq() {
   return (
-    <section aria-labelledby="faq-title" className="frame py-[var(--section)]">
-      <SectionHead n="08" label="Perguntas" id="faq-title" title={<>Antes<br />de marcar</>} />
-
-      <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-12 md:gap-x-6">
-        <aside className="md:col-span-4">
-          <dl className="m-0 border-t border-ink">
-            {[['Onde', brand.address], ['Como', 'Atendimento com hora marcada'], ['Quando', brand.hoursText]].map(([k, v]) => (
-              <div key={k} className="border-b border-taupe py-4">
-                <dt className="tag text-soft">{k}</dt>
-                <dd className="m-0 mt-1 text-[17px]">{v}</dd>
-              </div>
-            ))}
-          </dl>
-          <div className="mt-8 grid gap-4">
-            <Link to="/agendamento" className="btn w-full sm:w-fit">Agendar horário</Link>
-            <a href={brand.whatsappUrl} target="_blank" rel="noopener noreferrer" className="link w-fit text-[15px]">Perguntar pelo WhatsApp</a>
+    <section aria-labelledby="faq-title" className="bg-taupe/45">
+      <div className="frame grid gap-14 pb-[var(--section)] md:grid-cols-12 md:gap-x-6">
+        <div className="relative order-first md:order-last md:col-span-6 md:col-start-7">
+          <div className="aspect-[4/5] md:aspect-[3/4]">
+            <Img name={faqPhotos[0].name} alt={faqPhotos[0].alt} sizes="(min-width: 768px) 45vw, 100vw" />
           </div>
-        </aside>
+          <div className="absolute -bottom-10 right-0 w-[38%] md:-left-10 md:right-auto md:w-1/3">
+            <div className="aspect-square"><Img name={faqPhotos[1].name} alt={faqPhotos[1].alt} sizes="220px" /></div>
+          </div>
+        </div>
 
-        <div className="border-t border-ink md:col-span-8">
-          {faq.map((f, i) => (
-            <details key={f.q} className="group border-b border-taupe">
-              <summary className="grid min-h-[44px] cursor-pointer grid-cols-[48px_1fr_auto] items-baseline gap-x-3 py-5 text-[19px] font-semibold leading-snug [font-stretch:106%] md:grid-cols-[64px_1fr_auto] md:text-[21px]">
-                <span className="tag text-laser">Q.{String(i + 1).padStart(2, '0')}</span>
-                {f.q}
-                <span aria-hidden="true" className="plus self-center" />
-              </summary>
-              <p className="max-w-[60ch] pb-6 pl-[60px] text-[17px] text-soft md:pl-[76px]">{f.a}</p>
-            </details>
-          ))}
+        <div className="md:col-span-5 md:col-start-1 md:row-start-1 md:pt-[var(--section)]">
+          <h2 id="faq-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Antes de marcar</h2>
+          <dl className="mt-8 grid gap-3 text-[17px]">
+            <div><dt className="inline font-semibold">Onde: </dt><dd className="inline">{brand.address}</dd></div>
+            <div><dt className="inline font-semibold">Como: </dt><dd className="inline">atendimento com hora marcada</dd></div>
+            <div><dt className="inline font-semibold">Quando: </dt><dd className="inline">{brand.hoursText}</dd></div>
+          </dl>
+
+          <div className="mt-10">
+            {faq.map((f) => (
+              <details key={f.q} className="group py-3">
+                <summary className="flex min-h-[44px] cursor-pointer items-center justify-between gap-6 text-[20px] font-medium md:text-[20px]">
+                  {f.q}
+                  <span aria-hidden="true" className="chev shrink-0" />
+                </summary>
+                <p className="max-w-[52ch] pb-3 pt-1 text-[17px] text-soft">{f.a}</p>
+              </details>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+            <Link to="/agendamento" className="btn max-sm:w-full">Agendar horário</Link>
+            <a href={brand.whatsappUrl} target="_blank" rel="noopener noreferrer" className="link text-[17px]">Perguntar pelo WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>
