@@ -10,7 +10,7 @@ export function Courses() {
     <section id="cursos" aria-labelledby="cursos-title" className="frame bg-sand py-[var(--section)]">
       <div className="grid gap-y-14 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-6 lg:col-span-5">
-          <h2 id="cursos-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Cursos<br />profissionais</h2>
+          <h2 id="cursos-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Cursos</h2>
           <p data-reveal style={{ '--i': 1 } as React.CSSProperties} className="mt-8 max-w-[42ch] text-[20px]">
             As técnicas do studio, ensinadas por quem atende todos os dias. Turmas presenciais em Lavras e aulas individuais.
           </p>

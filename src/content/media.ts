@@ -26,7 +26,7 @@ export const aboutPhotos: (Photo & { title: string; text: string })[] = [
     name: 'amanda/sobre-2',
     alt: 'Amanda Teixeira na recepção do studio, com balões dourados de seis anos',
     title: 'Seis anos de studio',
-    text: 'O Studio Amanda Teixeira completou seis anos em 2026, no Centro de Lavras. Quem chega é recebida com atenção e, como ela gosta, com um cafezinho.',
+    text: 'O Studio Amanda Teixeira completou seis anos em 2026, no Centro de Lavras. Toda cliente é recebida com um café.',
   },
   {
     name: 'amanda/sobre-3',

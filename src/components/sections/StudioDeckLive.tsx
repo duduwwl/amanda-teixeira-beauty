@@ -51,7 +51,7 @@ export default function StudioDeckLive() {
           <button type="button" className="btn" onClick={next}>Próxima foto</button>
           <button type="button" className="link min-h-[44px] text-[15px]" onClick={prev}>Foto anterior</button>
         </div>
-        <p className="mt-4 text-[15px] text-soft">Ou arraste a foto de cima para o lado.</p>
+        <p className="mt-4 text-[15px] text-soft">Arraste a foto para o lado para ver a próxima.</p>
       </div>
     </div>
   )

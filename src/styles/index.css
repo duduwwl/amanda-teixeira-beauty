@@ -6,18 +6,17 @@
 @font-face { font-family: 'Manrope Variable'; font-style: normal; font-weight: 200 800; font-display: swap; src: url('/fonts/manrope-var.woff2') format('woff2-variations'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 @font-face { font-family: 'Manrope Variable'; font-style: normal; font-weight: 200 800; font-display: swap; src: url('/fonts/manrope-var-ext.woff2') format('woff2-variations'); unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 
-/* Paleta tirada do studio da Amanda: o muro verde atrás do Laser Spectra (verde-garrafa
-   na ação principal e no fundo escuro), a porcelana fria das paredes e o dourado dos balões
-   e detalhes. Nenhum marrom ou areia, que já são a cara da Divino Look. */
+/* Paleta neutra: texto e ícones em preto, fundos claros sem cor (nem creme, nem verde),
+   e o dourado dos detalhes do studio só em pontos pequenos. */
 @theme {
-  --color-paper: #edeee9;
-  --color-sand: #dfe3da;
-  --color-taupe: #b9c1b0;
-  --color-ink: #18201b;
-  --color-cocoa: #24382d;
-  --color-soft: #4f5b53;
-  --color-champagne: #c9ab6e;
-  --color-field: #16201a;
+  --color-paper: #f4f4f2;
+  --color-sand: #e8e7e4;
+  --color-taupe: #d2d0cb;
+  --color-ink: #111111;
+  --color-cocoa: #111111;
+  --color-soft: #2b2b2b;
+  --color-champagne: #b8975a;
+  --color-field: #111111;
   --color-danger: #9b2c1f;
   --color-ok: #2f5a3b;
 
@@ -75,52 +74,46 @@ p { text-wrap: pretty; margin: 0; }
 a, button, summary, label, input, select, textarea { touch-action: manipulation; }
 #menu-celular, dialog { overscroll-behavior: contain; }
 
-::selection { background: var(--color-cocoa); color: var(--color-paper); }
+::selection { background: #111; color: #fff; }
 
 :focus-visible {
   outline: 2px solid var(--color-cocoa);
   outline-offset: 3px;
   border-radius: 2px;
 }
-.on-dark :focus-visible { outline-color: var(--color-champagne); }
+.on-dark :focus-visible { outline-color: #fff; }
+/* títulos que recebem foco por código (troca de etapa) não mostram contorno */
+[tabindex='-1']:focus { outline: none; }
 
 @layer components {
 .frame { padding-inline: var(--gutter); }
 
-/* Botão: cantos retos, verde-garrafa. Quando leva a outro lugar (link), carrega um selo
-   dourado com a seta, que gira para cima no hover: a "assinatura" dos botões da Amanda. */
+/* Botão: um formato só no site inteiro — cantos retos, preto, sem ícone. */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
   min-height: 48px; padding: 0 1.5rem;
-  background: var(--color-cocoa); color: var(--color-paper);
+  background: var(--color-cocoa); color: #fff;
   font: 600 15px/1 var(--font-sans); letter-spacing: 0.01em;
   text-decoration: none; border: 0; cursor: pointer;
-  transition: transform 140ms var(--ease-out), background-color 180ms ease;
+  transition: transform 140ms var(--ease-out), background-color 180ms ease, color 180ms ease;
   -webkit-tap-highlight-color: transparent;
 }
-a.btn { padding-right: 0.7rem; }
-a.btn::after {
-  content: ''; flex: none; width: 26px; height: 26px; border-radius: 50%;
-  background: var(--color-champagne) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2318201b' stroke-width='1.6'%3E%3Cpath d='M3 8h9M8.5 4.5 12 8l-3.5 3.5'/%3E%3C/svg%3E") center / 14px no-repeat;
-  transition: transform 220ms var(--ease-out);
-}
 @media (hover: hover) and (pointer: fine) {
-  .btn:hover { background: #2f4a3b; }
-  a.btn:hover::after { transform: rotate(-45deg); }
-  .btn-light:hover { background: #fff; }
-  .btn-quiet:hover { background: rgba(36, 56, 45, 0.07); }
+  .btn:hover { background: #333; }
+  .btn-light:hover { background: #e9e9e6; }
+  .btn-quiet:hover { background: rgba(0, 0, 0, 0.06); }
 }
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-.btn-light { background: var(--color-paper); color: var(--color-ink); }
-.btn-quiet { background: transparent; color: inherit; box-shadow: inset 0 -2px 0 currentColor; }
+.btn-light { background: #fff; color: var(--color-ink); }
+.btn-quiet { background: transparent; color: inherit; box-shadow: inset 0 0 0 1.5px currentColor; }
 
-/* Link: sublinhado fixo que troca de cor para o dourado no hover (sem crescer nem deslizar). */
+/* Link: sublinhado preto; no hover o sublinhado some e o texto fica com 60%. */
 .link {
-  color: inherit; text-decoration: underline; text-decoration-thickness: 1.5px;
-  text-underline-offset: 0.24em; transition: text-decoration-color 200ms ease;
+  color: inherit; text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em; transition: opacity 160ms ease;
 }
-@media (hover: hover) and (pointer: fine) { .link:hover { text-decoration-color: var(--color-champagne); text-decoration-thickness: 2px; } }
+@media (hover: hover) and (pointer: fine) { .link:hover { opacity: 0.6; } }
 
 }
 
@@ -149,14 +142,6 @@ a.btn::after {
 
 .img-cover { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* Selo do rodapé: o lema gira devagar em volta do monograma, preso à rolagem. */
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .seal-ring { animation: seal-turn linear both; animation-timeline: view(); animation-range: entry 0% exit 100%; }
-    @keyframes seal-turn { from { transform: rotate(-60deg); } to { transform: rotate(120deg); } }
-  }
-}
-
 /* Áreas seguras de aparelhos com recorte */
 .safe-bottom { padding-bottom: max(16px, env(safe-area-inset-bottom)); }
 
@@ -177,28 +162,18 @@ details > summary::-webkit-details-marker { display: none; }
 .menu-item { animation: menu-in 260ms var(--ease-out) both; }
 @keyframes menu-in { from { opacity: 0; transform: translateY(12px); } }
 
-.hero-photo { transition: opacity 1600ms var(--ease-in-out); }
-.hero-photo img { animation: hero-pan 16s var(--ease-soft) both; }
-@keyframes hero-pan { from { transform: scale(1.04) translateX(1.5%); } to { transform: scale(1.04) translateX(-1.5%); } }
 .hero-rise { animation: hero-rise 1000ms var(--ease-expo) both; }
 /* O nome entra "apertando" as letras, como quem ajusta o foco. */
 .hero-track { animation: hero-track 1600ms var(--ease-expo) both; }
 @keyframes hero-track { from { letter-spacing: 0.14em; } }
 @keyframes hero-rise { from { transform: translateY(28px); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-photo { transition: none; }
-  .hero-photo img, .hero-rise, .hero-track { animation: none; }
+  .hero-rise, .hero-track { animation: none; }
 }
 
 details[open] > summary + *, .proc-panel { animation: open-down 240ms var(--ease-out); }
 @keyframes open-down { from { opacity: 0; transform: translateY(-6px); } }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .drift { animation: drift linear both; animation-timeline: view(); }
-    @keyframes drift { from { translate: 0 var(--d); } to { translate: 0 calc(var(--d) * -1); } }
-  }
-}
 .lb-img { animation: lb-in 220ms var(--ease-out); }
 @keyframes lb-in { from { opacity: 0; scale: 0.985; } }
 dialog.lightbox[open] { display: block; }

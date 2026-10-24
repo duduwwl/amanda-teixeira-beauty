@@ -4,9 +4,9 @@ import { ritualPhotos } from '../../content/media'
 // Ideia da página: o ritual que a Amanda publica — "te escutando, te avaliando,
 // te consultando" — vira a ordem do atendimento e a ordem do agendamento.
 const STEPS = [
-  { t: 'Escutar', d: 'O que te incomoda, o que você já fez, o que espera. Sem pressa.' },
-  { t: 'Avaliar', d: 'Pele, fios ou pigmento antigo examinados de perto, em imagem ampliada quando precisa.' },
-  { t: 'Indicar', d: 'Só então o procedimento, o número de sessões e os cuidados. Às vezes a resposta é esperar.' },
+  { t: 'Conversa', d: 'Você conta o que quer mudar e o que já fez antes.' },
+  { t: 'Avaliação', d: 'Pele, fios ou pigmento antigo são examinados de perto, com imagem ampliada quando precisa.' },
+  { t: 'Indicação', d: 'A Amanda indica o procedimento, o número de sessões e os cuidados de cada um.' },
 ]
 
 export function Ritual() {
@@ -14,7 +14,7 @@ export function Ritual() {
     <section aria-labelledby="ritual-title" className="frame py-[var(--section)]">
       <div className="grid gap-y-14 md:grid-cols-12 md:gap-x-6">
         <h2 id="ritual-title" data-reveal className="text-[clamp(44px,6vw,96px)] md:col-span-9">
-          Antes de tudo,<br />a conversa
+          Como é o<br />atendimento
         </h2>
 
         <figure data-reveal="mask" className="m-0 aspect-[3/4] md:col-span-4 md:col-start-2 md:mt-24" style={{ '--i': 1 } as React.CSSProperties}>

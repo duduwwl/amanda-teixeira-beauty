@@ -1,6 +1,6 @@
 {
  "url": "http://127.0.0.1:4191/amanda-teixeira-beauty/",
- "at": "2026-10-24T20:10:18.674Z",
+ "at": "2026-10-24T20:49:19.951Z",
  "allow": [],
  "viewports": [
   {
@@ -9,24 +9,24 @@
    "load": "load",
    "screens": 12,
    "filled": [
-    0.95,
+    0.97,
     0.53,
-    0.37,
+    0.38,
     0.97,
-    0.97,
+    0.58,
+    0.22,
+    0.28,
+    0.68,
     0.79,
-    0.56,
-    0.34,
-    0.23,
-    0.63,
     0.98,
-    0.38
+    0.36,
+    0.98
    ],
    "motion": {
-    "elements": 66,
-    "css": 61,
+    "elements": 62,
+    "css": 60,
     "transitions": 2,
-    "scripted": 3,
+    "scripted": 0,
     "videos": 0,
     "playingVideos": 0
    },
@@ -36,10 +36,10 @@
      "h": 900
     },
     "page": {
-     "height": 13763,
-     "screens": 15.3,
-     "words": 796,
-     "img": 32,
+     "height": 12405,
+     "screens": 13.8,
+     "words": 766,
+     "img": 24,
      "video": 0,
      "canvas": 0,
      "svg": 0,
@@ -48,18 +48,18 @@
      "overflowCulprits": [],
      "uiFragments": 0,
      "uiAbuse": false,
-     "realPictures": 25,
+     "realPictures": 24,
      "videoCount": 0,
      "uiPictures": 0,
      "pictureSamples": [
       "hero-1-1600.avif",
-      "hero-2-1509.avif",
-      "hero-3-1500.avif",
       "avaliacao-480.avif",
       "atendimento-720.avif",
       "detalhe-2-480.avif",
       "sobre-1-640.avif",
-      "sobre-2-720.avif"
+      "sobre-2-480.avif",
+      "sobre-3-480.avif",
+      "equipamento-480.avif"
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -118,9 +118,9 @@
       "kind": "heading"
      },
      {
-      "text": "Antes de tudo, a conversa",
-      "words": 5,
-      "chars": 25,
+      "text": "Como é o atendimento",
+      "words": 4,
+      "chars": 20,
       "lines": 2,
       "size": 86.4,
       "vw": 6,
@@ -139,9 +139,9 @@
       "kind": "heading"
      },
      {
-      "text": "Escutar",
+      "text": "Conversa",
       "words": 1,
-      "chars": 7,
+      "chars": 8,
       "lines": 1,
       "size": 36,
       "vw": 2.5,
@@ -160,9 +160,9 @@
       "kind": "heading"
      },
      {
-      "text": "Avaliar",
+      "text": "Avaliação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 2.5,
@@ -181,9 +181,9 @@
       "kind": "heading"
      },
      {
-      "text": "Indicar",
+      "text": "Indicação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 2.5,
@@ -197,7 +197,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.26,
-      "top": 2299,
+      "top": 2326,
       "tag": "h3",
       "kind": "heading"
      },
@@ -223,10 +223,10 @@
       "kind": "heading"
      },
      {
-      "text": "O que a Amanda faz, um por um",
-      "words": 8,
-      "chars": 29,
-      "lines": 2,
+      "text": "Procedimentos",
+      "words": 1,
+      "chars": 13,
+      "lines": 1,
       "size": 86.4,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -239,7 +239,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.46,
-      "top": 5369,
+      "top": 4251,
       "tag": "h2",
       "kind": "heading"
      },
@@ -260,7 +260,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5643,
+      "top": 4440,
       "tag": "span",
       "kind": "heading"
      },
@@ -281,7 +281,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5728,
+      "top": 4525,
       "tag": "span",
       "kind": "heading"
      },
@@ -302,7 +302,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5814,
+      "top": 4611,
       "tag": "span",
       "kind": "heading"
      },
@@ -323,7 +323,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5900,
+      "top": 4697,
       "tag": "span",
       "kind": "heading"
      },
@@ -344,7 +344,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5986,
+      "top": 4783,
       "tag": "span",
       "kind": "heading"
      },
@@ -365,7 +365,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 6072,
+      "top": 4869,
       "tag": "span",
       "kind": "heading"
      },
@@ -386,15 +386,15 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 6157,
+      "top": 4954,
       "tag": "span",
       "kind": "heading"
      },
      {
-      "text": "O studio por dentro",
-      "words": 4,
-      "chars": 19,
-      "lines": 2,
+      "text": "O studio",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
       "size": 86.4,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -407,7 +407,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.36,
-      "top": 6459,
+      "top": 5256,
       "tag": "h2",
       "kind": "heading"
      },
@@ -428,17 +428,17 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.29,
-      "top": 7045,
+      "top": 5775,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "Resultados de perto",
-      "words": 3,
-      "chars": 19,
-      "lines": 2,
-      "size": 44,
-      "vw": 3.1,
+      "text": "Resultados",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
+      "size": 86.4,
+      "vw": 6,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": -0.02,
@@ -446,18 +446,18 @@
       "upper": false,
       "italic": false,
       "mono": false,
-      "align": "center",
-      "position": "center",
-      "widthRatio": 0.33,
-      "top": 7880,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.44,
+      "top": 6319,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "Cursos profissionais",
-      "words": 2,
-      "chars": 20,
-      "lines": 2,
+      "text": "Cursos",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
       "size": 86.4,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -470,7 +470,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.36,
-      "top": 8690,
+      "top": 7644,
       "tag": "h2",
       "kind": "heading"
      },
@@ -491,7 +491,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 9032,
+      "top": 7902,
       "tag": "h3",
       "kind": "heading"
      },
@@ -512,7 +512,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 9213,
+      "top": 8083,
       "tag": "h3",
       "kind": "heading"
      },
@@ -533,7 +533,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 9341,
+      "top": 8211,
       "tag": "h3",
       "kind": "heading"
      },
@@ -554,14 +554,14 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 9469,
+      "top": 8339,
       "tag": "h3",
       "kind": "heading"
      },
      {
-      "text": "Quem já passou por aqui",
-      "words": 5,
-      "chars": 23,
+      "text": "Avaliações no Google",
+      "words": 3,
+      "chars": 20,
       "lines": 1,
       "size": 86.4,
       "vw": 6,
@@ -575,7 +575,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10231,
+      "top": 9186,
       "tag": "h2",
       "kind": "heading"
      },
@@ -596,7 +596,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 10372,
+      "top": 9326,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -617,7 +617,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.43,
-      "top": 10468,
+      "top": 9422,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -638,14 +638,14 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 10632,
+      "top": 9587,
       "tag": "blockquote",
       "kind": "statement"
      },
      {
-      "text": "Antes de marcar",
-      "words": 3,
-      "chars": 15,
+      "text": "Dúvidas frequentes",
+      "words": 2,
+      "chars": 18,
       "lines": 2,
       "size": 86.4,
       "vw": 6,
@@ -659,15 +659,15 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.36,
-      "top": 10980,
+      "top": 9935,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "Dúvida sobre procedimento, curso ou horário? A Amanda responde pessoalmente.",
-      "words": 10,
-      "chars": 76,
-      "lines": 2,
+      "text": "Dúvidas sobre procedimentos, cursos ou horários? Fale com o studio pelo WhatsApp ou pelo Instagram.",
+      "words": 15,
+      "chars": 99,
+      "lines": 3,
       "size": 36,
       "vw": 2.5,
       "font": "Cormorant Garamond",
@@ -680,7 +680,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.44,
-      "top": 12214,
+      "top": 11033,
       "tag": "p",
       "kind": "statement"
      },
@@ -701,38 +701,38 @@
       "align": "center",
       "position": "right",
       "widthRatio": 0.26,
-      "top": 12661,
+      "top": 11481,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "AT",
-      "words": 1,
-      "chars": 2,
+      "text": "Studio Amanda Teixeira",
+      "words": 3,
+      "chars": 22,
       "lines": 1,
-      "size": 86,
-      "vw": 6,
+      "size": 44,
+      "vw": 3.1,
       "font": "Cormorant Garamond",
       "weight": 400,
-      "tracking": -0.04,
-      "leading": 1,
+      "tracking": 0,
+      "leading": 1.05,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.19,
-      "top": 13189,
-      "tag": "div",
-      "kind": "heading"
+      "widthRatio": 0.36,
+      "top": 11992,
+      "tag": "p",
+      "kind": "statement"
      },
      {
       "text": "WhatsApp (35) 99886-6819",
       "words": 3,
       "chars": 24,
       "lines": 1,
-      "size": 36,
-      "vw": 2.5,
+      "size": 30,
+      "vw": 2.1,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -743,7 +743,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.44,
-      "top": 13189,
+      "top": 11992,
       "tag": "li",
       "kind": "statement"
      },
@@ -752,8 +752,8 @@
       "words": 1,
       "chars": 22,
       "lines": 1,
-      "size": 36,
-      "vw": 2.5,
+      "size": 30,
+      "vw": 2.1,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -764,7 +764,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.44,
-      "top": 13242,
+      "top": 12034,
       "tag": "li",
       "kind": "statement"
      },
@@ -773,8 +773,8 @@
       "words": 1,
       "chars": 21,
       "lines": 1,
-      "size": 36,
-      "vw": 2.5,
+      "size": 30,
+      "vw": 2.1,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -785,51 +785,30 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.44,
-      "top": 13295,
+      "top": 12075,
       "tag": "li",
-      "kind": "statement"
-     },
-     {
-      "text": "Te esperamos para um café e uma boa conversa.",
-      "words": 9,
-      "chars": 45,
-      "lines": 2,
-      "size": 30,
-      "vw": 2.1,
-      "font": "Cormorant Garamond",
-      "weight": 400,
-      "tracking": 0,
-      "leading": 1.1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.26,
-      "top": 13501,
-      "tag": "p",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 34,
+     "count": 33,
      "maxLines": 3,
      "over2Lines": 0,
      "statements": 10,
-     "centered": 2,
-     "medianWords": 3,
+     "centered": 1,
+     "medianWords": 2,
      "mixedFontHeadings": 0
     },
     "type": {
      "families": [
       {
        "family": "Manrope Variable",
-       "share": 0.85,
+       "share": 0.86,
        "mono": false
       },
       {
        "family": "Cormorant Garamond",
-       "share": 0.15,
+       "share": 0.14,
        "mono": false
       }
      ],
@@ -855,7 +834,7 @@
       "leading": 1.55,
       "weight": 400,
       "tracking": 0,
-      "contrast": 14.3
+      "contrast": 17.1
      },
      "measureChars": 61,
      "max": {
@@ -872,32 +851,32 @@
      "microLabelShare": 0,
      "microSamples": [],
      "upperShare": 0,
-     "centerShare": 0.04,
+     "centerShare": 0.02,
      "smallText": 0
     },
     "eyebrows": [],
     "numbered": [],
     "color": {
-     "bodyBg": "#edeee9",
+     "bodyBg": "#f4f4f2",
      "bodyBgHsl": {
-      "h": 72,
-      "s": 0.13,
-      "l": 0.92
+      "h": 60,
+      "s": 0.08,
+      "l": 0.95
      },
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#16201a",
+       "color": "#000000",
        "top": 0,
        "hsl": {
-        "h": 144,
-        "s": 0.19,
-        "l": 0.11
+        "h": 0,
+        "s": 0,
+        "l": 0
        }
       },
       {
        "color": "#e8e8e8",
-       "top": -18,
+       "top": 0,
        "hsl": {
         "h": 0,
         "s": 0,
@@ -906,7 +885,7 @@
       },
       {
        "color": "#282828",
-       "top": -18,
+       "top": 1245,
        "hsl": {
         "h": 0,
         "s": 0,
@@ -914,26 +893,26 @@
        }
       },
       {
-       "color": "#181818",
-       "top": -18,
+       "color": "#e8e7e4",
+       "top": 2510,
        "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 0.09
+        "h": 45,
+        "s": 0.08,
+        "l": 0.9
        }
       },
       {
-       "color": "#dfe3da",
-       "top": 2510,
+       "color": "#f8e8c8",
+       "top": 2630,
        "hsl": {
-        "h": 87,
-        "s": 0.14,
-        "l": 0.87
+        "h": 40,
+        "s": 0.77,
+        "l": 0.88
        }
       },
       {
        "color": "#d8c8b8",
-       "top": 8658,
+       "top": 7612,
        "hsl": {
         "h": 30,
         "s": 0.29,
@@ -942,7 +921,7 @@
       },
       {
        "color": "#d8d8d8",
-       "top": 10828,
+       "top": 9783,
        "hsl": {
         "h": 0,
         "s": 0,
@@ -952,34 +931,30 @@
      ],
      "textColors": [
       {
-       "color": "#18201b",
-       "share": 0.61
+       "color": "#111111",
+       "share": 0.67
       },
       {
-       "color": "#4f5b53",
+       "color": "#2b2b2b",
        "share": 0.26
       },
       {
-       "color": "#edeee9",
-       "share": 0.09
+       "color": "#ffffff",
+       "share": 0.06
       },
       {
-       "color": "#edede8",
+       "color": "#f4f4f2",
        "share": 0.02
-      },
-      {
-       "color": "#c9ab6e",
-       "share": 0.01
       }
      ],
      "button": {
-      "bg": "#24382d",
+      "bg": "#111111",
       "hsl": {
-       "h": 147,
-       "s": 0.22,
-       "l": 0.18
+       "h": 0,
+       "s": 0,
+       "l": 0.07
       },
-      "fg": "#edeee9"
+      "fg": "#ffffff"
      },
      "lowContrast": []
     },
@@ -1013,21 +988,13 @@
      "blurred": 0,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 20,
+     "squareMedia": 23,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
      "cardRows": []
     },
     "heroMedia": [
-     {
-      "type": "img",
-      "ratio": 1
-     },
-     {
-      "type": "img",
-      "ratio": 1
-     },
      {
       "type": "img",
       "ratio": 1
@@ -1050,7 +1017,7 @@
      "w": 1440,
      "h": 900
     },
-    "pageH": 13763,
+    "pageH": 12405,
     "margins": {
      "left": 79,
      "right": 79
@@ -1060,8 +1027,8 @@
       "sel": "div#topo",
       "tag": "div",
       "top": 0,
-      "height": 13093,
-      "words": 895,
+      "height": 11912,
+      "words": 883,
       "media": 48,
       "middle": 0,
       "heading": {
@@ -1080,19 +1047,19 @@
       "pinned": false
      },
      {
-      "sel": "footer.on-dark.relative",
+      "sel": "footer.relative.bg-sand",
       "tag": "footer",
-      "top": 13093,
-      "height": 670,
-      "words": 61,
-      "media": 1,
-      "middle": 322,
+      "top": 11912,
+      "height": 493,
+      "words": 54,
+      "media": 0,
+      "middle": 235,
       "heading": {
-       "text": "AT",
-       "size": 86,
-       "tag": "span"
+       "text": "Studio Amanda Teixeira",
+       "size": 44,
+       "tag": "p"
       },
-      "left": 28,
+      "left": 79,
       "right": 79,
       "textLeft": 79,
       "textRight": 79,
@@ -1105,8 +1072,8 @@
     ],
     "gaps": [
      {
-      "top": 12804,
-      "height": 332
+      "top": 11624,
+      "height": 364
      }
     ],
     "h1s": [
@@ -1124,6 +1091,10 @@
       "n": 26
      },
      {
+      "x": 841,
+      "n": 1
+     },
+     {
       "x": 950,
       "n": 1
      },
@@ -1132,7 +1103,7 @@
       "n": 1
      }
     ],
-    "leftBlocks": 28,
+    "leftBlocks": 29,
     "bodySize": 17,
     "stage": false,
     "explains": true,
@@ -1147,26 +1118,25 @@
    "width": 768,
    "height": 1024,
    "load": "load",
-   "screens": 12,
+   "screens": 11,
    "filled": [
-    0.95,
-    0.36,
-    0.77,
     0.96,
-    0.53,
-    0.4,
-    0.44,
+    0.37,
+    0.82,
+    0.48,
+    0.32,
+    0.48,
+    0.86,
+    0.6,
     0.96,
-    0.49,
-    0.96,
-    0.65,
-    0.68
+    0.64,
+    0.6
    ],
    "motion": {
-    "elements": 65,
-    "css": 61,
+    "elements": 62,
+    "css": 60,
     "transitions": 2,
-    "scripted": 2,
+    "scripted": 0,
     "videos": 0,
     "playingVideos": 0
    },
@@ -1176,10 +1146,10 @@
      "h": 1024
     },
     "page": {
-     "height": 12625,
-     "screens": 12.3,
-     "words": 791,
-     "img": 32,
+     "height": 11155,
+     "screens": 10.9,
+     "words": 761,
+     "img": 24,
      "video": 0,
      "canvas": 0,
      "svg": 0,
@@ -1188,18 +1158,18 @@
      "overflowCulprits": [],
      "uiFragments": 0,
      "uiAbuse": false,
-     "realPictures": 23,
+     "realPictures": 21,
      "videoCount": 0,
      "uiPictures": 0,
      "pictureSamples": [
       "hero-1-960.avif",
-      "hero-2-960.avif",
-      "hero-3-960.avif",
       "avaliacao-480.avif",
       "atendimento-480.avif",
       "sobre-1-480.avif",
       "sobre-2-480.avif",
-      "sobre-3-480.avif"
+      "sobre-3-480.avif",
+      "equipamento-480.avif",
+      "ambiente-480.avif"
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -1258,9 +1228,9 @@
       "kind": "heading"
      },
      {
-      "text": "Antes de tudo, a conversa",
-      "words": 5,
-      "chars": 25,
+      "text": "Como é o atendimento",
+      "words": 4,
+      "chars": 20,
       "lines": 2,
       "size": 46.1,
       "vw": 6,
@@ -1279,9 +1249,9 @@
       "kind": "heading"
      },
      {
-      "text": "Escutar",
+      "text": "Conversa",
       "words": 1,
-      "chars": 7,
+      "chars": 8,
       "lines": 1,
       "size": 36,
       "vw": 4.7,
@@ -1300,9 +1270,9 @@
       "kind": "heading"
      },
      {
-      "text": "Avaliar",
+      "text": "Avaliação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 4.7,
@@ -1316,14 +1286,14 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.2,
-      "top": 1876,
+      "top": 1849,
       "tag": "h3",
       "kind": "heading"
      },
      {
-      "text": "Indicar",
+      "text": "Indicação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 4.7,
@@ -1337,7 +1307,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.2,
-      "top": 2113,
+      "top": 2087,
       "tag": "h3",
       "kind": "heading"
      },
@@ -1358,15 +1328,15 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 2470,
+      "top": 2417,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "O que a Amanda faz, um por um",
-      "words": 8,
-      "chars": 29,
-      "lines": 2,
+      "text": "Procedimentos",
+      "words": 1,
+      "chars": 13,
+      "lines": 1,
       "size": 46.1,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -1379,7 +1349,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.46,
-      "top": 4355,
+      "top": 3521,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1400,7 +1370,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 4590,
+      "top": 3757,
       "tag": "span",
       "kind": "heading"
      },
@@ -1421,7 +1391,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 4697,
+      "top": 3863,
       "tag": "span",
       "kind": "heading"
      },
@@ -1442,7 +1412,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 4804,
+      "top": 3970,
       "tag": "span",
       "kind": "heading"
      },
@@ -1463,7 +1433,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 4910,
+      "top": 4077,
       "tag": "span",
       "kind": "heading"
      },
@@ -1484,7 +1454,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 4996,
+      "top": 4163,
       "tag": "span",
       "kind": "heading"
      },
@@ -1505,7 +1475,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 5120,
+      "top": 4286,
       "tag": "span",
       "kind": "heading"
      },
@@ -1526,15 +1496,15 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.33,
-      "top": 5227,
+      "top": 4393,
       "tag": "span",
       "kind": "heading"
      },
      {
-      "text": "O studio por dentro",
-      "words": 4,
-      "chars": 19,
-      "lines": 2,
+      "text": "O studio",
+      "words": 2,
+      "chars": 8,
+      "lines": 1,
       "size": 46.1,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -1547,7 +1517,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 5438,
+      "top": 4605,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1568,36 +1538,15 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.28,
-      "top": 5837,
+      "top": 5003,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "Resultados de perto",
-      "words": 3,
-      "chars": 19,
-      "lines": 2,
-      "size": 44,
-      "vw": 5.7,
-      "font": "Cormorant Garamond",
-      "weight": 400,
-      "tracking": -0.02,
-      "leading": 0.98,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "center",
-      "position": "center",
-      "widthRatio": 0.36,
-      "top": 6653,
-      "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "Cursos profissionais",
-      "words": 2,
-      "chars": 20,
-      "lines": 2,
+      "text": "Resultados",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
       "size": 46.1,
       "vw": 6,
       "font": "Cormorant Garamond",
@@ -1610,7 +1559,28 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 7365,
+      "top": 5603,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Cursos",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 46.1,
+      "vw": 6,
+      "font": "Cormorant Garamond",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 0.98,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 6445,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1631,7 +1601,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 7659,
+      "top": 6694,
       "tag": "h3",
       "kind": "heading"
      },
@@ -1652,7 +1622,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 7867,
+      "top": 6901,
       "tag": "h3",
       "kind": "heading"
      },
@@ -1673,7 +1643,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 8021,
+      "top": 7055,
       "tag": "h3",
       "kind": "heading"
      },
@@ -1694,14 +1664,14 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.43,
-      "top": 8176,
+      "top": 7210,
       "tag": "h3",
       "kind": "heading"
      },
      {
-      "text": "Quem já passou por aqui",
-      "words": 5,
-      "chars": 23,
+      "text": "Avaliações no Google",
+      "words": 3,
+      "chars": 20,
       "lines": 1,
       "size": 46.1,
       "vw": 6,
@@ -1715,7 +1685,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 8581,
+      "top": 7615,
       "tag": "h2",
       "kind": "heading"
      },
@@ -1736,7 +1706,7 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.73,
-      "top": 8682,
+      "top": 7716,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -1757,7 +1727,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.73,
-      "top": 8881,
+      "top": 7915,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -1778,14 +1748,14 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.73,
-      "top": 9079,
+      "top": 8114,
       "tag": "blockquote",
       "kind": "statement"
      },
      {
-      "text": "Antes de marcar",
-      "words": 3,
-      "chars": 15,
+      "text": "Dúvidas frequentes",
+      "words": 2,
+      "chars": 18,
       "lines": 2,
       "size": 46.1,
       "vw": 6,
@@ -1799,14 +1769,14 @@
       "align": "left",
       "position": "left",
       "widthRatio": 0.35,
-      "top": 9317,
+      "top": 8351,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "Dúvida sobre procedimento, curso ou horário? A Amanda responde pessoalmente.",
-      "words": 10,
-      "chars": 76,
+      "text": "Dúvidas sobre procedimentos, cursos ou horários? Fale com o studio pelo WhatsApp ou pelo Instagram.",
+      "words": 15,
+      "chars": 99,
       "lines": 2,
       "size": 30,
       "vw": 3.9,
@@ -1820,7 +1790,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10691,
+      "top": 9511,
       "tag": "p",
       "kind": "statement"
      },
@@ -1841,38 +1811,38 @@
       "align": "center",
       "position": "center",
       "widthRatio": 0.48,
-      "top": 11170,
+      "top": 9991,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "AT",
-      "words": 1,
-      "chars": 2,
-      "lines": 1,
-      "size": 86,
-      "vw": 11.2,
+      "text": "Studio Amanda Teixeira",
+      "words": 3,
+      "chars": 22,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
       "font": "Cormorant Garamond",
       "weight": 400,
-      "tracking": -0.04,
-      "leading": 1,
+      "tracking": 0,
+      "leading": 1.05,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.36,
-      "top": 11923,
-      "tag": "div",
-      "kind": "heading"
+      "widthRatio": 0.35,
+      "top": 10727,
+      "tag": "p",
+      "kind": "statement"
      },
      {
       "text": "WhatsApp (35) 99886-6819",
       "words": 3,
       "chars": 24,
-      "lines": 2,
-      "size": 36,
-      "vw": 4.7,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -1883,7 +1853,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.43,
-      "top": 11923,
+      "top": 10727,
       "tag": "li",
       "kind": "statement"
      },
@@ -1891,9 +1861,9 @@
       "text": "@amandateixeirabeauty_",
       "words": 1,
       "chars": 22,
-      "lines": 2,
-      "size": 36,
-      "vw": 4.7,
+      "lines": 1,
+      "size": 30,
+      "vw": 3.9,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -1904,7 +1874,7 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.43,
-      "top": 12021,
+      "top": 10769,
       "tag": "li",
       "kind": "statement"
      },
@@ -1913,8 +1883,8 @@
       "words": 1,
       "chars": 21,
       "lines": 1,
-      "size": 36,
-      "vw": 4.7,
+      "size": 30,
+      "vw": 3.9,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
@@ -1925,51 +1895,30 @@
       "align": "left",
       "position": "right",
       "widthRatio": 0.43,
-      "top": 12119,
+      "top": 10810,
       "tag": "li",
-      "kind": "statement"
-     },
-     {
-      "text": "Te esperamos para um café e uma boa conversa.",
-      "words": 9,
-      "chars": 45,
-      "lines": 3,
-      "size": 30,
-      "vw": 3.9,
-      "font": "Cormorant Garamond",
-      "weight": 400,
-      "tracking": 0,
-      "leading": 1.1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.35,
-      "top": 12235,
-      "tag": "p",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 34,
+     "count": 33,
      "maxLines": 3,
      "over2Lines": 0,
      "statements": 10,
-     "centered": 2,
-     "medianWords": 3,
+     "centered": 1,
+     "medianWords": 2,
      "mixedFontHeadings": 0
     },
     "type": {
      "families": [
       {
        "family": "Manrope Variable",
-       "share": 0.85,
+       "share": 0.86,
        "mono": false
       },
       {
        "family": "Cormorant Garamond",
-       "share": 0.15,
+       "share": 0.14,
        "mono": false
       }
      ],
@@ -1985,10 +1934,9 @@
       44,
       46,
       69,
-      72,
-      86
+      72
      ],
-     "sizeCount": 12,
+     "sizeCount": 11,
      "notLoaded": [],
      "body": {
       "font": "Manrope Variable",
@@ -1996,14 +1944,14 @@
       "leading": 1.55,
       "weight": 400,
       "tracking": 0,
-      "contrast": 14.3
+      "contrast": 17.1
      },
      "measureChars": 32,
      "max": {
-      "size": 86,
-      "vw": 11.2,
+      "size": 72,
+      "vw": 9.4,
       "font": "Cormorant Garamond",
-      "text": "AT"
+      "text": "AmandaTeixeira"
      },
      "monoShare": 0,
      "monoProseShare": 0,
@@ -2013,32 +1961,32 @@
      "microLabelShare": 0,
      "microSamples": [],
      "upperShare": 0,
-     "centerShare": 0.04,
+     "centerShare": 0.02,
      "smallText": 0
     },
     "eyebrows": [],
     "numbered": [],
     "color": {
-     "bodyBg": "#edeee9",
+     "bodyBg": "#f4f4f2",
      "bodyBgHsl": {
-      "h": 72,
-      "s": 0.13,
-      "l": 0.92
+      "h": 60,
+      "s": 0.08,
+      "l": 0.95
      },
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#16201a",
+       "color": "#000000",
        "top": 0,
        "hsl": {
-        "h": 144,
-        "s": 0.19,
-        "l": 0.11
+        "h": 0,
+        "s": 0,
+        "l": 0
        }
       },
       {
        "color": "#e8e8e8",
-       "top": -20,
+       "top": 0,
        "hsl": {
         "h": 0,
         "s": 0,
@@ -2046,63 +1994,41 @@
        }
       },
       {
-       "color": "#282828",
-       "top": -20,
+       "color": "#e8e7e4",
+       "top": 2321,
        "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 0.16
-       }
-      },
-      {
-       "color": "#181818",
-       "top": -20,
-       "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 0.09
-       }
-      },
-      {
-       "color": "#dfe3da",
-       "top": 2373,
-       "hsl": {
-        "h": 87,
-        "s": 0.14,
-        "l": 0.87
+        "h": 45,
+        "s": 0.08,
+        "l": 0.9
        }
       }
      ],
      "textColors": [
       {
-       "color": "#18201b",
-       "share": 0.61
+       "color": "#111111",
+       "share": 0.68
       },
       {
-       "color": "#4f5b53",
+       "color": "#2b2b2b",
        "share": 0.26
       },
       {
-       "color": "#edeee9",
-       "share": 0.08
+       "color": "#ffffff",
+       "share": 0.06
       },
       {
-       "color": "#edede8",
-       "share": 0.02
-      },
-      {
-       "color": "#c9ab6e",
+       "color": "#f4f4f2",
        "share": 0.01
       }
      ],
      "button": {
-      "bg": "#24382d",
+      "bg": "#111111",
       "hsl": {
-       "h": 147,
-       "s": 0.22,
-       "l": 0.18
+       "h": 0,
+       "s": 0,
+       "l": 0.07
       },
-      "fg": "#edeee9"
+      "fg": "#ffffff"
      },
      "lowContrast": []
     },
@@ -2136,28 +2062,13 @@
      "blurred": 0,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 16,
+     "squareMedia": 10,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
-     "cardRows": [
-      {
-       "count": 6,
-       "iconTopped": false,
-       "rounded": false,
-       "top": 4566
-      }
-     ]
+     "cardRows": []
     },
     "heroMedia": [
-     {
-      "type": "img",
-      "ratio": 1
-     },
-     {
-      "type": "img",
-      "ratio": 1
-     },
      {
       "type": "img",
       "ratio": 1
@@ -2180,7 +2091,7 @@
      "w": 768,
      "h": 1024
     },
-    "pageH": 12625,
+    "pageH": 11155,
     "margins": {
      "left": 42,
      "right": 42
@@ -2190,9 +2101,9 @@
       "sel": "div#topo",
       "tag": "div",
       "top": 0,
-      "height": 11827,
-      "words": 895,
-      "media": 41,
+      "height": 10647,
+      "words": 883,
+      "media": 42,
       "middle": 0,
       "heading": {
        "text": "Amanda",
@@ -2200,7 +2111,7 @@
        "tag": "h1"
       },
       "left": 42,
-      "right": 37,
+      "right": 42,
       "textLeft": 42,
       "textRight": 42,
       "fullBleed": true,
@@ -2210,19 +2121,19 @@
       "pinned": false
      },
      {
-      "sel": "footer.on-dark.relative",
+      "sel": "footer.relative.bg-sand",
       "tag": "footer",
-      "top": 11827,
-      "height": 798,
-      "words": 61,
-      "media": 1,
-      "middle": 23,
+      "top": 10647,
+      "height": 508,
+      "words": 54,
+      "media": 0,
+      "middle": 38,
       "heading": {
-       "text": "AT",
-       "size": 86,
-       "tag": "span"
+       "text": "Studio Amanda Teixeira",
+       "size": 44,
+       "tag": "p"
       },
-      "left": 0,
+      "left": 42,
       "right": 42,
       "textLeft": 42,
       "textRight": 42,
@@ -2253,11 +2164,15 @@
       "n": 1
      },
      {
+      "x": 455,
+      "n": 1
+     },
+     {
       "x": 514,
       "n": 1
      }
     ],
-    "leftBlocks": 28,
+    "leftBlocks": 29,
     "bodySize": 17,
     "stage": false,
     "explains": true,
@@ -2274,24 +2189,24 @@
    "load": "load",
    "screens": 12,
    "filled": [
-    0.96,
-    0.69,
-    0.56,
+    0.99,
+    0.7,
+    0.58,
     0.99,
     0.99,
-    0.73,
-    0.59,
-    0.48,
-    0.4,
-    0.6,
-    0.98,
-    0.91
+    0.62,
+    0.36,
+    0.58,
+    0.57,
+    0.58,
+    0.82,
+    0.99
    ],
    "motion": {
-    "elements": 57,
-    "css": 53,
+    "elements": 61,
+    "css": 59,
     "transitions": 2,
-    "scripted": 2,
+    "scripted": 0,
     "videos": 0,
     "playingVideos": 0
    },
@@ -2301,10 +2216,10 @@
      "h": 844
     },
     "page": {
-     "height": 14760,
+     "height": 14785,
      "screens": 17.5,
-     "words": 787,
-     "img": 32,
+     "words": 761,
+     "img": 24,
      "video": 0,
      "canvas": 0,
      "svg": 0,
@@ -2313,18 +2228,18 @@
      "overflowCulprits": [],
      "uiFragments": 0,
      "uiAbuse": false,
-     "realPictures": 16,
+     "realPictures": 20,
      "videoCount": 0,
      "uiPictures": 0,
      "pictureSamples": [
       "hero-1-480.avif",
-      "hero-2-480.avif",
-      "hero-3-480.avif",
       "avaliacao-480.avif",
       "atendimento-480.avif",
       "sobre-1-480.avif",
       "sobre-2-480.avif",
-      "sobre-3-480.avif"
+      "sobre-3-480.avif",
+      "equipamento-480.avif",
+      "ambiente-480.avif"
      ],
      "blendText": 0,
      "sideScrollers": 0,
@@ -2337,8 +2252,8 @@
      "words": 2,
      "chars": 15,
      "lines": 2,
-     "size": 56,
-     "vw": 14.4,
+     "size": 54.6,
+     "vw": 14,
      "font": "Cormorant Garamond",
      "weight": 400,
      "tracking": -0.02,
@@ -2349,7 +2264,7 @@
      "align": "left",
      "position": "center",
      "widthRatio": 0.89,
-     "top": 361,
+     "top": 423,
      "tag": "h1",
      "kind": "heading"
     },
@@ -2357,7 +2272,7 @@
      "text": "Amanda Teixeira",
      "words": 2,
      "lines": 2,
-     "size": 56,
+     "size": 54.6,
      "font": "Cormorant Garamond"
     },
     "headings": [
@@ -2365,7 +2280,7 @@
       "text": "Amanda Teixeira",
       "words": 2,
       "chars": 15,
-      "lines": 2,
+      "lines": 1,
       "size": 22,
       "vw": 5.6,
       "font": "Cormorant Garamond",
@@ -2377,8 +2292,8 @@
       "mono": false,
       "align": "left",
       "position": "left",
-      "widthRatio": 0.34,
-      "top": 3,
+      "widthRatio": 0.37,
+      "top": 16,
       "tag": "span",
       "kind": "heading"
      },
@@ -2387,8 +2302,8 @@
       "words": 2,
       "chars": 15,
       "lines": 2,
-      "size": 56,
-      "vw": 14.4,
+      "size": 54.6,
+      "vw": 14,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": -0.02,
@@ -2399,14 +2314,14 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 361,
+      "top": 423,
       "tag": "h1",
       "kind": "heading"
      },
      {
-      "text": "Antes de tudo, a conversa",
-      "words": 5,
-      "chars": 25,
+      "text": "Como é o atendimento",
+      "words": 4,
+      "chars": 20,
       "lines": 2,
       "size": 44,
       "vw": 11.3,
@@ -2425,9 +2340,9 @@
       "kind": "heading"
      },
      {
-      "text": "Escutar",
+      "text": "Conversa",
       "words": 1,
-      "chars": 7,
+      "chars": 8,
       "lines": 1,
       "size": 36,
       "vw": 9.2,
@@ -2446,9 +2361,9 @@
       "kind": "heading"
      },
      {
-      "text": "Avaliar",
+      "text": "Avaliação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 9.2,
@@ -2467,9 +2382,9 @@
       "kind": "heading"
      },
      {
-      "text": "Indicar",
+      "text": "Indicação",
       "words": 1,
-      "chars": 7,
+      "chars": 9,
       "lines": 1,
       "size": 36,
       "vw": 9.2,
@@ -2504,15 +2419,15 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 2585,
+      "top": 2559,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "O que a Amanda faz, um por um",
-      "words": 8,
-      "chars": 29,
-      "lines": 2,
+      "text": "Procedimentos",
+      "words": 1,
+      "chars": 13,
+      "lines": 1,
       "size": 44,
       "vw": 11.3,
       "font": "Cormorant Garamond",
@@ -2525,7 +2440,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.86,
-      "top": 4807,
+      "top": 4700,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2546,7 +2461,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5084,
+      "top": 4934,
       "tag": "span",
       "kind": "heading"
      },
@@ -2567,7 +2482,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5213,
+      "top": 5064,
       "tag": "span",
       "kind": "heading"
      },
@@ -2588,7 +2503,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5366,
+      "top": 5217,
       "tag": "span",
       "kind": "heading"
      },
@@ -2609,7 +2524,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5519,
+      "top": 5369,
       "tag": "span",
       "kind": "heading"
      },
@@ -2630,7 +2545,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5649,
+      "top": 5499,
       "tag": "span",
       "kind": "heading"
      },
@@ -2651,7 +2566,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5802,
+      "top": 5652,
       "tag": "span",
       "kind": "heading"
      },
@@ -2672,14 +2587,14 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.81,
-      "top": 5955,
+      "top": 5805,
       "tag": "span",
       "kind": "heading"
      },
      {
-      "text": "O studio por dentro",
-      "words": 4,
-      "chars": 19,
+      "text": "O studio",
+      "words": 2,
+      "chars": 8,
       "lines": 1,
       "size": 44,
       "vw": 11.3,
@@ -2693,7 +2608,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 6188,
+      "top": 6038,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2714,36 +2629,15 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 6990,
+      "top": 6840,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "Resultados de perto",
-      "words": 3,
-      "chars": 19,
-      "lines": 2,
-      "size": 44,
-      "vw": 11.3,
-      "font": "Cormorant Garamond",
-      "weight": 400,
-      "tracking": -0.02,
-      "leading": 0.98,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "center",
-      "position": "center",
-      "widthRatio": 0.89,
-      "top": 7632,
-      "tag": "h2",
-      "kind": "heading"
-     },
-     {
-      "text": "Cursos profissionais",
-      "words": 2,
-      "chars": 20,
-      "lines": 2,
+      "text": "Resultados",
+      "words": 1,
+      "chars": 10,
+      "lines": 1,
       "size": 44,
       "vw": 11.3,
       "font": "Cormorant Garamond",
@@ -2756,7 +2650,28 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 8234,
+      "top": 7294,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Cursos",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 44,
+      "vw": 11.3,
+      "font": "Cormorant Garamond",
+      "weight": 400,
+      "tracking": -0.02,
+      "leading": 0.98,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.89,
+      "top": 8856,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2777,7 +2692,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 8525,
+      "top": 9103,
       "tag": "h3",
       "kind": "heading"
      },
@@ -2798,7 +2713,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 8732,
+      "top": 9311,
       "tag": "h3",
       "kind": "heading"
      },
@@ -2819,7 +2734,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 8886,
+      "top": 9465,
       "tag": "h3",
       "kind": "heading"
      },
@@ -2840,14 +2755,14 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 9041,
+      "top": 9620,
       "tag": "h3",
       "kind": "heading"
      },
      {
-      "text": "Quem já passou por aqui",
-      "words": 5,
-      "chars": 23,
+      "text": "Avaliações no Google",
+      "words": 3,
+      "chars": 20,
       "lines": 2,
       "size": 44,
       "vw": 11.3,
@@ -2861,7 +2776,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10193,
+      "top": 10772,
       "tag": "h2",
       "kind": "heading"
      },
@@ -2882,7 +2797,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10336,
+      "top": 10914,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -2903,7 +2818,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10541,
+      "top": 11120,
       "tag": "blockquote",
       "kind": "statement"
      },
@@ -2924,14 +2839,14 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 10719,
+      "top": 11298,
       "tag": "blockquote",
       "kind": "statement"
      },
      {
-      "text": "Antes de marcar",
-      "words": 3,
-      "chars": 15,
+      "text": "Dúvidas frequentes",
+      "words": 2,
+      "chars": 18,
       "lines": 1,
       "size": 44,
       "vw": 11.3,
@@ -2945,14 +2860,14 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 11395,
+      "top": 11974,
       "tag": "h2",
       "kind": "heading"
      },
      {
-      "text": "Dúvida sobre procedimento, curso ou horário? A Amanda responde pessoalmente.",
-      "words": 10,
-      "chars": 76,
+      "text": "Dúvidas sobre procedimentos, cursos ou horários? Fale com o studio pelo WhatsApp ou pelo Instagram.",
+      "words": 15,
+      "chars": 99,
       "lines": 3,
       "size": 24,
       "vw": 6.2,
@@ -2966,7 +2881,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 12561,
+      "top": 12952,
       "tag": "p",
       "kind": "statement"
      },
@@ -2987,49 +2902,28 @@
       "align": "center",
       "position": "center",
       "widthRatio": 0.77,
-      "top": 12898,
+      "top": 13269,
       "tag": "p",
       "kind": "statement"
      },
      {
-      "text": "AT",
-      "words": 1,
-      "chars": 2,
+      "text": "Studio Amanda Teixeira",
+      "words": 3,
+      "chars": 22,
       "lines": 1,
-      "size": 86,
-      "vw": 22.1,
-      "font": "Cormorant Garamond",
-      "weight": 400,
-      "tracking": -0.04,
-      "leading": 1,
-      "upper": false,
-      "italic": false,
-      "mono": false,
-      "align": "left",
-      "position": "left",
-      "widthRatio": 0.62,
-      "top": 13578,
-      "tag": "div",
-      "kind": "heading"
-     },
-     {
-      "text": "Te esperamos para um café e uma boa conversa.",
-      "words": 9,
-      "chars": 45,
-      "lines": 2,
-      "size": 30,
-      "vw": 7.7,
+      "size": 36,
+      "vw": 9.2,
       "font": "Cormorant Garamond",
       "weight": 400,
       "tracking": 0,
-      "leading": 1.1,
+      "leading": 1.05,
       "upper": false,
       "italic": false,
       "mono": false,
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 13852,
+      "top": 13950,
       "tag": "p",
       "kind": "statement"
      },
@@ -3050,7 +2944,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 14054,
+      "top": 14214,
       "tag": "li",
       "kind": "statement"
      },
@@ -3071,7 +2965,7 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 14099,
+      "top": 14256,
       "tag": "li",
       "kind": "statement"
      },
@@ -3092,30 +2986,30 @@
       "align": "left",
       "position": "center",
       "widthRatio": 0.89,
-      "top": 14145,
+      "top": 14297,
       "tag": "li",
       "kind": "statement"
      }
     ],
     "headingSummary": {
-     "count": 35,
+     "count": 34,
      "maxLines": 4,
      "over2Lines": 0,
      "statements": 10,
-     "centered": 2,
-     "medianWords": 3,
+     "centered": 1,
+     "medianWords": 2,
      "mixedFontHeadings": 0
     },
     "type": {
      "families": [
       {
        "family": "Manrope Variable",
-       "share": 0.85,
+       "share": 0.86,
        "mono": false
       },
       {
        "family": "Cormorant Garamond",
-       "share": 0.15,
+       "share": 0.14,
        "mono": false
       }
      ],
@@ -3124,16 +3018,17 @@
       13,
       15,
       17,
+      18,
       20,
       22,
       24,
       30,
       36,
       44,
-      56,
-      86
+      55,
+      56
      ],
-     "sizeCount": 11,
+     "sizeCount": 12,
      "notLoaded": [],
      "body": {
       "font": "Manrope Variable",
@@ -3141,14 +3036,14 @@
       "leading": 1.55,
       "weight": 400,
       "tracking": 0,
-      "contrast": 14.3
+      "contrast": 17.1
      },
      "measureChars": 41,
      "max": {
-      "size": 86,
-      "vw": 22.1,
+      "size": 56,
+      "vw": 14.4,
       "font": "Cormorant Garamond",
-      "text": "AT"
+      "text": "Quematende"
      },
      "monoShare": 0,
      "monoProseShare": 0,
@@ -3158,54 +3053,36 @@
      "microLabelShare": 0,
      "microSamples": [],
      "upperShare": 0,
-     "centerShare": 0.04,
+     "centerShare": 0.02,
      "smallText": 0
     },
     "eyebrows": [],
     "numbered": [],
     "color": {
-     "bodyBg": "#edeee9",
+     "bodyBg": "#f4f4f2",
      "bodyBgHsl": {
-      "h": 72,
-      "s": 0.13,
-      "l": 0.92
+      "h": 60,
+      "s": 0.08,
+      "l": 0.95
      },
      "dark": false,
      "sectionBgs": [
       {
-       "color": "#16201a",
+       "color": "#000000",
        "top": 0,
        "hsl": {
-        "h": 144,
-        "s": 0.19,
-        "l": 0.11
+        "h": 0,
+        "s": 0,
+        "l": 0
        }
       },
       {
        "color": "#e8e8e8",
-       "top": -17,
+       "top": 0,
        "hsl": {
         "h": 0,
         "s": 0,
         "l": 0.91
-       }
-      },
-      {
-       "color": "#282828",
-       "top": -17,
-       "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 0.16
-       }
-      },
-      {
-       "color": "#181818",
-       "top": -17,
-       "hsl": {
-        "h": 0,
-        "s": 0,
-        "l": 0.09
        }
       },
       {
@@ -3218,26 +3095,35 @@
        }
       },
       {
-       "color": "#dfe3da",
-       "top": 2489,
+       "color": "#282828",
+       "top": 1569,
        "hsl": {
-        "h": 87,
-        "s": 0.14,
-        "l": 0.87
+        "h": 0,
+        "s": 0,
+        "l": 0.16
        }
       },
       {
-       "color": "#f8e8c8",
-       "top": 2885,
+       "color": "#e8e7e4",
+       "top": 2463,
        "hsl": {
-        "h": 40,
-        "s": 0.77,
-        "l": 0.88
+        "h": 45,
+        "s": 0.08,
+        "l": 0.9
+       }
+      },
+      {
+       "color": "#c8b8a8",
+       "top": 3348,
+       "hsl": {
+        "h": 30,
+        "s": 0.23,
+        "l": 0.72
        }
       },
       {
        "color": "#d8d8d8",
-       "top": 4087,
+       "top": 3955,
        "hsl": {
         "h": 0,
         "s": 0,
@@ -3246,44 +3132,49 @@
       },
       {
        "color": "#d8c8b8",
-       "top": 6582,
+       "top": 6435,
        "hsl": {
         "h": 30,
         "s": 0.29,
         "l": 0.78
        }
+      },
+      {
+       "color": "#181818",
+       "top": 6486,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.09
+       }
       }
      ],
      "textColors": [
       {
-       "color": "#18201b",
-       "share": 0.61
+       "color": "#111111",
+       "share": 0.68
       },
       {
-       "color": "#4f5b53",
+       "color": "#2b2b2b",
        "share": 0.26
       },
       {
-       "color": "#edeee9",
-       "share": 0.08
+       "color": "#ffffff",
+       "share": 0.06
       },
       {
-       "color": "#edede8",
-       "share": 0.02
-      },
-      {
-       "color": "#c9ab6e",
+       "color": "#f4f4f2",
        "share": 0.01
       }
      ],
      "button": {
-      "bg": "#24382d",
+      "bg": "#111111",
       "hsl": {
-       "h": 147,
-       "s": 0.22,
-       "l": 0.18
+       "h": 0,
+       "s": 0,
+       "l": 0.07
       },
-      "fg": "#edeee9"
+      "fg": "#ffffff"
      },
      "lowContrast": []
     },
@@ -3317,28 +3208,13 @@
      "blurred": 0,
      "roundedBoxes": 0,
      "boxRadius": 0,
-     "squareMedia": 15,
+     "squareMedia": 12,
      "roundedMedia": 0,
      "mediaRadius": 0,
      "textShadow": 0,
-     "cardRows": [
-      {
-       "count": 7,
-       "iconTopped": false,
-       "rounded": false,
-       "top": 5060
-      }
-     ]
+     "cardRows": []
     },
     "heroMedia": [
-     {
-      "type": "img",
-      "ratio": 1
-     },
-     {
-      "type": "img",
-      "ratio": 1
-     },
      {
       "type": "img",
       "ratio": 1
@@ -3361,7 +3237,7 @@
      "w": 390,
      "h": 844
     },
-    "pageH": 14760,
+    "pageH": 14785,
     "margins": {
      "left": 21,
      "right": 21
@@ -3371,14 +3247,14 @@
       "sel": "div#topo",
       "tag": "div",
       "top": 0,
-      "height": 13514,
-      "words": 895,
-      "media": 27,
+      "height": 13886,
+      "words": 883,
+      "media": 42,
       "middle": 0,
       "heading": {
-       "text": "Amanda",
+       "text": "Quem",
        "size": 56,
-       "tag": "h1"
+       "tag": "h2"
       },
       "left": 21,
       "right": 21,
@@ -3391,22 +3267,22 @@
       "pinned": false
      },
      {
-      "sel": "footer.on-dark.relative",
+      "sel": "footer.relative.bg-sand",
       "tag": "footer",
-      "top": 13514,
-      "height": 1246,
-      "words": 61,
-      "media": 1,
+      "top": 13886,
+      "height": 900,
+      "words": 54,
+      "media": 0,
       "middle": 0,
       "heading": {
-       "text": "AT",
-       "size": 86,
-       "tag": "span"
+       "text": "Studio Amanda Teixeira",
+       "size": 36,
+       "tag": "p"
       },
-      "left": 0,
-      "right": 33,
+      "left": 21,
+      "right": 26,
       "textLeft": 21,
-      "textRight": 33,
+      "textRight": 26,
       "fullBleed": false,
       "footer": true,
       "hero": false,
@@ -3418,8 +3294,8 @@
     "h1s": [
      {
       "text": "Amanda Teixeira",
-      "size": 56,
-      "top": 361,
+      "size": 55,
+      "top": 423,
       "firstScreen": true
      }
     ],
@@ -3427,14 +3303,14 @@
     "edges": [
      {
       "x": 21,
-      "n": 27
+      "n": 28
      },
      {
       "x": 137,
       "n": 1
      }
     ],
-    "leftBlocks": 28,
+    "leftBlocks": 29,
     "bodySize": 17,
     "stage": false,
     "explains": true,
@@ -3447,6 +3323,13 @@
   }
  ],
  "findings": [
+  {
+   "level": "WARN",
+   "id": "palette-cream",
+   "width": 1440,
+   "message": "Yellow-cream background (section #f8e8c8).",
+   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream."
+  },
   {
    "level": "WARN",
    "id": "size-count",
@@ -3464,20 +3347,6 @@
    "width": 1440,
    "message": "No video anywhere on the page.",
    "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
-  },
-  {
-   "level": "WARN",
-   "id": "long-pin",
-   "width": 1440,
-   "message": "The same large text stays on screen for 3 screens in a row: \"Quem atende\"",
-   "fix": "A pinned element earns two screens, and something must change at each. Shorten the run or give every screen its own content."
-  },
-  {
-   "level": "WARN",
-   "id": "palette-cream",
-   "width": 390,
-   "message": "Yellow-cream background (section #f8e8c8).",
-   "fix": "Use the drawn palette. If you want warmth, take a low-chroma stone or bone, not a yellow cream."
   }
  ],
  "images": [

@@ -16,7 +16,7 @@ function MapEmbed() {
       ) : (
         <div className="absolute inset-0 grid place-content-center gap-3 p-6 text-center">
           <p className="font-display text-[30px] leading-tight">{brand.addressShort}</p>
-          <p className="text-[15px] text-soft">Centro de Lavras</p>
+          <p className="text-[15px]">Centro de Lavras</p>
           <div className="mt-2 flex flex-wrap justify-center gap-x-6 gap-y-3">
             <button type="button" className="btn" onClick={() => setShow(true)}>Mostrar mapa</button>
             <a className="link self-center text-[15px]" href={brand.mapsUrl} target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
@@ -32,12 +32,12 @@ export function Contact() {
     <section id="contato" aria-labelledby="contato-title" className="frame pb-[clamp(96px,10vw,140px)] pt-[clamp(140px,13vw,200px)]">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-x-6">
         <p data-reveal className="font-display text-[24px] leading-[1.15] md:text-[30px] lg:col-span-6 lg:text-[36px]">
-          Dúvida sobre procedimento, curso ou horário? A Amanda responde pessoalmente.
+          Dúvidas sobre procedimentos, cursos ou horários? Fale com o studio pelo WhatsApp ou pelo Instagram.
         </p>
         <div className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 lg:col-span-5 lg:col-start-8 lg:grid-cols-[160px_minmax(0,1fr)] lg:gap-8">
           <div data-reveal="mask" className="aspect-square"><Img name={contactPhoto.name} alt={contactPhoto.alt} sizes="160px" focus="50% 20%" /></div>
           <div data-reveal style={{ '--i': 1 } as React.CSSProperties}>
-            <h2 id="contato-title" className="font-sans text-[20px] font-semibold tracking-normal">Prefere conversar antes?</h2>
+            <h2 id="contato-title" className="font-sans text-[20px] font-semibold tracking-normal">Contato</h2>
             <ul className="m-0 mt-4 grid list-none gap-2 p-0 text-[17px] [overflow-wrap:anywhere] sm:text-[20px]">
               <li><a className="link" href={whatsappLink('Olá, Amanda! Vim pelo site e gostaria de tirar uma dúvida.')} target="_blank" rel="noopener noreferrer">WhatsApp {brand.phoneDisplay}</a></li>
               <li><a className="link" href={brand.instagram.url} target="_blank" rel="noopener noreferrer">{brand.instagram.handle}</a></li>

@@ -16,7 +16,7 @@ const MARK: Record<BookingStatus, string> = {
   confirmado: 'bg-cocoa text-paper',
   concluido: 'bg-sand text-ink',
   cancelado: 'bg-paper text-soft line-through',
-  nao_compareceu: 'bg-[repeating-linear-gradient(135deg,#d6dccf_0_4px,#eceee8_4px_8px)] text-ink',
+  nao_compareceu: 'bg-[repeating-linear-gradient(135deg,#dcdbd8_0_4px,#f0f0ee_4px_8px)] text-ink',
 }
 const STATUSES = Object.keys(STATUS_LABEL) as BookingStatus[]
 

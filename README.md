@@ -69,21 +69,14 @@ Fontes de cada informação e o que confirmar com a Amanda: [`PENDENCIAS.md`](PE
 
 | | Performance | Acessibilidade | Boas práticas | SEO | LCP | CLS |
 | --- | --- | --- | --- | --- | --- | --- |
-| Lighthouse celular (4G lento simulado) | 93–94 | 100 | 100 | 100 | ~3,0 s | 0,017 |
-| Lighthouse desktop | 100 | 100 | 100 | 100 | 0,8 s | 0,001 |
+| Lighthouse celular (4G lento simulado) | 96 | 100 | 100 | 100 | 2,7 s | 0,015 |
+| Lighthouse desktop | 100 | 100 | 100 | 100 | 0,7 s | 0,001 |
 
 Inspetor da skill de design: 0 falhas em 1440/768/390 px.
 
-## O que é só deste site (e não da Divino Look nem da ON Moda)
+## Identidade (revisão de 24/10/2026)
 
-Comparado com os dois projetos em 24/10/2026, foram trocados apenas os elementos repetidos:
-
-| Era igual a | Agora |
-| --- | --- |
-| Paleta marrom/areia/champagne da Divino Look | Verde-garrafa do muro do studio, porcelana fria e dourado dos balões |
-| Botão quadrado chapado da Divino Look | Botão com selo dourado e seta que gira no hover (links) |
-| Faixa de painéis que abrem no hover (Divino e ON) | Pilha de fotos do studio para folhear e arrastar (Motion) |
-| Foto fixa que troca ao passar na lista (Divino) | Lista larga com foto que segue o cursor em mola (Motion) |
-| Rodapé com o nome gigante (Divino) e rodapé "sticky" (ON) | Selo redondo com o lema girando com a rolagem |
-| Revelação de foto em obturador + zoom (ON) | Revelação em arco, como o espelho do studio |
-| Título do topo subindo (ON) | Nome que entra ajustando o espaçamento das letras |
+- Texto, ícones e botões em preto; fundos claros neutros (`#f4f4f2`, `#e8e7e4`); nada de verde, marrom ou creme.
+- Botões retos e pretos, sem ícone. Links sublinhados.
+- Diferente da Divino Look e da ON Moda: sem faixa de painéis que abrem no hover (no lugar, pilha de fotos do studio para folhear, com Motion), sem foto fixa trocando na lista de procedimentos (no lugar, foto que segue o cursor, com Motion), sem nome gigante nem rodapé "sticky" (rodapé claro e simples), revelação das fotos em arco, nome do topo entrando pelo espaçamento das letras.
+- Resultados em grade simples com legenda; topo com uma foto só (sem troca automática).

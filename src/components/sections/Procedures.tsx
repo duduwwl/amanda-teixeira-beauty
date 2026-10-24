@@ -29,7 +29,7 @@ export function Procedures() {
     <section id="procedimentos" aria-labelledby="proc-title" className="frame py-[var(--section)]">
       <div className="grid gap-8 md:grid-cols-12 md:gap-x-6">
         <h2 id="proc-title" data-reveal className="max-w-[16ch] text-[clamp(44px,6vw,96px)] md:col-span-7">
-          O que a Amanda faz, um por um
+          Procedimentos
         </h2>
         <p data-reveal style={{ '--i': 1 } as React.CSSProperties} className="max-w-[38ch] self-end text-[17px] md:col-span-4 md:col-start-9">
           Sete procedimentos, todos feitos por ela. Regeneração e laser começam por uma avaliação.
@@ -38,7 +38,7 @@ export function Procedures() {
 
       <ul ref={setList} className="m-0 mt-14 list-none p-0 md:mt-20" onPointerLeave={() => setHover(null)}>
         {procedures.map((p, i) => (
-          <li key={p.slug} data-reveal style={{ '--i': i } as React.CSSProperties} className="bg-paper even:bg-sand/55"
+          <li key={p.slug} data-reveal style={{ '--i': i } as React.CSSProperties} className="transition-colors hover:bg-sand"
             onPointerEnter={() => setHover(open === i ? null : i)}>
             <h3 className="m-0 font-sans text-[17px] font-normal tracking-normal">
               <button
@@ -63,7 +63,7 @@ export function Procedures() {
                   <p className="max-w-[52ch] text-[17px]">{p.body}</p>
                   <p className="max-w-[52ch] text-[17px] text-soft">{p.care}</p>
                   {p.evaluation && (
-                    <p className="max-w-[52ch] bg-champagne/35 px-4 py-3 text-[15px]">Começa por uma avaliação, que define se o procedimento é indicado para você.</p>
+                    <p className="max-w-[52ch] bg-white px-4 py-3 text-[15px]">Começa por uma avaliação, que define se o procedimento é indicado para você.</p>
                   )}
                   <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
                     <Link to={`/agendamento?servico=${p.slug}`} className="btn">Agendar {p.name}</Link>

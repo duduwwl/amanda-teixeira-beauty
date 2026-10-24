@@ -47,3 +47,5 @@ Base: a primeira versão publicada (commit ded5256). Os repositórios `divino-lo
 - **emil-design-eng**: molas do Motion na foto que segue o cursor (só com mouse e sem redução de movimento, inclinação pela velocidade) e na pilha do studio (descarte por velocidade, não só por distância); `:active` em escala 0.97; hover só em `(hover: hover) and (pointer: fine)`.
 - **Motion** (biblioteca): `StudioDeckLive` e `ProcPreview`, carregados só quando a seção chega perto da tela, para não pesar no primeiro carregamento.
 - Contraste da paleta nova medido (texto 14,3:1; secundário 6,1:1 e 5,5:1; dourado sobre o fundo escuro 7,6:1); axe sem violações sérias; Lighthouse celular 93–94, desktop 100.
+
+Ajuste seguinte (mesmo dia): paleta trocada para preto e neutros a pedido; selo e setas removidos; textos revisados para tirar frases de efeito; resultados em grade; topo com uma foto. Inspetor 0 FAIL, 3 WARN; conferido em 280×653, 320×568, 375×667, 390×844, 412×915, 844×390, 768×1024, 1024×1366, 1280×720, 1366×768, 1440×900, 1920×1080 e 2560×1440 sem rolagem lateral.

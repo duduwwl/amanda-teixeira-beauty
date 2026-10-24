@@ -1,17 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Img } from '../ui/Img'
 import { results, type ResultCategory } from '../../content/media'
+import { brand } from '../../content/site'
 
-// Posições da nuvem de fotos (desktop): x/y em % da área, largura em px, deriva.
-const SPOTS = [
-  { x: 2, y: 6, w: 190, d: 8 },
-  { x: 25, y: 0, w: 168, d: -6 },
-  { x: 76, y: 4, w: 200, d: 10 },
-  { x: 0, y: 56, w: 176, d: -9 },
-  { x: 22, y: 70, w: 196, d: 6 },
-  { x: 70, y: 62, w: 172, d: -7 },
-  { x: 86, y: 36, w: 160, d: 12 },
-]
 const CATS: ('Todos' | ResultCategory)[] = ['Todos', 'Sobrancelhas', 'Regeneração', 'Laser', 'Brow lamination']
 
 function Lightbox({ start, onClose }: { start: number; onClose: () => void }) {
@@ -75,50 +66,42 @@ function Lightbox({ start, onClose }: { start: number; onClose: () => void }) {
   )
 }
 
+/** Galeria em grade: todas as fotos à vista, com legenda; clique abre a foto ampliada. */
 export function Results() {
   const [open, setOpen] = useState<number | null>(null)
-  const thumb = (i: number, cls = '', style?: React.CSSProperties) => {
-    const r = results[i]
-    return (
-      <button key={r.name} type="button" onClick={() => setOpen(i)} className={`group block overflow-hidden ${cls}`} style={style}>
-        <span className="sr-only">Ampliar foto: </span>
-        <div className="aspect-[9/10] transition-transform duration-500 ease-[var(--ease-out)] group-hover:scale-[1.04]">
-          <Img name={r.name} alt={r.alt} sizes="200px" />
-        </div>
-      </button>
-    )
-  }
   return (
     <section id="resultados" aria-labelledby="res-title" className="frame py-[var(--section)]">
-      {/* desktop: fotos reunidas em volta do título */}
-      <div className="relative hidden h-[min(100svh,860px)] min-h-[700px] md:block">
-        <div className="absolute inset-x-[12%] inset-y-0">
-          {SPOTS.slice(0, results.length).map((s, i) =>
-            thumb(i, 'drift absolute', { left: `${s.x}%`, top: `${s.y}%`, width: s.w, '--d': `${s.d}%` } as React.CSSProperties))}
-        </div>
-        <div className="absolute left-1/2 top-1/2 w-[min(30rem,40%)] -translate-x-1/2 -translate-y-1/2 text-center">
-          <ResultsText onOpen={() => setOpen(0)} />
-        </div>
+      <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-x-6">
+        <h2 id="res-title" data-reveal className="text-[clamp(44px,6vw,96px)] md:col-span-6">Resultados</h2>
+        <p data-reveal style={{ '--i': 1 } as React.CSSProperties} className="max-w-[44ch] text-[17px] md:col-span-5 md:col-start-8">
+          Sobrancelhas, regeneração, laser e brow lamination. Fotos de clientes do studio, publicadas pela Amanda com autorização.
+        </p>
       </div>
 
-      {/* celular: duas acima, três abaixo */}
-      <div className="md:hidden">
-        <div className="flex justify-between">{thumb(0, 'w-[34%]')}{thumb(1, 'mt-14 w-[30%]')}</div>
-        <div className="my-12 text-center"><ResultsText onOpen={() => setOpen(0)} /></div>
-        <div className="flex items-start justify-between">{thumb(2, 'mt-8 w-[30%]')}{thumb(3, 'w-[30%]')}{thumb(4, 'mt-16 w-[30%]')}</div>
-      </div>
+      <ul className="m-0 mt-12 grid list-none grid-cols-2 gap-x-3 gap-y-8 p-0 sm:gap-x-4 md:mt-16 md:grid-cols-4 md:gap-x-6 md:gap-y-12">
+        {results.map((r, i) => (
+          <li key={r.name} data-reveal style={{ '--i': i % 4 } as React.CSSProperties}>
+            <button type="button" onClick={() => setOpen(i)} className="group block w-full text-left">
+              <span className="block overflow-hidden">
+                <span className="block aspect-[4/5] transition-transform duration-500 ease-[var(--ease-out)] group-hover:scale-[1.03]">
+                  <Img name={r.name} alt={r.alt} sizes="(min-width: 768px) 23vw, 50vw" />
+                </span>
+              </span>
+              <span className="mt-3 block text-[15px] font-semibold leading-snug">{r.caption}</span>
+              <span className="block text-[15px]">{r.category}</span>
+            </button>
+          </li>
+        ))}
+        <li data-reveal style={{ '--i': 3 } as React.CSSProperties}>
+          <a href={brand.instagram.url} target="_blank" rel="noopener noreferrer"
+            className="flex aspect-[4/5] flex-col justify-end bg-ink p-4 text-white no-underline transition-colors hover:bg-[#333] sm:p-6">
+            <span className="text-[17px] font-semibold leading-snug">Mais resultados no Instagram</span>
+            <span className="mt-1 text-[15px] underline underline-offset-4">Abrir o perfil</span>
+          </a>
+        </li>
+      </ul>
 
       {open !== null && <Lightbox start={open} onClose={() => setOpen(null)} />}
     </section>
-  )
-}
-
-function ResultsText({ onOpen }: { onOpen: () => void }) {
-  return (
-    <>
-      <h2 id="res-title" className="text-[44px]">Resultados<br />de perto</h2>
-      <p className="mx-auto mt-4 max-w-[32ch] text-[17px]">Sobrancelhas, regeneração, laser e brow lamination, fotografados no studio.</p>
-      <button type="button" onClick={onOpen} className="link mt-4 min-h-[44px] text-[17px] font-semibold">Ver a galeria</button>
-    </>
   )
 }

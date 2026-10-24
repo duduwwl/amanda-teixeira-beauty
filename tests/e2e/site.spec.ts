@@ -47,7 +47,7 @@ test('procedimentos: "Saiba mais" abre e o botão leva à agenda com o procedime
 
 test('galeria: abre ampliada, navega por teclado, filtra e fecha', async ({ page }) => {
   await page.goto(url('#resultados'))
-  await page.getByRole('button', { name: 'Ver a galeria' }).first().click()
+  await page.locator('#resultados li button').first().click()
   const dlg = page.getByRole('dialog', { name: 'Galeria de resultados' })
   await expect(dlg).toBeVisible()
   await expect(dlg.getByText(/1 de \d+/)).toBeVisible()

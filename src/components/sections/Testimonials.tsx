@@ -5,7 +5,7 @@ export function Testimonials() {
   if (testimonials.length === 0) return null
   return (
     <section aria-labelledby="dep-title" className="frame py-[var(--section)]">
-      <h2 id="dep-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Quem já passou por aqui</h2>
+      <h2 id="dep-title" data-reveal className="text-[clamp(44px,6vw,96px)]">Avaliações no Google</h2>
       <ul className="m-0 mt-14 grid list-none gap-14 p-0 md:grid-cols-12">
         {testimonials.map((t, i) => (
           <li key={i} data-reveal className={`md:col-span-10 lg:col-span-6 ${i % 2 ? 'md:col-start-3 lg:col-start-7 lg:mt-24' : 'md:col-start-1'}`}>

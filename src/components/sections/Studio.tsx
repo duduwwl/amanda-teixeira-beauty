@@ -8,7 +8,7 @@ const StudioDeckLive = lazy(() => import('./StudioDeckLive'))
 const POINTS = [
   { t: 'Avaliação antes de tudo', d: 'Escuta, imagem ampliada dos fios e da pele, e só então a indicação.' },
   { t: 'Laser Spectra próprio', d: 'A remoção a laser deixou de depender de data marcada: é no dia que você escolher.' },
-  { t: 'Um cafezinho', d: 'Quem chega é recebida com calma, e a Amanda faz questão de oferecer um café.' },
+  { t: 'Café na chegada', d: 'A Amanda oferece um café para quem chega ao studio.' },
 ]
 
 /** A mesma pilha, parada: aparece na página pré-renderizada e enquanto a versão animada carrega. */
@@ -39,7 +39,7 @@ export function Studio() {
     <section aria-labelledby="studio-title" className="py-[var(--section)]">
       <div className="frame grid gap-10 md:grid-cols-12 md:gap-x-6">
         <h2 id="studio-title" data-reveal className="text-[clamp(44px,6vw,96px)] md:col-span-5 md:col-start-1">
-          O studio por dentro
+          O studio
         </h2>
         <ul className="m-0 grid list-none gap-7 p-0 sm:grid-cols-3 md:col-span-7 md:col-start-6 md:gap-6">
           {POINTS.map((p, i) => (
